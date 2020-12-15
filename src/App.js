@@ -1,11 +1,16 @@
+import { Route, Switch } from "react-router-dom";
 import { Header } from "./layouts";
-import { Register } from "./pages";
+
+import { LandingPage, Register } from "./pages";
+
 
 const App = () => {
   return (
     <>
       <Header />
-      <Register />
+      <Switch>
+        <Route exact path="/" component={LandingPage} />
+      </Switch>
     </>
   );
 };
