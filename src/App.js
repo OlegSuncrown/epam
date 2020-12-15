@@ -1,9 +1,11 @@
-function App() {
+import { Header } from "./layouts";
+
+const App = () => {
   return (
-    <div className="App">
-      <h1>Home</h1>
-    </div>
+    <>
+      <Header />
+    </>
   );
-}
+};
 
 export default App;
