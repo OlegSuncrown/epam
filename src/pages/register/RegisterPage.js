@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-
-import { Form, Button, Col } from "react-bootstrap";
+import { Form, Button, Col, Container } from "react-bootstrap";
 
 const Register = () => {
   const [validated, setValidated] = useState(false);
@@ -16,7 +15,7 @@ const Register = () => {
   };
 
   return (
-    <div className="container">
+    <Container>
       <div className="card m-3 p-3">
         <Form noValidate validated={validated} onSubmit={handleSubmit}>
           <Form.Row className="justify-content-md-center">
@@ -54,7 +53,7 @@ const Register = () => {
           </Form.Row>
         </Form>
       </div>
-    </div>
+    </Container>
   );
 };
 
