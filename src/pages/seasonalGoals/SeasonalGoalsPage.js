@@ -1,9 +1,9 @@
 import React, { useState, useContext } from "react";
 import { LinkContainer } from "react-router-bootstrap";
 import { Container, Button } from "react-bootstrap";
-import GoalItem from "./GoalItem";
+import SeasonalGoalItem from "./SeasonalGoalItem";
 
-const UserGoals = (props) => {
+const SeasonalGoals = (props) => {
   // const goalsList = useContext(GoalsContext);
 
   return (
@@ -28,9 +28,7 @@ const UserGoals = (props) => {
                         progress={item.progress} 
                      />) 
                   })} */}
-          <GoalItem title="Walk 10000 steps every day" progress="30" />
-          <GoalItem title="Quit smoking" progress="100" />
-          <GoalItem title="Save money" progress="50" />
+          <SeasonalGoalItem />
         </tbody>
       </table>
 
@@ -46,4 +44,4 @@ const UserGoals = (props) => {
   );
 };
 
-export default UserGoals;
+export default SeasonalGoals;

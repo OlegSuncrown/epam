@@ -2,14 +2,14 @@ import React, { useState } from "react";
 import { Button, Col, Container } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 
-const GoalItem = (props) => {
+const SeasonalGoalItem = (props) => {
   return (
     <>
       <LinkContainer to="/">
         <tr>
           <th scope="row">{props.title || "Save money"}</th>
-          <td>{props.startDate || "21.11.2020"}</td>
-          <td>{props.endDate || "30.12.2020"}</td>
+          <td>{props.title || "21.11.2020"}</td>
+          <td>{props.title || "30.12.2020"}</td>
           <td>
             <div class="progress">
               <div
@@ -19,8 +19,8 @@ const GoalItem = (props) => {
                 aria-valuemin="0"
                 aria-valuemax="100"
                 style={{
-                  width: (props.progress || 74) + "%",
-                  background: `rgba(${0},${props.progress * 2},${0})`,
+                  width: props.progress || 74 + "%",
+                  // background: `rgba(${props.progress || 120},${props.progress || 150},${props.progress || 234})`,
                 }}
               ></div>
             </div>
@@ -31,4 +31,4 @@ const GoalItem = (props) => {
   );
 };
 
-export default GoalItem;
+export default SeasonalGoalItem;

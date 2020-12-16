@@ -1,7 +1,13 @@
 import { Route, Switch } from "react-router-dom";
 import { Header } from "./layouts";
 
-import { LandingPage, RegisterPage, LoginPage, UserGoalsPage } from "./pages";
+import {
+  LandingPage,
+  RegisterPage,
+  LoginPage,
+  UserGoalsPage,
+  SeasonalGoals,
+} from "./pages";
 
 const App = () => {
   return (
@@ -11,7 +17,8 @@ const App = () => {
         <Route exact path="/" component={LandingPage} />
         <Route exact path="/register" component={RegisterPage} />
         <Route exact path="/login" component={LoginPage} />
-        <Route exact path="/goals" component={UserGoalsPage} />
+        <Route exact path="/userGoals" component={UserGoalsPage} />
+        <Route exact path="/seasonalGoals" component={SeasonalGoals} />
       </Switch>
     </>
   );
