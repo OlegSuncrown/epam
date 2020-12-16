@@ -23,7 +23,9 @@ const LoginPage = () => {
             </Form.Group>
           </Form.Row>
           <Form.Row className="justify-content-md-center mt-3">
-            <Button type="submit">Submit form</Button>
+            <Button type="submit" variant="dark">
+              Log in
+            </Button>
           </Form.Row>
         </Form>
       </div>

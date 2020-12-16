@@ -49,7 +49,9 @@ const Register = () => {
             </Form.Group>
           </Form.Row>
           <Form.Row className="justify-content-md-center mt-3">
-            <Button type="submit">Submit form</Button>
+            <Button type="submit" variant="dark">
+              Register
+            </Button>
           </Form.Row>
         </Form>
       </div>
