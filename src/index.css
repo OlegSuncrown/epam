@@ -1,0 +1,15 @@
+.text-centered {
+  text-align: center;
+}
+
+.btn-mini {
+  height: 15px;
+  width: 30px;
+}
+
+.full-width {
+  width: 100%;
+}
+.no-bg {
+  background: none;
+}
