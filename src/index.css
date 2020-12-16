@@ -43,3 +43,8 @@
 .fas {
   font-size: 20px;
 }
+
+.hover-row:hover {
+  background: rgb(212, 212, 212);
+  color: rgb(43, 43, 43);
+}
