@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { Button, Col, Container } from "react-bootstrap";
-import { LinkContainer } from "react-router-bootstrap";
+import { Link } from "react-router-dom";
 
 const SeasonalGoalItem = (props) => {
   return (
     <>
-      <LinkContainer to="/">
+      <Link to="/">
         <tr>
           <th scope="row">{props.title || "Save money"}</th>
           <td>{props.title || "21.11.2020"}</td>
@@ -26,7 +26,7 @@ const SeasonalGoalItem = (props) => {
             </div>
           </td>
         </tr>
-      </LinkContainer>
+      </Link>
     </>
   );
 };

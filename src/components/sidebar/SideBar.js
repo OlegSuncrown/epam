@@ -12,13 +12,13 @@ const SideBar = () => {
             Profile
           </Nav.Link>
 
-          <Nav.Link to="/dashboard/profile" as={NavLink}>
+          <Nav.Link to="/dashboard/user-goals" as={NavLink}>
             <i className="mr-3  fas fa-award"></i>
-            Your Progress
+            User Goals
           </Nav.Link>
-          <Nav.Link to="/dashboard/global" as={NavLink}>
+          <Nav.Link to="/dashboard/seasonal-goals" as={NavLink}>
             <i className="mr-3 fas fa-globe"></i>
-            Global Events
+            Season Goals
           </Nav.Link>
           <Nav.Link to="/dashboard/add-goal" as={NavLink}>
             <i className="mr-3 fas fa-plus-circle"></i>

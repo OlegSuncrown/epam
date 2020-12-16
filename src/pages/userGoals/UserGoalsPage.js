@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import { LinkContainer } from "react-router-bootstrap";
+import { Link } from "react-router-dom";
 import { Container, Button } from "react-bootstrap";
 import GoalItem from "./GoalItem";
 
@@ -34,14 +34,14 @@ const UserGoals = (props) => {
         </tbody>
       </table>
 
-      <LinkContainer to="/addGoal">
+      <Link to="/addGoal">
         <Button
           type="button"
           className="btn btn-outline-secondary full-width no-bg"
         >
           Add Goal
         </Button>
-      </LinkContainer>
+      </Link>
     </Container>
   );
 };
