@@ -6,17 +6,18 @@ import {
 } from "react-router-dom";
 import { Row, Col, Container } from "react-bootstrap";
 import { ProfilePage, UserGoalsPage, SeasonalGoals, BagesPage } from "./pages";
-import { SideBar } from "./components";
+import { SideBar, SideBarMobile } from "./components";
 
 const Dashboard = () => {
   let match = useRouteMatch();
   return (
     <>
       <h1 className="text-center mt-3">Dashboard</h1>
+      <SideBarMobile />
       <Router>
         <Container>
           <Row>
-            <Col xs={2} md={3}>
+            <Col md={3} className="d-none d-lg-block">
               <SideBar />
             </Col>
             <Col>
