@@ -45,6 +45,6 @@
 }
 
 .hover-row:hover {
-  text-decoration: none;
-  background: rgb(209, 212, 214);
+  background: rgb(212, 212, 212);
+  color: rgb(43, 43, 43);
 }

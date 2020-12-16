@@ -29,18 +29,11 @@ const UserGoals = (props) => {
       <GoalItem title="Quit smoking" progress="100" />
       <GoalItem title="Save money" progress="50" />
 
-      <Row>
-        <Col>
-          <Link to="/addGoal">
-            <Button
-              type="button"
-              className="btn btn-outline-secondary full-width no-bg"
-            >
-              Add Goal
-            </Button>
-          </Link>
-        </Col>
-      </Row>
+      <Link to="/addGoal" className="text-decoration-none">
+        <Row className="hover-row py-4">
+          <Col className="text-center">Add Goal</Col>
+        </Row>
+      </Link>
     </Container>
   );
 };
