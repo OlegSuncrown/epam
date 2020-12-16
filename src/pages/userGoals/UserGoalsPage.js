@@ -12,9 +12,9 @@ const UserGoals = (props) => {
         <Col xs={6} md={4}>
           Title
         </Col>
-        <Col>Start date</Col>
-        <Col>End Date</Col>
-        <Col>Progress</Col>
+        <Col className="col-sm-3">Start date</Col>
+        <Col className="col-sm-3">End Date</Col>
+        <Col className="d-sm-none d-md-block">Progress</Col>
       </Row>
 
       {/* {goalsList.map(item => {

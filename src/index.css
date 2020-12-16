@@ -43,3 +43,8 @@
 .fas {
   font-size: 20px;
 }
+
+.hover-row:hover {
+  text-decoration: none;
+  background: rgb(209, 212, 214);
+}
