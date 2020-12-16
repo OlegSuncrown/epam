@@ -9,7 +9,7 @@ const Bage = () => {
 
   return (
     <>
-      <Col xs={6} sm={4} md={2}>
+      <Col xs={6} sm={4} md={4}>
         <Figure onClick={handleShow}>
           <Figure.Image
             width={171}
