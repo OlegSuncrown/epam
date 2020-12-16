@@ -5,9 +5,11 @@ import { Link } from "react-router-dom";
 const SeasonalGoalItem = (props) => {
   return (
     <>
-      <Link to="/">
-        <Row>
-          <Col>{props.title || "Save money"}</Col>
+      <Link to="/" className="text-decoration-none">
+        <Row className="hover-row  py-4">
+          <Col xs={6} md={4} className="">
+            {props.title || "Save money"}
+          </Col>
           <Col>{props.startDate || "21.11.2020"}</Col>
           <Col>{props.endDate || "30.12.2020"}</Col>
           <Col>
