@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import { Container, Button, Row, Form, Col } from "react-bootstrap";
 import { useForm } from "react-hook-form";
-
-import "react-datepicker/dist/react-datepicker.css";
+import swal from "sweetalert2";
 
 //hardcoded example
 const dataList = [
@@ -26,11 +25,11 @@ const SingleGoal = ({ match }) => {
   const [endDate, setEndDate] = useState("");
   const [amount, setAmount] = useState("");
 
-  const onSubmit = (data) => {
+  const onSubmit = (data, e) => {
     console.log(data);
+    e.target.reset();
+    swal.fire("Success", "Goal was successfully added!", "success");
   };
-
-  console.log(startDate, endDate, amount);
 
   const { id } = match.params;
   const goal = dataList.find((goal) => goal.id === Number(id));
@@ -54,12 +53,12 @@ const SingleGoal = ({ match }) => {
           <h1>{goal.title}</h1>
         </Form.Row>
         <Form.Row>
-          <Form.Group controlId="start_date">
+          <Form.Group controlId="start_date" className="px-2">
             <Form.Label>Select Start Date</Form.Label>
             <Form.Control
               name="startDate"
               type="date"
-              placeholder=""
+              required
               ref={register}
               onChange={(date) => setStartDate(date.target.value)}
             />
@@ -69,6 +68,7 @@ const SingleGoal = ({ match }) => {
             <Form.Control
               name="endDate"
               type="date"
+              required
               placeholder=""
               ref={register}
               onChange={(date) => setEndDate(date.target.value)}
@@ -93,7 +93,7 @@ const SingleGoal = ({ match }) => {
           </Col>
         </Form.Row>
         <Form.Row>
-          <Button type="submit" variant="info" size="lg">
+          <Button className="px-4" type="submit" variant="info" size="lg">
             GO
           </Button>
         </Form.Row>
