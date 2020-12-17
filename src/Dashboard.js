@@ -5,7 +5,7 @@ import {
   useRouteMatch,
 } from "react-router-dom";
 import { Row, Col, Container } from "react-bootstrap";
-import { ProfilePage, UserGoalsPage, SeasonalGoals } from "./pages";
+import { ProfilePage, UserGoalsPage, SeasonalGoals, BagesPage } from "./pages";
 import { SideBar, SideBarMobile } from "./components";
 
 const Dashboard = () => {
@@ -23,6 +23,10 @@ const Dashboard = () => {
             <Col>
               <Switch>
                 <Route exact path={`${match.path}/`} component={ProfilePage} />
+                <Route
+                  path={`${match.path}/user-bages`}
+                  component={BagesPage}
+                />
                 <Route
                   path={`${match.path}/user-goals`}
                   component={UserGoalsPage}
