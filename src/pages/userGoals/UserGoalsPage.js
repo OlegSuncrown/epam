@@ -1,10 +1,11 @@
 import React, { useState, useContext } from "react";
-import { Link } from "react-router-dom";
+import { NavLink, Link, useRouteMatch } from "react-router-dom";
 import { Container, Button, Row, Col } from "react-bootstrap";
 import GoalItem from "./GoalItem";
 
 const UserGoals = (props) => {
   // const { goalsList } = useContext(GoalsContext);
+  const { path } = useRouteMatch();
 
   return (
     <Container fluid>
@@ -29,7 +30,11 @@ const UserGoals = (props) => {
       <GoalItem title="Quit smoking" progress="100" />
       <GoalItem title="Save money" progress="50" />
 
-      <Link to="/addGoal" className="text-decoration-none">
+      <Link
+        to="/dashboard/add-goal"
+        as={NavLink}
+        className="text-decoration-none"
+      >
         <Row className="hover-row py-4">
           <Col className="text-center">Add Goal</Col>
         </Row>

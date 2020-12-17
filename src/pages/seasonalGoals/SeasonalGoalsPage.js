@@ -25,7 +25,7 @@ const SeasonalGoals = (props) => {
                     progress={item.progress} 
                  />) 
               })} */}
-      <SeasonalGoalItem title="1000 push-ups this month" progress="30" />
+      <SeasonalGoalItem title="1000 push-ups this month" progress="10" />
     </Container>
   );
 };
