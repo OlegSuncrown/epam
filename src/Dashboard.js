@@ -4,6 +4,7 @@ import { ProfilePage, UserGoalsPage, SeasonalGoals, BagesPage } from "./pages";
 import { SideBar } from "./components";
 import SingleGoal from "./pages/goals/SingleGoal";
 
+import PrivateRoute from "./utils/PrivateRoute";
 const Dashboard = () => {
   let { path } = useRouteMatch();
   return (
@@ -17,14 +18,21 @@ const Dashboard = () => {
           </Col>
           <Col className="mx-auto">
             <Switch>
-              <Route exact path={path} component={ProfilePage} />
-              <Route exact path={`${path}/goals/:id`} component={SingleGoal} />
-              <Route path={`${path}/user-goals`} component={UserGoalsPage} />
-              <Route
+              <PrivateRoute exact path={path} component={ProfilePage} />
+              <PrivateRoute
+                exact
+                path={`${path}/goals/:id`}
+                component={SingleGoal}
+              />
+              <PrivateRoute
+                path={`${path}/user-goals`}
+                component={UserGoalsPage}
+              />
+              <PrivateRoute
                 path={`${path}/seasonal-goals`}
                 component={SeasonalGoals}
               />
-              <Route path={`${path}/user-bages`} component={BagesPage} />
+              <PrivateRoute path={`${path}/user-bages`} component={BagesPage} />
             </Switch>
           </Col>
         </Row>
