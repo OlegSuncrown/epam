@@ -4,12 +4,12 @@ import { Link } from "react-router-dom";
 
 const Hero = () => {
   const scrollToFeatured = () => {
-    let scrollToTop = window.setInterval(() => {
+    let scrollInterval = window.setInterval(() => {
       let pos = window.pageYOffset;
       if (pos < 970) {
         window.scrollTo(0, pos + 20);
       } else {
-        window.clearInterval(scrollToTop);
+        window.clearInterval(scrollInterval);
       }
     }, 16);
   };
