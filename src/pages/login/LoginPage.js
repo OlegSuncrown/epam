@@ -1,10 +1,17 @@
+import React, { useContext, useEffect } from "react";
 import { Form, Button, Col, Container } from "react-bootstrap";
-import React from "react";
+import { AuthContext } from "../../context/auth/AuthContext";
 
 const LoginPage = () => {
+  const { user } = useContext(AuthContext);
+
+  console.log(user);
   return (
     <Container>
       <div className="card m-3 p-3">
+        <h2 className="text-center mb-3">
+          <span className="text-primary">Log</span> in
+        </h2>
         <Form noValidate>
           <Form.Row className="justify-content-md-center">
             <Form.Group as={Col} md="4" controlId="validationCustom02">
@@ -23,7 +30,12 @@ const LoginPage = () => {
             </Form.Group>
           </Form.Row>
           <Form.Row className="justify-content-md-center mt-3">
-            <Button type="submit" variant="dark">
+            <Button
+              to="/addGoal"
+              variant="primary"
+              type="submit"
+              className="px-4"
+            >
               Log in
             </Button>
           </Form.Row>
