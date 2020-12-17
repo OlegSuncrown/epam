@@ -2,6 +2,7 @@ import { Switch, Route, useRouteMatch, Link } from "react-router-dom";
 import { Row, Col, Container } from "react-bootstrap";
 import { ProfilePage, UserGoalsPage, SeasonalGoals, BagesPage } from "./pages";
 import { SideBar } from "./components";
+import SingleGoal from "./pages/goals/SingleGoal";
 
 const Dashboard = () => {
   let { path } = useRouteMatch();
@@ -17,6 +18,7 @@ const Dashboard = () => {
           <Col className="mx-auto">
             <Switch>
               <Route exact path={path} component={ProfilePage} />
+              <Route exact path={`${path}/goals/:id`} component={SingleGoal} />
               <Route path={`${path}/user-goals`} component={UserGoalsPage} />
               <Route
                 path={`${path}/seasonal-goals`}
