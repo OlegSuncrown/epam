@@ -18,7 +18,7 @@ const SideBar = () => {
                   Profile
                 </Nav.Link>
                 <Nav.Link to="/dashboard/user-goals" as={NavLink}>
-                  <i className="mr-3  fas fa-award"></i>
+                  <i className="mr-3 fas fa-dot-circle"></i>
                   User Goals
                 </Nav.Link>
                 <Nav.Link to="/dashboard/seasonal-goals" as={NavLink}>
@@ -28,6 +28,10 @@ const SideBar = () => {
                 <Nav.Link to="/dashboard/add-goal" as={NavLink}>
                   <i className="mr-3 fas fa-plus-circle"></i>
                   Add New Goal
+                </Nav.Link>
+                <Nav.Link to="/dashboard/user-bages" as={NavLink}>
+                  <i className="mr-3 fas fa-trophy"></i>
+                  Your Awards
                 </Nav.Link>
               </Nav>
             </Navbar>

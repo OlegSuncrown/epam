@@ -15,7 +15,7 @@ const UserGoals = (props) => {
         </Col>
         <Col className="col-sm-3">Start date</Col>
         <Col className="col-sm-3">End Date</Col>
-        <Col className="d-sm-none d-md-block">Progress</Col>
+        <Col className="d-none d-md-block">Progress</Col>
       </Row>
 
       {/* {goalsList.map(item => {
@@ -30,15 +30,9 @@ const UserGoals = (props) => {
       <GoalItem title="Quit smoking" progress="100" />
       <GoalItem title="Save money" progress="50" />
 
-      <Link
-        to="/dashboard/add-goal"
-        as={NavLink}
-        className="text-decoration-none"
-      >
-        <Row className="hover-row py-4">
-          <Col className="text-center">Add Goal</Col>
-        </Row>
-      </Link>
+      <Button to="/addGoal" variant="outline-primary" block as={Link}>
+        Add Goal
+      </Button>
     </Container>
   );
 };
