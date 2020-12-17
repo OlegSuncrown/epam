@@ -1,7 +1,16 @@
 import React from "react";
+import Hero from "./Hero";
+import Main from "./Main";
+import Footer from "./Footer";
 
 const LandingPage = () => {
-  return <h3 className="text-center">Landing Page</h3>;
+  return (
+    <>
+      <Hero />
+      <Main />
+      <Footer />
+    </>
+  );
 };
 
 export default LandingPage;

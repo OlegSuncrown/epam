@@ -3,6 +3,9 @@ import { Navbar, Nav, Container, Button } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 import { AuthContext } from "../../context/auth/AuthContext";
 
+import Logo from "../../assets/logo.svg";
+
+
 const Header = () => {
   const { isAuthenticated, logOut } = useContext(AuthContext);
 
@@ -11,7 +14,7 @@ const Header = () => {
       <Navbar bg="dark" variant="dark" expand="lg" collapseOnSelect>
         <Container>
           <Navbar.Brand as={NavLink} to="/">
-            Highway To Accomplish
+            <img className="logo" src={Logo}></img>
           </Navbar.Brand>
 
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
