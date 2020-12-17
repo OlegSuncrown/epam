@@ -2,6 +2,8 @@ import { Switch, Route, useRouteMatch, Link } from "react-router-dom";
 import { Row, Col, Container } from "react-bootstrap";
 import { ProfilePage, UserGoalsPage, SeasonalGoals, BagesPage } from "./pages";
 import { SideBar } from "./components";
+import SingleGoal from "./pages/goals/SingleGoal";
+
 import PrivateRoute from "./utils/PrivateRoute";
 const Dashboard = () => {
   let { path } = useRouteMatch();
@@ -17,6 +19,11 @@ const Dashboard = () => {
           <Col className="mx-auto">
             <Switch>
               <PrivateRoute exact path={path} component={ProfilePage} />
+              <PrivateRoute
+                exact
+                path={`${path}/goals/:id`}
+                component={SingleGoal}
+              />
               <PrivateRoute
                 path={`${path}/user-goals`}
                 component={UserGoalsPage}

@@ -16,7 +16,14 @@ const AdsCard = (props) => {
               <Card.Text className="py-4 my-4">{props.text}</Card.Text>
             </Card.Body>
 
-            <Button className="btn btn-primary btn-lg">Select Goal</Button>
+            <Button
+              to="/dashboard/goals/1"
+              className="btn btn-primary btn-lg"
+              block
+              as={Link}
+            >
+              Select Goal
+            </Button>
           </Card>
         </Col>
         <Col className="p-0 col-12 col-sm-6 d-flex justify-content-center justify-content-md-start">

@@ -5,7 +5,6 @@ import { AuthContext } from "../../context/auth/AuthContext";
 
 import Logo from "../../assets/logo.svg";
 
-
 const Header = () => {
   const { isAuthenticated, logOut } = useContext(AuthContext);
 
