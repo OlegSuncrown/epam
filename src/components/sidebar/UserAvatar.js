@@ -12,7 +12,9 @@ const UserAvatar = () => {
           src="https://www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png"
           roundedCircle
         />
-        <Card.Title>{user ? user.firstName : "loading..."}</Card.Title>
+        <Card.Title>
+          <strong>{user ? user.firstName : "loading..."}</strong>
+        </Card.Title>
       </Card.Body>
     </Card>
   );

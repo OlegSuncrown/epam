@@ -24,6 +24,7 @@ const LoginPage = ({ history }) => {
       history.push("/dashboard");
     }
   }, [isAuthenticated]);
+
   return (
     <Container>
       <div className="card m-3 p-3">

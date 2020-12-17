@@ -7,7 +7,7 @@ const AuthState = (props) => {
   const [user, setUser] = useState(null);
   const [token, setToken] = useState(() => localStorage.getItem("AuthToken"));
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [loading, setLoading] = useState(true);
+  const [isLoading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   const URL = "https://hwtaweb20201216131958.azurewebsites.net";
@@ -85,6 +85,7 @@ const AuthState = (props) => {
     <AuthContext.Provider
       value={{
         user,
+        isLoading,
         registerUser,
         loginUser,
         isAuthenticated,
