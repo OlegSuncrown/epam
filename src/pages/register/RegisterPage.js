@@ -11,6 +11,8 @@ const Register = () => {
   });
 
   const { firstName, lastName, email, password } = userRegister;
+
+  // Get value from the form
   const onChange = (e) =>
     setUserRegister({ ...userRegister, [e.target.name]: e.target.value });
 
@@ -67,9 +69,9 @@ const Register = () => {
                 name="email"
                 onChange={onChange}
               />
-              <Form.Text className="text-muted">
+              {/* <Form.Text className="text-muted">
                 We'll never share your email with anyone else.
-              </Form.Text>
+              </Form.Text> */}
               <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
             </Form.Group>
           </Form.Row>
