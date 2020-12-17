@@ -3,6 +3,17 @@ import { Container, Col, Button, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 const Hero = () => {
+  const scrollToFeatured = () => {
+    let scrollToTop = window.setInterval(() => {
+      let pos = window.pageYOffset;
+      if (pos < 970) {
+        window.scrollTo(0, pos + 20);
+      } else {
+        window.clearInterval(scrollToTop);
+      }
+    }, 16);
+  };
+
   return (
     <Container fluid className="p-0">
       <div className="hero-block">
@@ -20,7 +31,7 @@ const Hero = () => {
 
         <Row>
           <Col className="col-4  text-right">
-            <Link to="/">
+            <Link to="/" onClick={scrollToFeatured}>
               <span>Featured</span>
             </Link>
           </Col>
