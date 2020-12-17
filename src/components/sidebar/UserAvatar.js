@@ -1,6 +1,8 @@
+import React, { useContext } from "react";
 import { Card, Image } from "react-bootstrap";
-
+import { AuthContext } from "../../context/auth/AuthContext";
 const UserAvatar = () => {
+  const { user } = useContext(AuthContext);
   return (
     <Card className="border-light mb-3 text-center">
       <Card.Body className="bg-light">
@@ -10,7 +12,9 @@ const UserAvatar = () => {
           src="https://www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png"
           roundedCircle
         />
-        <Card.Title>User Name</Card.Title>
+        <Card.Title>
+          <strong>{user ? user.firstName : "loading..."}</strong>
+        </Card.Title>
       </Card.Body>
     </Card>
   );
