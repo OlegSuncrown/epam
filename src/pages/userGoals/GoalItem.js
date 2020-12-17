@@ -6,7 +6,7 @@ const GoalItem = (props) => {
   return (
     <>
       <Link to="/" className="text-decoration-none">
-        <Row className="hover-row  py-4">
+        <Row className="hover-row  py-4 m-0">
           <Col xs={6} md={4} className="">
             {props.title || "Save money"}
           </Col>
