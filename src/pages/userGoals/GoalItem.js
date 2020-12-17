@@ -10,8 +10,12 @@ const GoalItem = (props) => {
           <Col xs={6} md={4} className="">
             {props.title || "Save money"}
           </Col>
-          <Col>{props.startDate || "21.11.2020"}</Col>
-          <Col>{props.endDate || "30.12.2020"}</Col>
+          <Col className="col-6 col-sm-3">
+            {props.startDate || "21.11.2020"}
+          </Col>
+          <Col className="d-none d-sm-block">
+            {props.endDate || "30.12.2020"}
+          </Col>
           <Col>
             <ProgressBar
               now={props.progress}

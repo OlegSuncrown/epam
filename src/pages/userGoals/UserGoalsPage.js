@@ -1,10 +1,11 @@
 import React, { useState, useContext } from "react";
-import { Link } from "react-router-dom";
+import { NavLink, Link, useRouteMatch } from "react-router-dom";
 import { Container, Button, Row, Col } from "react-bootstrap";
 import GoalItem from "./GoalItem";
 
 const UserGoals = (props) => {
   // const { goalsList } = useContext(GoalsContext);
+  const { path } = useRouteMatch();
 
   return (
     <Container fluid>
@@ -12,9 +13,9 @@ const UserGoals = (props) => {
         <Col xs={6} md={4}>
           Title
         </Col>
-        <Col className="col-sm-3">Start date</Col>
-        <Col className="col-sm-3">End Date</Col>
-        <Col className="d-sm-none d-md-block">Progress</Col>
+        <Col className=" col-sm-3">Start date</Col>
+        <Col className="d-none d-sm-block col-sm-3">End Date</Col>
+        <Col className="d-none d-md-block">Progress</Col>
       </Row>
 
       {/* {goalsList.map(item => {
