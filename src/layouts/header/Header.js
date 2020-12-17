@@ -7,19 +7,14 @@ const Header = () => {
     <div>
       <Navbar bg="dark" variant="dark" expand="lg" collapseOnSelect>
         <Container>
-          <Navbar.Brand as={NavLink} to="/dashboard">
-            React-Bootstrap
+          <Navbar.Brand as={NavLink} to="/">
+            Highway To Accomplish
           </Navbar.Brand>
 
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="ml-auto">
-              {/* <Nav.Link exact to='/' as={NavLink}>
-                <i className='fas fa-user'></i>
-                Home
-              </Nav.Link> */}
-              <Nav.Link exact to="/dashboard" as={NavLink}>
-                <i className="fas fa-user"></i>
+              <Nav.Link to="/dashboard" className="mr-3" as={NavLink}>
                 Dashboard
               </Nav.Link>
               <Nav.Link to="/login" as={NavLink}>
