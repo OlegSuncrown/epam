@@ -13,8 +13,8 @@ const UserGoals = (props) => {
         <Col xs={6} md={4}>
           Title
         </Col>
-        <Col className="col-sm-3">Start date</Col>
-        <Col className="col-sm-3">End Date</Col>
+        <Col className=" col-sm-3">Start date</Col>
+        <Col className="d-none d-sm-block col-sm-3">End Date</Col>
         <Col className="d-none d-md-block">Progress</Col>
       </Row>
 

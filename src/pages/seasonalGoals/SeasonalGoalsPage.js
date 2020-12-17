@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import { Container, Col, Row } from "react-bootstrap";
-import SeasonalGoalItem from "./SeasonalGoalItem";
+import GoalItem from "../userGoals/GoalItem";
 
 const SeasonalGoals = (props) => {
   // const goalsList = useContext(GoalsContext);
@@ -12,9 +12,9 @@ const SeasonalGoals = (props) => {
         <Col xs={6} md={4}>
           Title
         </Col>
-        <Col className="col-sm-3">Start date</Col>
-        <Col className="col-sm-3">End Date</Col>
-        <Col className="d-sm-none d-md-block">Progress</Col>
+        <Col className=" col-sm-3">Start date</Col>
+        <Col className="d-none d-sm-block col-sm-3">End Date</Col>
+        <Col className="d-none d-md-block">Progress</Col>
       </Row>
 
       {/* {goalsList.map(item => {
@@ -25,7 +25,7 @@ const SeasonalGoals = (props) => {
                     progress={item.progress} 
                  />) 
               })} */}
-      <SeasonalGoalItem title="1000 push-ups this month" progress="10" />
+      <GoalItem title="1000 push-ups this month" progress="14" />
     </Container>
   );
 };
