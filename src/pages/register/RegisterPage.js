@@ -3,7 +3,7 @@ import { Form, Button, Col, Container } from "react-bootstrap";
 import { AuthContext } from "../../context/auth/AuthContext";
 
 const Register = () => {
-  const { user, registerUser } = useContext(AuthContext);
+  const { registerUser } = useContext(AuthContext);
 
   const [validated, setValidated] = useState(false);
   const [userRegister, setUserRegister] = useState({

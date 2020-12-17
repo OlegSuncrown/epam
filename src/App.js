@@ -1,14 +1,15 @@
-import AuthState from "./context/auth/AuthContext";
-
 import { Route, Switch } from "react-router-dom";
-import { Header } from "./layouts";
+import AuthState from "./context/auth/AuthContext";
 import Dashboard from "./Dashboard";
+
+import setAuthToken from "./utils/setAuthToken";
+import { Header } from "./layouts";
 import { LandingPage, RegisterPage, LoginPage } from "./pages";
 
 const App = () => {
-  // if(localStorage.token){
-  //   setAuthToken(localStorage.token)
-  // }
+  if (localStorage.AuthToken) {
+    setAuthToken(localStorage.AuthToken);
+  }
   return (
     <>
       <AuthState>
