@@ -41,6 +41,12 @@
 .card-title {
   height: 40px;
 }
+
+.footer {
+  background: rgb(224, 224, 219);
+  font-size: 1.4rem;
+}
+
 @media only screen and (max-width: 767px) {
   .logo {
     width: 80vw;
