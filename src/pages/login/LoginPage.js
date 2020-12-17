@@ -1,9 +1,9 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { Form, Button, Col, Container } from "react-bootstrap";
 import { AuthContext } from "../../context/auth/AuthContext";
 
-const LoginPage = () => {
-  const { user } = useContext(AuthContext);
+const LoginPage = ({ history }) => {
+  const { loginUser, isAuthenticated } = useContext(AuthContext);
 
   const [userLogin, setUserLogin] = useState({
     email: "",
@@ -16,9 +16,14 @@ const LoginPage = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(userLogin);
+    loginUser(userLogin);
   };
 
+  useEffect(() => {
+    if (isAuthenticated) {
+      history.push("/dashboard");
+    }
+  }, [isAuthenticated]);
   return (
     <Container>
       <div className="card m-3 p-3">

@@ -1,7 +1,10 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Form, Button, Col, Container } from "react-bootstrap";
+import { AuthContext } from "../../context/auth/AuthContext";
 
 const Register = () => {
+  const { user, registerUser } = useContext(AuthContext);
+
   const [validated, setValidated] = useState(false);
   const [userRegister, setUserRegister] = useState({
     firstName: "",
@@ -24,6 +27,7 @@ const Register = () => {
       e.stopPropagation();
     }
     setValidated(true);
+    registerUser(userRegister);
   };
 
   return (
