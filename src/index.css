@@ -2,3 +2,36 @@
   background: rgb(212, 212, 212);
   color: rgb(43, 43, 43);
 }
+.hero-block {
+  width: 100vw;
+  height: 800px;
+  background: no-repeat url("./assets/landingBg.svg");
+  background-size: cover;
+  background-position: center;
+  padding: 4vw;
+}
+
+.hero-block h1 {
+  font-size: 5.5rem;
+  font-weight: 500;
+}
+
+.hero-block p {
+  padding: 1rem;
+  font-size: 2.2rem;
+}
+
+.hero-block span {
+  padding: 1rem;
+  font-size: 2.2rem;
+}
+
+@media only screen and (max-width: 767px) {
+  .logo {
+    width: 80vw;
+  }
+
+  html {
+    font-size: 1.8vw;
+  }
+}
