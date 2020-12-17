@@ -21,9 +21,6 @@ const dataList = [
 
 const SingleGoal = ({ match }) => {
   const { register, handleSubmit } = useForm();
-  const [startDate, setStartDate] = useState(new Date());
-  const [endDate, setEndDate] = useState("");
-  const [amount, setAmount] = useState("");
 
   const onSubmit = (data, e) => {
     console.log(data);
@@ -32,9 +29,16 @@ const SingleGoal = ({ match }) => {
   };
 
   const { id } = match.params;
-  const goal = dataList.find((goal) => goal.id === Number(id));
+  let goal;
+  let isNew = false;
 
-  if (!goal) {
+  if (id === "new") {
+    isNew = true;
+  } else {
+    goal = dataList.find((goal) => goal.id === Number(id));
+  }
+
+  if (!goal && id !== "new") {
     return (
       <Container>
         <Row className="justify-content-md-center pt-2">
@@ -50,7 +54,22 @@ const SingleGoal = ({ match }) => {
         onSubmit={handleSubmit(onSubmit)}
       >
         <Form.Row>
-          <h1>{goal.title}</h1>
+          {isNew ? (
+            <Form.Row>
+              <Form.Label htmlFor="title">Add cutom goal name</Form.Label>
+              <Form.Control
+                name="title"
+                ref={register}
+                required
+                size="lg"
+                placeholder="Enter goal name here"
+                type="text"
+                id="title"
+              />
+            </Form.Row>
+          ) : (
+            <h1>{goal.title}</h1>
+          )}
         </Form.Row>
         <Form.Row>
           <Form.Group controlId="start_date" className="px-2">
@@ -60,7 +79,6 @@ const SingleGoal = ({ match }) => {
               type="date"
               required
               ref={register}
-              onChange={(date) => setStartDate(date.target.value)}
             />
           </Form.Group>
           <Form.Group controlId="end_date">
@@ -71,7 +89,6 @@ const SingleGoal = ({ match }) => {
               required
               placeholder=""
               ref={register}
-              onChange={(date) => setEndDate(date.target.value)}
             />
           </Form.Group>
         </Form.Row>
@@ -85,11 +102,24 @@ const SingleGoal = ({ match }) => {
               size="sm"
               type="text"
               id="amountPerDay"
-              onChange={(e) => setAmount(e.target.value)}
             />
           </Col>
-          <Col className="d-flex justify-content-center align-items-end">
-            <h5>{goal.item}</h5>
+          <Col>
+            {isNew ? (
+              <div>
+                <Form.Label htmlFor="measure">Measure</Form.Label>
+                <Form.Control
+                  name="measure"
+                  ref={register}
+                  required
+                  size="sm"
+                  type="text"
+                  id="measure"
+                />
+              </div>
+            ) : (
+              <h2 className="mt-4 ml-3">{goal.item}</h2>
+            )}
           </Col>
         </Form.Row>
         <Form.Row>

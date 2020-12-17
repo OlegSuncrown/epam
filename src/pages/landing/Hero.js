@@ -25,7 +25,7 @@ const Hero = () => {
             </Link>
           </Col>
           <Col className="col-6 pr-2">
-            <Link to="/">
+            <Link to="/dashboard/goals/new">
               <span>Create your own</span>
             </Link>
           </Col>
