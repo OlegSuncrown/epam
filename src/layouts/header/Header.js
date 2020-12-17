@@ -18,40 +18,38 @@ const Header = () => {
 
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="ml-auto">
-              {!isAuthenticated ? (
-                <>
-                  <Nav.Link to="/login" as={NavLink}>
-                    Login
-                  </Nav.Link>
-                  <Nav.Link to="/register" as={NavLink}>
-                    Register
-                  </Nav.Link>
-                  )
-                </>
-              ) : (
-                <div className="d-flex align-items-center">
-                  <Nav.Link exact to="/dashboard" as={NavLink}>
-                    Dashboard
-                    {/* <i className='fas fa-user ml-2'></i> */}
-                  </Nav.Link>
-                  <Nav.Link to="/dashboard/user-bages" as={NavLink}>
-                    Add New Goal
-                    {/* <i className='fas fa-user ml-2'></i> */}
-                  </Nav.Link>
-                  <Button
-                    variant="outline-secondary"
-                    className="border-0"
-                    onClick={logOut}
-                  >
-                    <i
-                      className="fas fa-sign-out-alt"
-                      style={{ fontSize: "25px" }}
-                    ></i>
-                  </Button>
-                </div>
-              )}
-            </Nav>
+            {!isAuthenticated ? (
+              <Nav className="ml-auto">
+                <Nav.Link to="/login" as={NavLink}>
+                  Login
+                </Nav.Link>
+                <Nav.Link to="/register" as={NavLink}>
+                  Register
+                </Nav.Link>
+                )
+              </Nav>
+            ) : (
+              <Nav className="ml-auto d-flex align-items-center">
+                <Nav.Link exact to="/dashboard" as={NavLink}>
+                  Dashboard
+                  {/* <i className='fas fa-user ml-2'></i> */}
+                </Nav.Link>
+                <Nav.Link to="/dashboard/user-bages" as={NavLink}>
+                  Add New Goal
+                  {/* <i className='fas fa-user ml-2'></i> */}
+                </Nav.Link>
+                <Nav.Link
+                  variant="outline-secondary"
+                  className="border-0"
+                  onClick={logOut}
+                >
+                  <i
+                    className="fas fa-sign-out-alt"
+                    style={{ fontSize: "25px" }}
+                  ></i>
+                </Nav.Link>
+              </Nav>
+            )}
           </Navbar.Collapse>
         </Container>
       </Navbar>
