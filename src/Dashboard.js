@@ -3,7 +3,6 @@ import { Row, Col, Container } from "react-bootstrap";
 import { ProfilePage, UserGoalsPage, SeasonalGoals, BagesPage } from "./pages";
 import { SideBar } from "./components";
 
-
 const Dashboard = () => {
   let { path } = useRouteMatch();
   return (
@@ -23,10 +22,7 @@ const Dashboard = () => {
                 path={`${path}/seasonal-goals`}
                 component={SeasonalGoals}
               />
-              <Route
-                  path={`${match.path}/user-bages`}
-                  component={BagesPage}
-                />
+              <Route path={`${path}/user-bages`} component={BagesPage} />
             </Switch>
           </Col>
         </Row>
