@@ -1,9 +1,9 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { Form, Button, Col, Container } from "react-bootstrap";
 import { AuthContext } from "../../context/auth/AuthContext";
 
-const Register = () => {
-  const { registerUser } = useContext(AuthContext);
+const Register = ({ history }) => {
+  const { registerUser, isAuthenticated } = useContext(AuthContext);
 
   const [validated, setValidated] = useState(false);
   const [userRegister, setUserRegister] = useState({
@@ -14,6 +14,13 @@ const Register = () => {
   });
 
   const { firstName, lastName, email, password } = userRegister;
+
+  // Redirect user if isAuthenticated
+  useEffect(() => {
+    if (isAuthenticated) {
+      history.push("/dashboard");
+    }
+  }, [isAuthenticated]);
 
   // Get value from the form
   const onChange = (e) =>
