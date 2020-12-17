@@ -8,7 +8,7 @@ const AdsCard = (props) => {
     <Container fluid className="p-0 mb-4">
       <Row className="mx-5">
         <Col className="p-0 col-12 col-sm-6 d-flex justify-content-center justify-content-md-end">
-          <Card className="mb-3 px-4 card ">
+          <Card className="mb-3 px-4 card styledCard ">
             <Card.Body>
               <Card.Title className="card-title text-center">
                 <h1>{props.title}</h1>
