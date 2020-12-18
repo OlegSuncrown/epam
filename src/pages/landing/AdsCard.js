@@ -5,20 +5,20 @@ import workoutImage from "../../assets/cardImageWorkout.svg";
 
 const AdsCard = (props) => {
   return (
-    <Container fluid className="p-0 mb-4">
+    <Container fluid className="p-0 my-4">
       <Row className="mx-5">
         <Col className="p-0 col-12 col-sm-6 d-flex justify-content-center justify-content-md-end">
           <Card className="mb-3 px-4 card styledCard ">
-            <Card.Body>
+            <Card.Body className="p-0 pt-2">
               <Card.Title className="card-title text-center">
-                <h1>{props.title}</h1>
+                <h2>{props.title}</h2>
               </Card.Title>
-              <Card.Text className="py-4 my-4">{props.text}</Card.Text>
+              <Card.Text className="py-4 my-md-4">{props.text}</Card.Text>
             </Card.Body>
 
             <Button
               to="/dashboard/goals/1"
-              className="btn btn-primary btn-lg"
+              className="btn btn-primary "
               block
               as={Link}
             >

@@ -10,7 +10,7 @@ const Main = () => {
   return (
     <Container fluid className="p-0">
       <AdsCard
-        title="Exercise regularly"
+        title="Exercise"
         img={workoutImage}
         text="Pick the number of days you’ll
       exercise each week and stay on track 
@@ -22,9 +22,9 @@ const Main = () => {
         img={weightImage}
         text="Decide on your target weight
       and set a timeline to reach it. 
-      Don’t worry about calculations — we will
+      We will
       automatically set up smart 
-      milestones that adapt to your progress. "
+      milestones that adapt to your progress."
       />
       <AdsCard
         title="Quit Smoking"

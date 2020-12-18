@@ -10,16 +10,16 @@ const Footer = () => {
     <Container fluid className="p-5 footer">
       <Row>
         <Col>
-          <img src={Logo}></img>
+          <img className="footer-logo" src={Logo}></img>
         </Col>
         <Col>How it works</Col>
         <Col>About us</Col>
         <Col>Terms of use</Col>
         <Col>
-          <img src={instagramIcon}></img>
+          <img className="footer-icon" src={instagramIcon}></img>
         </Col>
         <Col>
-          <img src={facebookIcon}></img>
+          <img className="footer-icon" src={facebookIcon}></img>
         </Col>
       </Row>
     </Container>
