@@ -2,20 +2,21 @@ import React, { useContext, useState } from "react";
 import { Card, Image } from "react-bootstrap";
 import { AuthContext } from "../../context/auth/AuthContext";
 import FileUploader from "./FileUploader";
+import axios from "axios";
+import setAuthToken from "../../utils/setAuthToken";
 
 const UserAvatar = () => {
-  const { user, axios } = useContext(AuthContext);
-  const [avatar, setAvatar] = useState("");
+  const { user } = useContext(AuthContext);
   const URL = "https://hwtaweb20201216131958.azurewebsites.net";
 
-  //to be refactored
   const updateAvatar = async (event) => {
-    setAvatar(event.target.files[0]);
+    const formData = new FormData();
+
+    formData.append("avatar", event.target.files[0]);
+    setAuthToken(localStorage.AuthToken);
 
     try {
-      const { data } = await axios.post(`${URL}/api/User`, {
-        body: avatar,
-      });
+      const { data } = await axios.post(`${URL}/api/User`, formData);
 
       console.log(data);
     } catch (err) {

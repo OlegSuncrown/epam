@@ -8,7 +8,7 @@ const FileUploader = (props) => {
           <strong className="h5">Upload avatar</strong>
         </label>
         <input
-          onChange={props.handleSubmit()}
+          onChange={props.handleSubmit}
           type="file"
           name="photo"
           id="upload-photo"
