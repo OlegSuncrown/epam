@@ -10,6 +10,7 @@ const FileUploader = (props) => {
         <input
           onChange={props.handleSubmit}
           type="file"
+          accept="image/*"
           name="photo"
           id="upload-photo"
           style={{ visibility: "hidden" }}
