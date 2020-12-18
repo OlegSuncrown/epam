@@ -2,5 +2,32 @@
   background: no-repeat url("../../assets/landingBg.jpg");
   background-size: cover;
   background-position: center;
-  height: 75vh;
+  text-shadow: 1px 1px #00000040;
+  padding-top: 50px;
+  padding-bottom: 80px;
+}
+
+.hero-title {
+  font-size: clamp(2rem, 5vw, 10rem);
+}
+
+.hero-sub-title {
+  font-size: clamp(1.2rem, 3vw, 8rem);
+}
+
+.hero-link {
+  font-size: clamp(1.2rem, 3vw, 6rem);
+}
+
+.cards {
+  background: rgba(206, 203, 182, 0.32);
+}
+
+.hero-img {
+  object-fit: cover;
+  width: 100%;
+}
+
+.about-us {
+  background: rgba(171, 165, 127, 0.32);
 }

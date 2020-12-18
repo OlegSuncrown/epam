@@ -3,8 +3,6 @@ import { Navbar, Nav, Container, Image } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 import { AuthContext } from "../../context/auth/AuthContext";
 import DropdownMenu from "./DropdownMenu";
-// import { SideBar } from "../../components";
-// import Logo from '../../assets/logo.svg'
 
 const Header = () => {
   const { isAuthenticated, logOut } = useContext(AuthContext);

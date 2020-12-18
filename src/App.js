@@ -25,6 +25,7 @@ const App = () => {
           <Route path="/login" component={LoginPage} />
           <Route path="/dashboard" component={Dashboard} />
         </Switch>
+        <Footer />
       </>
     );
   }

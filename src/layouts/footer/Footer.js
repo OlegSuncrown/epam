@@ -1,24 +1,28 @@
 import React from "react";
-import { Container, Col, Row } from "react-bootstrap";
+import { Container, Col, Row, Nav } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Logo from "../../assets/logo.svg";
 import instagramIcon from "../../assets/instagramIcon.svg";
 import facebookIcon from "../../assets/facebookIcon.svg";
-
+import "./footer.css";
 const Footer = () => {
   return (
-    <Row className="p-5 footer">
-      <Col>
+    <Row className="py-4 bg-dark">
+      <Col className="d-flex justify-content-center align-items-center col-md-4 col-12 py-3">
         <img className="footer-logo" src={Logo}></img>
       </Col>
-      <Col>How it works</Col>
-      <Col>About us</Col>
-      <Col>Terms of use</Col>
-      <Col className="d-flex justify-content-end col-6 col-md-1 pl-5">
-        <img className="footer-icon" src={instagramIcon}></img>
+      <Col className="d-flex flex-column justify-content-center align-items-center">
+        <Link className="text-light">How it works</Link>
+        <Link className="text-light">About us</Link>
+        <Link className="text-light">Terms of use</Link>
       </Col>
-      <Col className="d-flex justify-content-start col-6 col-md-1">
-        <img className="footer-icon-fb" src={facebookIcon}></img>
+
+      <Col className="d-flex justify-content-center align-items-center">
+        <i class="fab fa-facebook-square mr-4 shadow"></i>
+        <i class="fab fa-instagram-square shadow"></i>
+
+        {/* <img className='footer-icon' src={instagramIcon} />
+        <img className='footer-icon' src={facebookIcon} /> */}
       </Col>
     </Row>
   );
