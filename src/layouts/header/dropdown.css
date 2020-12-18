@@ -1,0 +1,15 @@
+.bg-dark .dropdown-menu {
+  background: transparent;
+  height: 100%;
+}
+
+.dropdown-menu {
+  top: 100%;
+  left: 50%;
+  transform: translate(-50%, 0);
+  min-width: 180px;
+}
+
+.nav-link {
+  font-size: 1rem;
+}
