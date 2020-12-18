@@ -5,7 +5,7 @@ const FileUploader = () => {
     <>
       <form>
         <label className="uploadButton" for="upload-photo">
-          Upload avatar
+          <strong className="h5">Upload avatar</strong>
         </label>
         <input
           type="file"

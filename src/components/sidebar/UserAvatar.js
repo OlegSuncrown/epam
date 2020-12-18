@@ -6,7 +6,7 @@ import FileUploader from "./FileUploader";
 const UserAvatar = () => {
   const { user } = useContext(AuthContext);
   return (
-    <Card className="border-light text-center d-none d-lg-block shadow">
+    <Card className="border-light text-center d-none d-lg-block shadow pb-3">
       <Card.Body className="p-1">
         <Image
           fluid
@@ -19,10 +19,7 @@ const UserAvatar = () => {
           <h2 className="text-secondary">
             <strong>{user ? user.firstName : "loading..."}</strong>
           </h2>
-        <FileUploader />
-        <Card.Title>
-          <strong>{user ? user.firstName : "loading..."}</strong>
-
+          <FileUploader />
         </Card.Title>
       </Card.Body>
     </Card>
