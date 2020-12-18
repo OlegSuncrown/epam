@@ -50,7 +50,7 @@
 }
 
 .styledCard {
-  width: calc(var(--landing-font-size) * 25);
+  max-width: calc(var(--landing-font-size) * 25);
   height: calc(var(--landing-font-size) * 25);
   margin: 0;
   border: none;
@@ -101,13 +101,5 @@
 
   .card {
     max-width: calc(var(--landing-font-size) * 50);
-  }
-}
-
-@media only screen and (max-width: 570) {
-  .styledCard {
-    width: 2125px;
-    height: 123px;
-    font-size: 25px;
   }
 }
