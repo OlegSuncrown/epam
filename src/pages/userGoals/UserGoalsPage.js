@@ -29,6 +29,14 @@ const UserGoals = (props) => {
       <GoalItem title="Walk 10000 steps every day" progress="30" />
       <GoalItem title="Quit smoking" progress="100" />
       <GoalItem title="Save money" progress="50" />
+      <GoalItem title="Save money" progress="50" />
+      <GoalItem title="Save money" progress="50" />
+      <GoalItem title="Save money" progress="50" />
+      <GoalItem title="Save money" progress="50" />
+      <GoalItem title="Save money" progress="50" />
+      <GoalItem title="Save money" progress="50" />
+      <GoalItem title="Save money" progress="50" />
+      <GoalItem title="Save money" progress="50" />
 
       <Button to="/addGoal" variant="outline-primary" block as={Link}>
         Add Goal

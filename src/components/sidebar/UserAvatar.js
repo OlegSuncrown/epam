@@ -5,6 +5,7 @@ import FileUploader from "./FileUploader";
 
 const UserAvatar = () => {
   const { user } = useContext(AuthContext);
+
   return (
     <Card className="border-light text-center d-none d-lg-block shadow pb-3">
       <Card.Body className="p-1">
