@@ -102,12 +102,12 @@
 }
 
 .uploadButton {
-  opacity: 60%;
+  opacity: 0.6;
 }
 
 .uploadButton:hover {
   cursor: pointer;
-  opacity: 100%;
+  opacity: 1;
 }
 
 @media only screen and (max-width: 800px) {

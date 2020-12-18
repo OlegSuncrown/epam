@@ -15,7 +15,7 @@ const App = () => {
     setAuthToken(localStorage.AuthToken);
   }
 
-  if (isAuthenticated) {
+  if (isAuthenticated || localStorage.AuthToken) {
     return (
       <>
         <Header />
