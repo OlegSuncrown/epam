@@ -1,15 +1,9 @@
 import React, { useContext } from "react";
-import {
-  Navbar,
-  Nav,
-  Container,
-  Image,
-  Dropdown,
-  DropdownButton,
-} from "react-bootstrap";
+import { Navbar, Nav, Container, Image } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 import { AuthContext } from "../../context/auth/AuthContext";
-import { SideBar } from "../../components";
+import DropdownMenu from "./DropdownMenu";
+// import { SideBar } from "../../components";
 // import Logo from '../../assets/logo.svg'
 
 const Header = () => {
@@ -36,16 +30,7 @@ const Header = () => {
             </Nav>
           ) : (
             <>
-              <DropdownButton
-                title="Menu"
-                menuAlign="right"
-                variant="outline-secondary border-0"
-                className="d-lg-none"
-              >
-                <Dropdown.Item className="p-0 m-0 ">
-                  <SideBar />
-                </Dropdown.Item>
-              </DropdownButton>
+              <DropdownMenu />
               <Nav className="d-flex align-items-center">
                 <Nav.Link
                   exact

@@ -28,6 +28,7 @@ const AuthState = (props) => {
     setUser(null);
     setIsAuthenticated(false);
     setError(error);
+    console.log(error);
   };
 
   // Load user
