@@ -15,7 +15,7 @@ const Register = ({ history }) => {
 
   const { firstName, lastName, email, password } = userRegister;
 
-  // Redirect user if isAuthenticated
+  //Redirect user if isAuthenticated
   useEffect(() => {
     if (isAuthenticated) {
       history.push("/dashboard");

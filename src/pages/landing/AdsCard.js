@@ -17,7 +17,7 @@ const AdsCard = (props) => {
             </Card.Body>
 
             <Button
-              to="/dashboard/goals/1"
+              to="/dashboard/add-goal/1"
               className="btn btn-primary "
               block
               as={Link}

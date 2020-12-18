@@ -4,35 +4,29 @@ import { ProfilePage, UserGoalsPage, SeasonalGoals, BagesPage } from "./pages";
 import { SideBar } from "./components";
 import SingleGoal from "./pages/goals/SingleGoal";
 
-import PrivateRoute from "./utils/PrivateRoute";
 const Dashboard = () => {
   let { path } = useRouteMatch();
   return (
     <>
-      <h1 className="text-center mt-3">Dashboard</h1>
-
-      <Container>
+      <Container className="py-5">
         <Row>
-          <Col xs={12} lg={3}>
+          <Col xs={12} lg={3} className="d-none d-lg-block">
             <SideBar />
           </Col>
           <Col className="mx-auto">
             <Switch>
-              <PrivateRoute exact path={path} component={ProfilePage} />
-              <PrivateRoute
+              <Route exact path={path} component={ProfilePage} />
+              <Route
                 exact
-                path={`${path}/goals/:id`}
+                path={`${path}/add-goal/:id`}
                 component={SingleGoal}
               />
-              <PrivateRoute
-                path={`${path}/user-goals`}
-                component={UserGoalsPage}
-              />
-              <PrivateRoute
+              <Route path={`${path}/user-goals`} component={UserGoalsPage} />
+              <Route
                 path={`${path}/seasonal-goals`}
                 component={SeasonalGoals}
               />
-              <PrivateRoute path={`${path}/user-bages`} component={BagesPage} />
+              <Route path={`${path}/user-bages`} component={BagesPage} />
             </Switch>
           </Col>
         </Row>
