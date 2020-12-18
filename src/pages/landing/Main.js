@@ -34,6 +34,19 @@ const Main = () => {
       Over 20M cigarettes not smoked 
       on Highway to accomplish."
       />
+
+      <Row className="aboutUs p-3">
+        <Col className="col-12 col-md-6 d-flex justify-content-center">
+          <h3>Who are we?</h3>
+        </Col>
+        <Col className="col-12 col-md-6 d-flex justify-content-center text-center p-0">
+          <p>
+            <b>Highway to accomplish</b> is a rapidly evolving platform with the
+            tools to help you achieve your goals. With us you will transform
+            your goals into reality.
+          </p>
+        </Col>
+      </Row>
     </Container>
   );
 };
