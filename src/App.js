@@ -7,13 +7,15 @@ import setAuthToken from "./utils/setAuthToken";
 import { Header } from "./layouts";
 import { Footer } from "./layouts";
 import { LandingPage, RegisterPage, LoginPage } from "./pages";
-//import { AuthContext } from "./context/auth/AuthContext";
+import { AuthContext } from "./context/auth/AuthContext";
 const App = () => {
-  // const { isAuthenticated } = useContext(AuthContext);
+  const { isAuthenticated } = useContext(AuthContext);
 
   if (localStorage.AuthToken) {
     setAuthToken(localStorage.AuthToken);
+  }
 
+  if (isAuthenticated) {
     return (
       <>
         <Header />
