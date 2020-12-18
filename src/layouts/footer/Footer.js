@@ -15,11 +15,11 @@ const Footer = () => {
         <Col>How it works</Col>
         <Col>About us</Col>
         <Col>Terms of use</Col>
-        <Col>
+        <Col className="d-flex justify-content-end col-6 col-md-1 pl-5">
           <img className="footer-icon" src={instagramIcon}></img>
         </Col>
-        <Col>
-          <img className="footer-icon" src={facebookIcon}></img>
+        <Col className="d-flex justify-content-start col-6 col-md-1">
+          <img className="footer-icon-fb" src={facebookIcon}></img>
         </Col>
       </Row>
     </Container>

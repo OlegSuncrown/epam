@@ -68,6 +68,19 @@
 .footer {
   background: rgb(224, 224, 219);
   font-size: calc(var(--landing-font-size) * 1.4);
+  margin-top: calc(var(--landing-font-size) * 20);
+}
+
+.footer-logo {
+  width: 20vw;
+}
+
+.footer-icon {
+  width: calc(var(--landing-font-size) * 5);
+}
+
+.footer-icon-fb {
+  width: calc(var(--landing-font-size) * 4.6);
 }
 
 @media only screen and (max-width: 800px) {
@@ -81,14 +94,6 @@
 
   .logo {
     max-width: 300px;
-  }
-
-  .footer-logo {
-    width: calc(var(--landing-font-size) * 24);
-  }
-
-  .footer-icon {
-    width: calc(var(--landing-font-size) * 7);
   }
 
   .cardImage {
