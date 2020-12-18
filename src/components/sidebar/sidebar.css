@@ -1,0 +1,35 @@
+.btn-flat {
+  background-color: rgb(255, 255, 255);
+  color: rgb(64, 64, 64);
+  text-align: left !important;
+}
+
+.btn-xxl {
+  padding: 1rem 1.5rem;
+  font-size: 1.2rem;
+}
+
+.btn-flat.active {
+  background-color: rgb(76, 117, 198);
+  color: rgb(255, 255, 255);
+}
+
+.btn-flat:hover {
+  background-color: rgb(62, 93, 154);
+  color: rgb(213, 213, 213);
+}
+
+.bg-dark .dropdown-menu {
+  background: transparent;
+  height: 100%;
+}
+
+.dropdown-menu {
+  top: 100%;
+  left: 50%;
+  transform: translate(-70%, 0);
+}
+
+.nav-link {
+  font-size: 1rem;
+}

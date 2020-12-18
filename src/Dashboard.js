@@ -10,7 +10,7 @@ const Dashboard = () => {
     <>
       <Container className="py-5">
         <Row>
-          <Col xs={12} lg={3}>
+          <Col xs={12} lg={3} className="d-none d-lg-block">
             <SideBar />
           </Col>
           <Col className="mx-auto">

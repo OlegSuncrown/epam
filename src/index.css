@@ -1,7 +1,25 @@
 :root {
   --landing-font-size: 16px;
 }
+.btn-flat {
+  background-color: purple;
+  color: white;
+  display: block;
+  color: grey;
+}
 
+.btn-xxl {
+  padding: 1rem 1.5rem;
+  font-size: 1.5rem;
+}
+
+.btn-flat.active {
+  background-color: red;
+}
+
+.btn-flat:hover {
+  background-color: green;
+}
 ::-webkit-scrollbar {
   width: 10px;
 }
