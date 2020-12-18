@@ -4,6 +4,7 @@ import Dashboard from "./Dashboard";
 
 import setAuthToken from "./utils/setAuthToken";
 import { Header } from "./layouts";
+import { Footer } from "./layouts";
 import { LandingPage, RegisterPage, LoginPage } from "./pages";
 import PrivateRoute from "./utils/PrivateRoute";
 
@@ -22,6 +23,7 @@ const App = () => {
           <Route path="/login" component={LoginPage} />
           <Route path="/dashboard" component={Dashboard} />
         </Switch>
+        <Footer />
       </AuthState>
     </>
   );
