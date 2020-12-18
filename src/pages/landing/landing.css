@@ -1,0 +1,6 @@
+.hero {
+  background: no-repeat url("../../assets/landingBg.jpg");
+  background-size: cover;
+  background-position: center;
+  height: 75vh;
+}

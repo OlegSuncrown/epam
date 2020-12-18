@@ -31,7 +31,7 @@ const LoginPage = ({ history }) => {
         <h2 className="text-center mb-3">
           <span className="text-primary">Log</span> in
         </h2>
-        <Form noValidate onSubmit={handleSubmit}>
+        <Form onSubmit={handleSubmit}>
           <Form.Row className="justify-content-md-center">
             <Form.Group as={Col} md="4" controlId="validationCustom02">
               <Form.Label>Email address</Form.Label>
@@ -42,9 +42,6 @@ const LoginPage = ({ history }) => {
                 name="email"
                 onChange={onChange}
               />
-              <Form.Text className="text-muted">
-                We'll never share your email with anyone else.
-              </Form.Text>
               <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
             </Form.Group>
           </Form.Row>

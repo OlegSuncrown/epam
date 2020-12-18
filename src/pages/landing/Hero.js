@@ -15,8 +15,11 @@ const Hero = () => {
   };
 
   return (
-    <Container fluid className="p-0">
-      <div className="hero-block">
+    <Container fluid>
+      <Row>
+        <Col className="bg-dark hero"></Col>
+      </Row>
+      {/* <div className="hero-block">
         <Row>
           <Col className="col-12 col-lg-9 col-xl-7">
             <h1>What do you want to accomplish?</h1>
@@ -41,7 +44,7 @@ const Hero = () => {
             </Link>
           </Col>
         </Row>
-      </div>
+      </div> */}
     </Container>
   );
 };
