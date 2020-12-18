@@ -25,7 +25,7 @@ const SideBar = () => {
                   <i className="mr-3 fas fa-globe"></i>
                   Season Goals
                 </Nav.Link>
-                <Nav.Link to="/dashboard/add-goal" as={NavLink}>
+                <Nav.Link to="/dashboard/add-goal/1" as={NavLink}>
                   <i className="mr-3 fas fa-plus-circle"></i>
                   Add New Goal
                 </Nav.Link>

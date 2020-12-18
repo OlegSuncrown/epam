@@ -13,7 +13,8 @@ const Header = () => {
       <Navbar bg="dark" variant="dark" expand="lg" collapseOnSelect>
         <Container>
           <Navbar.Brand as={NavLink} to="/">
-            <img className="logo" src={Logo}></img>
+            {/* <img className="logo" src={Logo}></img> */}
+            Logo
           </Navbar.Brand>
 
           <Navbar.Toggle aria-controls="basic-navbar-nav" />

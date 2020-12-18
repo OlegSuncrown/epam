@@ -21,7 +21,7 @@ const Dashboard = () => {
               <PrivateRoute exact path={path} component={ProfilePage} />
               <PrivateRoute
                 exact
-                path={`${path}/goals/:id`}
+                path={`${path}/add-goal/:id`}
                 component={SingleGoal}
               />
               <PrivateRoute
