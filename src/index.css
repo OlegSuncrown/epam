@@ -80,7 +80,7 @@
 }
 
 .footer-icon-fb {
-  width: calc(var(--landing-font-size) * 4.6);
+  width: calc(var(--landing-font-size) * 4.4);
 }
 
 @media only screen and (max-width: 800px) {
