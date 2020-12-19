@@ -1,12 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import axios from "axios";
 import setAuthToken from "../../utils/setAuthToken";
-import { Form, Spinner, Button, Image, Nav } from "react-bootstrap";
+import { Form, Spinner } from "react-bootstrap";
+import { AuthContext } from "../../context/auth/AuthContext";
+
 const FileUploader = () => {
   const URL = "https://hwtaweb20201216131958.azurewebsites.net";
 
+  const { loadImage } = useContext(AuthContext);
   const [isLoading, setIsLoading] = useState(false);
-  const [image, setImage] = useState("");
 
   const uploadFileHandler = async (e) => {
     if (localStorage.AuthToken) {
@@ -16,7 +18,6 @@ const FileUploader = () => {
     const formData = new FormData();
     formData.append("uploadedFile", file);
     setIsLoading(true);
-    console.log(file);
     try {
       const config = {
         headers: {
@@ -28,31 +29,16 @@ const FileUploader = () => {
         formData,
         config
       );
+
+      loadImage();
       setIsLoading(false);
     } catch (err) {
-      console.log(err);
       setIsLoading(false);
     }
   };
 
-  const submitHandler = async (e) => {
-    e.preventDefault();
-    if (localStorage.AuthToken) {
-      setAuthToken(localStorage.AuthToken);
-    }
-    try {
-      const { data } = await axios.get(`${URL}/GetProfilePicture`);
-      setImage(data);
-
-      console.log(data);
-    } catch (err) {
-      console.log(err);
-    }
-  };
   return (
     <>
-      <button onClick={submitHandler}>dsdsds</button>
-      <Image src={image ? image : ""} fluid />
       <Form>
         <label className="uploadButton" htmlFor="upload-photo">
           <span className="text-info btn-upload">

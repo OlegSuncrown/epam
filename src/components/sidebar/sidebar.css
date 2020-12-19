@@ -21,6 +21,13 @@
   color: rgb(213, 213, 213);
 }
 
+.avatar {
+  height: 140px;
+  width: 140px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
 @media only screen and (max-width: 992px) {
   .btn-xxl {
     padding: 1rem 1.5rem;

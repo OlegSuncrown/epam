@@ -4,9 +4,9 @@ import { AuthContext } from "../../context/auth/AuthContext";
 import FileUploader from "./FileUploader";
 
 const UserAvatar = () => {
-  const { user } = useContext(AuthContext);
+  const { userImage, user } = useContext(AuthContext);
 
-  if (!user) {
+  if (!userImage) {
     return (
       <div className="text-center py-4">
         <Spinner animation="border" role="status">
@@ -19,7 +19,7 @@ const UserAvatar = () => {
   return (
     <Card className="border-light text-center d-none d-lg-block shadow">
       <Card.Body className="p-1">
-        <Image fluid className="mb-2" src={user.image} roundedCircle />
+        <Image className="mb-2 avatar" src={userImage} />
         <Card.Title className="p-0">
           <h2 className="text-secondary">
             <strong>{user ? user.firstName : "loading..."}</strong>

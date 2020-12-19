@@ -4,53 +4,55 @@ import axios from "axios";
 export const AuthContext = createContext();
 
 const AuthState = (props) => {
-  const [user, setUser] = useState(null);
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [isLoading, setLoading] = useState(true);
-
   const URL = "https://hwtaweb20201216131958.azurewebsites.net";
   const imageURL =
     "https://www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png";
 
+  const [user, setUser] = useState(null);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [userImage, setUserImage] = useState(imageURL);
+  const [isLoading, setLoading] = useState(true);
+
+  // Load user data after page reload
   useEffect(() => {
     if (localStorage.getItem("userData")) {
       setIsAuthenticated(true);
     }
+
     setUser(JSON.parse(localStorage.getItem("userData")));
+    setUserImage(JSON.parse(localStorage.getItem("userImage")));
   }, []);
 
   // Clear state if error happened or logout
   const logOut = () => {
     localStorage.removeItem("AuthToken");
     localStorage.removeItem("userData");
+    localStorage.removeItem("userImage");
+    setUserImage("");
     setLoading(false);
     setUser(null);
     setIsAuthenticated(false);
   };
 
-  // const loadUserPicture = async () => {
-  //   if (localStorage.AuthToken) {
-  //     setAuthToken(localStorage.AuthToken)
-  //   }
-  //   try {
-  //     const {data} = await axios.get('https://hwtaweb20201216131958.azurewebsites.net/GetProfilePicture')
-  //     setUser({...user, image: data || "https://www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png"})
-  //   } catch (err) {
-  //     console.log(err.response.data.errorText)
-  //   }
-  //   console.log('submited')
-  // }
+  const loadImage = async () => {
+    try {
+      const { data } = await axios.get(`${URL}/GetProfilePicture`);
+      setUserImage(data);
+      localStorage.setItem("userImage", JSON.stringify(data));
+    } catch {
+      setUserImage(imageURL);
+    }
+  };
 
-  // Load user
+  //Load user
   const loadUser = async () => {
     if (localStorage.AuthToken) {
       setAuthToken(localStorage.AuthToken);
     }
     try {
       const { data } = await axios.get(`${URL}/GetUserProfileInfo`);
-      const addImageField = { ...data, image: imageURL };
-      setUser(addImageField);
-      localStorage.setItem("userData", JSON.stringify(addImageField));
+      setUser(data);
+      localStorage.setItem("userData", JSON.stringify(data));
     } catch {
       logOut();
     }
@@ -68,6 +70,7 @@ const AuthState = (props) => {
       setIsAuthenticated(true);
       setLoading(false);
       loadUser();
+      loadImage();
     } catch (err) {
       logOut();
       throw new Error(err.response.data.errorText);
@@ -86,6 +89,7 @@ const AuthState = (props) => {
       localStorage.setItem("AuthToken", res.data.access_token);
       setIsAuthenticated(true);
       loadUser();
+      loadImage();
     } catch (err) {
       logOut();
       throw new Error(err.response.data.errorText);
@@ -101,6 +105,8 @@ const AuthState = (props) => {
         loginUser,
         isAuthenticated,
         logOut,
+        userImage,
+        loadImage,
       }}
     >
       {props.children}
