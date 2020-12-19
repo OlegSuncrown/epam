@@ -31,3 +31,18 @@
     min-width: 180px;
   }
 }
+
+#upload-photo {
+  position: absolute;
+  z-index: -10;
+  left: 0;
+}
+
+.btn-upload {
+  cursor: pointer;
+  font-size: 15px;
+}
+
+.btn-upload:hover {
+  color: black !important;
+}

@@ -5,11 +5,12 @@ export const AuthContext = createContext();
 
 const AuthState = (props) => {
   const [user, setUser] = useState(null);
-  //const [token, setToken] = useState(() => localStorage.getItem("AuthToken"));
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [isLoading, setLoading] = useState(true);
 
   const URL = "https://hwtaweb20201216131958.azurewebsites.net";
+  const imageURL =
+    "https://www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png";
 
   useEffect(() => {
     if (localStorage.getItem("userData")) {
@@ -27,6 +28,19 @@ const AuthState = (props) => {
     setIsAuthenticated(false);
   };
 
+  // const loadUserPicture = async () => {
+  //   if (localStorage.AuthToken) {
+  //     setAuthToken(localStorage.AuthToken)
+  //   }
+  //   try {
+  //     const {data} = await axios.get('https://hwtaweb20201216131958.azurewebsites.net/GetProfilePicture')
+  //     setUser({...user, image: data || "https://www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png"})
+  //   } catch (err) {
+  //     console.log(err.response.data.errorText)
+  //   }
+  //   console.log('submited')
+  // }
+
   // Load user
   const loadUser = async () => {
     if (localStorage.AuthToken) {
@@ -34,8 +48,9 @@ const AuthState = (props) => {
     }
     try {
       const { data } = await axios.get(`${URL}/GetUserProfileInfo`);
-      localStorage.setItem("userData", JSON.stringify(data));
-      setUser(data);
+      const addImageField = { ...data, image: imageURL };
+      setUser(addImageField);
+      localStorage.setItem("userData", JSON.stringify(addImageField));
     } catch {
       logOut();
     }
@@ -52,7 +67,6 @@ const AuthState = (props) => {
       localStorage.setItem("AuthToken", res.data.access_token);
       setIsAuthenticated(true);
       setLoading(false);
-      console.log(res);
       loadUser();
     } catch (err) {
       logOut();
@@ -60,6 +74,7 @@ const AuthState = (props) => {
     }
   };
 
+  // Login
   const loginUser = async (formData) => {
     const config = {
       headers: {
