@@ -1,6 +1,7 @@
 import React, { useContext, useState, useEffect } from "react";
 import { Form, Button, Col, Container } from "react-bootstrap";
 import { AuthContext } from "../../context/auth/AuthContext";
+import { ToastContainer, toast } from "react-toastify";
 
 const LoginPage = ({ history }) => {
   const { loginUser, isAuthenticated } = useContext(AuthContext);
@@ -10,13 +11,31 @@ const LoginPage = ({ history }) => {
     password: "",
   });
 
+  const [loading, setLoading] = useState(false);
+
   // Get value from the form
   const onChange = (e) =>
     setUserLogin({ ...userLogin, [e.target.name]: e.target.value });
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    loginUser(userLogin);
+
+    try {
+      setLoading(true);
+      return await loginUser(userLogin);
+    } catch (err) {
+      toast.error(err.message, {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: true,
+        progress: undefined,
+      });
+    }
+
+    setLoading(false);
   };
 
   useEffect(() => {
@@ -27,6 +46,17 @@ const LoginPage = ({ history }) => {
 
   return (
     <Container>
+      <ToastContainer
+        position="top-right"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
       <div className="card m-3 p-3">
         <h2 className="text-center mb-3">
           <span className="text-primary">Log</span> in
@@ -63,6 +93,7 @@ const LoginPage = ({ history }) => {
               variant="primary"
               type="submit"
               className="px-4"
+              disabled={loading}
             >
               Log in
             </Button>

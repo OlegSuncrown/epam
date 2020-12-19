@@ -8,7 +8,6 @@ const AuthState = (props) => {
   const [token, setToken] = useState(() => localStorage.getItem("AuthToken"));
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [isLoading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
 
   const URL = "https://hwtaweb20201216131958.azurewebsites.net";
 
@@ -20,20 +19,17 @@ const AuthState = (props) => {
   }, []);
 
   // Clear state if error happened or logout
-  const logOut = (error = null) => {
+  const logOut = () => {
     localStorage.removeItem("AuthToken");
     localStorage.removeItem("userData");
     setToken(null);
     setLoading(false);
     setUser(null);
     setIsAuthenticated(false);
-    setError(error);
-    console.log(error);
   };
 
   // Load user
   const loadUser = async () => {
-    setError(null);
     if (localStorage.AuthToken) {
       setAuthToken(localStorage.AuthToken);
     }
@@ -41,14 +37,13 @@ const AuthState = (props) => {
       const { data } = await axios.get(`${URL}/GetUserProfileInfo`);
       localStorage.setItem("userData", JSON.stringify(data));
       setUser(data);
-    } catch (err) {
-      logOut("Unauthorized");
+    } catch {
+      logOut();
     }
   };
 
   //Register User
   const registerUser = async (formData) => {
-    setError(null);
     const config = {
       headers: { "Content-Type": "application/json" },
     };
@@ -61,12 +56,12 @@ const AuthState = (props) => {
 
       loadUser();
     } catch (err) {
-      logOut(err.response.data.errorText);
+      logOut();
+      throw new Error(err.response.data.errorText);
     }
   };
 
   const loginUser = async (formData) => {
-    setError(null);
     const config = {
       headers: {
         "Content-Type": "application/json",
@@ -78,7 +73,8 @@ const AuthState = (props) => {
       setIsAuthenticated(true);
       loadUser();
     } catch (err) {
-      logOut(err.response.data.errorText);
+      logOut();
+      throw new Error(err.response.data.errorText);
     }
   };
 

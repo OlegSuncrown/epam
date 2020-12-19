@@ -33,7 +33,9 @@ const DropdownMenu = () => {
         </div>
       </Dropdown.Toggle>
       <Dropdown.Menu>
-        <SideNav />
+        <Dropdown.Item className="p-0">
+          <SideNav />
+        </Dropdown.Item>
       </Dropdown.Menu>
     </Dropdown>
   );
