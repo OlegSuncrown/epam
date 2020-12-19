@@ -16,11 +16,7 @@ const Dashboard = () => {
           <Col className="mx-auto">
             <Switch>
               <Route exact path={path} component={ProfilePage} />
-              <Route
-                exact
-                path={`${path}/add-goal/:id`}
-                component={SingleGoal}
-              />
+              <Route exact path={`${path}/add-goal/`} component={SingleGoal} />
               <Route path={`${path}/user-goals`} component={UserGoalsPage} />
               <Route
                 path={`${path}/seasonal-goals`}

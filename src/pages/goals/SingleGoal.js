@@ -1,26 +1,19 @@
-import React, { useState } from "react";
-import { Container, Button, Row, Form, Col } from "react-bootstrap";
+import React, { useState, useContext } from "react";
+import { Container, Button, Row, Form, Col, Dropdown } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import swal from "sweetalert2";
+import { BrowserRouter as Router, Link, useLocation } from "react-router-dom";
+import { DefaultGolasContext } from "../../context/default/DefaultGoalsContext";
 
-//hardcoded example
-const dataList = [
-  { id: 1, title: "Quit smoking", item: "cigarets" },
-  {
-    id: 2,
-    title: "Loose weight",
-    item: "kg",
-  },
-  { id: 3, title: "Loose weight", item: "kg" },
-  {
-    id: 4,
-    title: "Save money",
-    item: "dollars",
-  },
-];
-
-const SingleGoal = ({ match }) => {
+const SingleGoal = () => {
   const { register, handleSubmit } = useForm();
+
+  const useQuery = () => {
+    return new URLSearchParams(useLocation().search);
+  };
+
+  let { dataList } = useContext(DefaultGolasContext);
+  let query = useQuery();
 
   const onSubmit = (data, e) => {
     console.log(data);
@@ -28,17 +21,17 @@ const SingleGoal = ({ match }) => {
     swal.fire("Success", "Goal was successfully added!", "success");
   };
 
-  const { id } = match.params;
-  let goal;
   let isNew = false;
+  let goal;
 
-  if (id === "new") {
+  if (!query.get("title")) {
     isNew = true;
   } else {
-    goal = dataList.find((goal) => goal.id === Number(id));
+    let goalTitle = query.get("title");
+    goal = dataList.find((goal) => goal.title === goalTitle);
   }
 
-  if (!goal && id !== "new") {
+  if (isNew && !goal) {
     return (
       <Container>
         <Row className="justify-content-md-center pt-2">
@@ -48,12 +41,12 @@ const SingleGoal = ({ match }) => {
     );
   }
   return (
-    <>
+    <div className="d-flex justify-content-center h-100">
       <Form
-        className="h-75 d-flex flex-column justify-content-around align-items-center"
+        className="h-75 w-75 d-flex flex-column justify-content-between"
         onSubmit={handleSubmit(onSubmit)}
       >
-        <Form.Row>
+        <Form.Row className="align-self-center">
           {isNew ? (
             <Form.Row>
               <Form.Label htmlFor="title">Add cutom goal name</Form.Label>
@@ -68,67 +61,91 @@ const SingleGoal = ({ match }) => {
               />
             </Form.Row>
           ) : (
-            <h1>{goal.title}</h1>
+            <Form.Row>
+              <Form.Control
+                className="border-0 text-uppercase"
+                name="title"
+                ref={register}
+                required
+                size="lg"
+                defaultValue={goal.title}
+                type="text"
+                id="title"
+              />
+            </Form.Row>
           )}
         </Form.Row>
         <Form.Row>
-          <Form.Group controlId="start_date" className="px-2">
-            <Form.Label>Select Start Date</Form.Label>
+          <Form.Group as={Col} md="6" controlId="validationCustom01">
+            <Form.Label>Select Start date</Form.Label>
             <Form.Control
+              required
+              type="date"
               name="startDate"
-              type="date"
-              required
+              size="lg"
               ref={register}
             />
+            <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
           </Form.Group>
-          <Form.Group controlId="end_date">
-            <Form.Label>Select End Date</Form.Label>
+          <Form.Group as={Col} md="6" controlId="validationCustom02">
+            <Form.Label>Select End date</Form.Label>
             <Form.Control
+              required
+              type="date"
               name="endDate"
-              type="date"
-              required
-              placeholder=""
               ref={register}
+              size="lg"
             />
+            <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
           </Form.Group>
         </Form.Row>
         <Form.Row>
-          <Col>
-            <Form.Label htmlFor="amountPerDay">Your goal per day</Form.Label>
+          <Form.Group as={Col} md="6" controlId="validationCustom01">
+            <Form.Label>Your goal per day</Form.Label>
             <Form.Control
-              name="amount"
-              ref={register}
               required
-              size="sm"
-              type="text"
-              id="amountPerDay"
+              type="number"
+              defaultValue={0}
+              name="value"
+              ref={register}
+              size="lg"
             />
-          </Col>
-          <Col>
-            {isNew ? (
-              <div>
-                <Form.Label htmlFor="measure">Measure</Form.Label>
-                <Form.Control
-                  name="measure"
-                  ref={register}
-                  required
-                  size="sm"
-                  type="text"
-                  id="measure"
-                />
-              </div>
-            ) : (
-              <h2 className="mt-4 ml-3">{goal.item}</h2>
-            )}
-          </Col>
+            <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+          </Form.Group>
+          {isNew ? (
+            <Form.Group as={Col} md="6" controlId="validationCustom02">
+              <Form.Label>Measure</Form.Label>
+              <Form.Control
+                required
+                type="text"
+                name="measure"
+                ref={register}
+                size="lg"
+              />
+              <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+            </Form.Group>
+          ) : (
+            <Form.Group as={Col} md="6" controlId="validationCustom02">
+              <Form.Control
+                className="border-0 text-uppercase mt-4 text-center"
+                required
+                type="text"
+                name="measure"
+                defaultValue={goal.item}
+                ref={register}
+                size="lg"
+              />
+              <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+            </Form.Group>
+          )}
         </Form.Row>
-        <Form.Row>
-          <Button className="px-4" type="submit" variant="info" size="lg">
+        <Form.Row className="d-flex justify-content-center">
+          <Button className="px-5" type="submit" variant="info" size="lg">
             GO
           </Button>
         </Form.Row>
       </Form>
-    </>
+    </div>
   );
 };
 
