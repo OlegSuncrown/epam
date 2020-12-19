@@ -1,6 +1,5 @@
 import React from "react";
-import { Container, Col, Button, Row, Card } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Container, Col, Row } from "react-bootstrap";
 import workoutImage from "../../assets/cardImageWorkout.svg";
 import smokingImage from "../../assets/cardImageSmoking.svg";
 import weightImage from "../../assets/cardImageWeight.svg";
@@ -35,16 +34,16 @@ const Main = () => {
       on Highway to accomplish."
       />
 
-      <Row className="aboutUs p-3">
-        <Col className="col-12 col-md-6 d-flex justify-content-center">
-          <h3>Who are we?</h3>
+      <Row className="about-us py-5 px-2">
+        <Col className="col-md-4 col-12 col-lg-4">
+          <h2 className="text-center">Who are we?</h2>
         </Col>
-        <Col className="col-12 col-md-6 d-flex justify-content-center text-center p-0">
-          <p>
+        <Col className="col-md-8 col-12 col-lg-7">
+          <h5>
             <b>Highway to accomplish</b> is a rapidly evolving platform with the
             tools to help you achieve your goals. With us you will transform
             your goals into reality.
-          </p>
+          </h5>
         </Col>
       </Row>
     </Container>

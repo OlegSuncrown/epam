@@ -2,29 +2,52 @@ import React, { useState } from "react";
 import { Container, Col, ProgressBar, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
-const GoalItem = (props) => {
+const GoalItem = ({ title, startDate, progress, endDate }) => {
   return (
     <>
-      <Link to="/" className="text-decoration-none">
-        <Row className="hover-row  py-4 m-0">
-          <Col xs={6} md={4} className="">
-            {props.title || "Save money"}
-          </Col>
-          <Col className="col-6 col-sm-3">
-            {props.startDate || "21.11.2020"}
-          </Col>
-          <Col className="d-none d-sm-block">
-            {props.endDate || "30.12.2020"}
-          </Col>
-          <Col>
-            <ProgressBar
-              now={props.progress}
-              label={`${props.progress}%`}
-              variant="success"
-            />
-          </Col>
-        </Row>
-      </Link>
+      {/* <Link to="/" className="text-decoration-none"> */}
+      <Row className="hover-row mb-3 bg-light py-3 shadow">
+        <Col className="col-12 text-center">
+          <Link to="/">
+            <i class="fas fa-trash float-right"></i>
+          </Link>
+          <h4>
+            <strong>{title || "Save money"}</strong>
+          </h4>
+          <hr />
+        </Col>
+        <Col className="col-12 col-sm-11 mx-auto mb-2 ">
+          <ProgressBar
+            now={progress}
+            label={`${progress}%`}
+            variant={
+              progress > 80
+                ? "success"
+                : progress > 40 && progress < 80
+                ? "warning"
+                : "danger"
+            }
+          />
+        </Col>
+        <Col className="col-12 col-sm-11 mx-auto d-flex justify-content-between">
+          <h6>
+            <span>
+              <strong className="mr-2">Start:</strong>
+            </span>
+            {startDate || "21.11.2020"}
+          </h6>
+          <h6>
+            <span>
+              <strong className="mr-2">End:</strong>
+            </span>{" "}
+            {endDate || "30.12.2020"}
+          </h6>
+        </Col>
+        {/* <Col className="col-6">
+            {endDate || "30.12.2020"}
+          </Col> */}
+      </Row>
+      {/* </Link> */}
     </>
   );
 };

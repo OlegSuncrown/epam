@@ -8,6 +8,7 @@ import { Header } from "./layouts";
 import { Footer } from "./layouts";
 import { LandingPage, RegisterPage, LoginPage } from "./pages";
 import { AuthContext } from "./context/auth/AuthContext";
+import "react-toastify/dist/ReactToastify.css";
 const App = () => {
   const { isAuthenticated } = useContext(AuthContext);
 
@@ -25,6 +26,7 @@ const App = () => {
           <Route path="/login" component={LoginPage} />
           <Route path="/dashboard" component={Dashboard} />
         </Switch>
+        <Footer />
       </>
     );
   }

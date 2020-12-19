@@ -1,0 +1,10 @@
+.footer-logo {
+  max-width: 250px;
+}
+
+.fa-facebook-square,
+.fa-instagram-square {
+  font-size: 50px;
+  color: rgb(187, 187, 187);
+  cursor: pointer;
+}
