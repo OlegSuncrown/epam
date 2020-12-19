@@ -1,7 +1,25 @@
 :root {
   --landing-font-size: 16px;
 }
+.btn-flat {
+  background-color: purple;
+  color: white;
+  display: block;
+  color: grey;
+}
 
+.btn-xxl {
+  padding: 1rem 1.5rem;
+  font-size: 1.5rem;
+}
+
+.btn-flat.active {
+  background-color: red;
+}
+
+.btn-flat:hover {
+  background-color: green;
+}
 ::-webkit-scrollbar {
   width: 10px;
 }
@@ -65,10 +83,21 @@
   font-size: calc(var(--landing-font-size) * 2);
 }
 
+.aboutUs {
+  font-size: calc(var(--landing-font-size) * 1.7);
+
+  background: rgb(219, 248, 255);
+  margin: 0 0 -50px 0;
+}
+
+.aboutUs h3 {
+  font-size: calc(var(--landing-font-size) * 3.7);
+}
+
 .footer {
   background: rgb(224, 224, 219);
   font-size: calc(var(--landing-font-size) * 1.4);
-  margin-top: calc(var(--landing-font-size) * 20);
+  margin: 50px 0 0 0;
 }
 
 .footer-logo {
@@ -84,12 +113,12 @@
 }
 
 .uploadButton {
-  opacity: 60%;
+  opacity: 0.6;
 }
 
 .uploadButton:hover {
   cursor: pointer;
-  opacity: 100%;
+  opacity: 1;
 }
 
 @media only screen and (max-width: 800px) {
