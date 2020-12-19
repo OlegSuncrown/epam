@@ -5,7 +5,7 @@ export const AuthContext = createContext();
 
 const AuthState = (props) => {
   const [user, setUser] = useState(null);
-  const [token, setToken] = useState(() => localStorage.getItem("AuthToken"));
+  //const [token, setToken] = useState(() => localStorage.getItem("AuthToken"));
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [isLoading, setLoading] = useState(true);
 
@@ -22,7 +22,6 @@ const AuthState = (props) => {
   const logOut = () => {
     localStorage.removeItem("AuthToken");
     localStorage.removeItem("userData");
-    setToken(null);
     setLoading(false);
     setUser(null);
     setIsAuthenticated(false);
