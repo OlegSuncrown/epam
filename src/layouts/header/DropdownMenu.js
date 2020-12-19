@@ -6,7 +6,7 @@ const DropdownMenu = () => {
   const CustomToggle = React.forwardRef(({ children, onClick }, ref) => (
     <Nav.Link
       ref={ref}
-      className="btn btn-outline-dark btn-sm border-0 p-0"
+      className="outline-light btn-sm border-0 p-0"
       onClick={(e) => {
         e.preventDefault();
         onClick(e);

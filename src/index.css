@@ -1,14 +1,32 @@
 body {
   overflow-x: hidden;
   min-height: 100vh;
-  background-color: rgb(228, 228, 228);
+  background-color: rgb(255, 255, 255);
   position: relative;
-  padding-bottom: 70px;
+  padding-bottom: 80px;
 }
+
 .footer {
   width: 100%;
   position: absolute;
   left: 0;
   bottom: 0;
-  height: 70px;
+  height: 80px;
+  background-color: #52796f;
+}
+
+.nav-bar {
+  background-color: #52796f !important;
+}
+
+.btn-primary {
+  border-color: rgb(101, 160, 118);
+  outline: none;
+  background-color: #6d9a8e !important;
+}
+
+.btn-primary:hover {
+  border-color: rgb(35, 71, 46);
+  outline: none;
+  background-color: rgb(57, 110, 115) !important;
 }

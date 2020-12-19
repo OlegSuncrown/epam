@@ -10,12 +10,14 @@
 }
 
 .btn-flat.active {
-  background-color: rgb(76, 117, 198);
+  /* background-color: rgb(76, 117, 198); */
+  background-color: #639387;
   color: rgb(255, 255, 255);
 }
 
 .btn-flat:hover {
-  background-color: rgb(62, 93, 154);
+  /* background-color: rgb(62, 93, 154); */
+  background-color: #5c7d75;
   color: rgb(213, 213, 213);
 }
 

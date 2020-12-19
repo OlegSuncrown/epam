@@ -9,7 +9,7 @@ const Header = () => {
 
   return (
     <>
-      <Navbar bg="dark" variant="dark py-3">
+      <Navbar bg="dark" variant="dark py-3 nav-bar">
         <Container>
           <Navbar.Brand as={NavLink} to="/">
             {/* <img className="logo" src={Logo}></img> */}
@@ -24,7 +24,6 @@ const Header = () => {
               <Nav.Link to="/register" as={NavLink}>
                 Register
               </Nav.Link>
-              )
             </Nav>
           ) : (
             <>

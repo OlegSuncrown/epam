@@ -7,7 +7,7 @@ import Logo from "../../assets/logo.svg";
 import "./footer.css";
 const Footer = () => {
   return (
-    <Row className="bg-dark footer m-0">
+    <Row className="footer m-0">
       <Col className="d-flex justify-content-center align-items-center col-md-4 col-12 py-3">
         <img className="footer-logo" src={Logo}></img>
       </Col>
