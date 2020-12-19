@@ -49,10 +49,10 @@ const AuthState = (props) => {
 
     try {
       const res = await axios.post(`${URL}/registration`, formData, config);
-      localStorage.setItem("AuthToken", res.token);
+      localStorage.setItem("AuthToken", res.data.access_token);
       setIsAuthenticated(true);
       setLoading(false);
-
+      console.log(res);
       loadUser();
     } catch (err) {
       logOut();
