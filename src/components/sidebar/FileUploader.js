@@ -42,21 +42,17 @@ const FileUploader = () => {
     }
     try {
       const { data } = await axios.get(`${URL}/GetProfilePicture`);
+      setImage(data);
 
-      const file = data;
-      const reader = new FileReader();
-      reader.onload = () => {
-        setImage(reader.result);
-      };
-
-      reader.readAsDataURL(file);
+      console.log(data);
     } catch (err) {
       console.log(err);
     }
   };
   return (
     <>
-      {/* <Image src={image ? image : ''} fluid /> */}
+      <button onClick={submitHandler}>dsdsds</button>
+      <Image src={image ? image : ""} fluid />
       <Form>
         <label className="uploadButton" htmlFor="upload-photo">
           <span className="text-info btn-upload">

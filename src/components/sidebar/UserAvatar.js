@@ -8,11 +8,14 @@ const UserAvatar = () => {
 
   if (!user) {
     return (
-      <Spinner animation="border" role="status">
-        <span className="sr-only">Loading...</span>
-      </Spinner>
+      <div className="text-center py-4">
+        <Spinner animation="border" role="status">
+          <span className="sr-only">Loading...</span>
+        </Spinner>
+      </div>
     );
   }
+
   return (
     <Card className="border-light text-center d-none d-lg-block shadow">
       <Card.Body className="p-1">

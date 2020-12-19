@@ -9,14 +9,14 @@ const UserGoals = (props) => {
 
   return (
     <Container fluid>
-      <Row>
+      {/* <Row className='mb-3 shadow'>
         <Col xs={6} md={4}>
           Title
         </Col>
         <Col className=" col-sm-3">Start date</Col>
         <Col className="d-none d-sm-block col-sm-3">End Date</Col>
         <Col className="d-none d-md-block">Progress</Col>
-      </Row>
+      </Row> */}
 
       {/* {goalsList.map(item => {
                  (<GoalItem 
@@ -28,13 +28,6 @@ const UserGoals = (props) => {
               })} */}
       <GoalItem title="Walk 10000 steps every day" progress="30" />
       <GoalItem title="Quit smoking" progress="100" />
-      <GoalItem title="Save money" progress="50" />
-      <GoalItem title="Save money" progress="50" />
-      <GoalItem title="Save money" progress="50" />
-      <GoalItem title="Save money" progress="50" />
-      <GoalItem title="Save money" progress="50" />
-      <GoalItem title="Save money" progress="50" />
-      <GoalItem title="Save money" progress="50" />
       <GoalItem title="Save money" progress="50" />
       <GoalItem title="Save money" progress="50" />
 
