@@ -6,11 +6,14 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
 import AuthState from "./context/auth/AuthContext";
+import GoalState from "./context/goals/GoalContext";
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
       <AuthState>
-        <App />
+        <GoalState>
+          <App />
+        </GoalState>
       </AuthState>
     </BrowserRouter>
   </React.StrictMode>,
