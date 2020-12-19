@@ -18,30 +18,34 @@ const App = () => {
 
   if (isAuthenticated || localStorage.AuthToken) {
     return (
-      <>
+      <div className="wrapper">
         <Header />
-        <Switch>
-          <Route exact path="/" component={LandingPage} />
-          <Route path="/register" component={RegisterPage} />
-          <Route path="/login" component={LoginPage} />
-          <Route path="/dashboard" component={Dashboard} />
-        </Switch>
+        <main className="main-content">
+          <Switch>
+            <Route exact path="/" component={LandingPage} />
+            <Route path="/register" component={RegisterPage} />
+            <Route path="/login" component={LoginPage} />
+            <Route path="/dashboard" component={Dashboard} />
+          </Switch>
+        </main>
         <Footer />
-      </>
+      </div>
     );
   }
 
   return (
-    <>
+    <div className="wrapper">
       <Header />
-      <Switch>
-        <Route exact path="/" component={LandingPage} />
-        <Route path="/register" component={RegisterPage} />
-        <Route path="/login" component={LoginPage} />
-        <Redirect to="/" />
-      </Switch>
+      <main className="main-content">
+        <Switch>
+          <Route exact path="/" component={LandingPage} />
+          <Route path="/register" component={RegisterPage} />
+          <Route path="/login" component={LoginPage} />
+          <Redirect to="/" />
+        </Switch>
+      </main>
       <Footer />
-    </>
+    </div>
   );
 };
 
