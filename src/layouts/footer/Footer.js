@@ -1,13 +1,13 @@
 import React from "react";
-import { Container, Col, Row, Nav } from "react-bootstrap";
+import { Col, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Logo from "../../assets/logo.svg";
-import instagramIcon from "../../assets/instagramIcon.svg";
-import facebookIcon from "../../assets/facebookIcon.svg";
+// import instagramIcon from "../../assets/instagramIcon.svg";
+// import facebookIcon from "../../assets/facebookIcon.svg";
 import "./footer.css";
 const Footer = () => {
   return (
-    <Row className="py-4 bg-dark">
+    <Row className="bg-dark footer m-0">
       <Col className="d-flex justify-content-center align-items-center col-md-4 col-12 py-3">
         <img className="footer-logo" src={Logo}></img>
       </Col>
