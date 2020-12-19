@@ -1,19 +1,17 @@
 import React, { useContext, useState, useEffect } from "react";
 import { Form, Button, Col, Container } from "react-bootstrap";
 import { AuthContext } from "../../context/auth/AuthContext";
-
+import { ToastContainer, toast } from "react-toastify";
 const Register = ({ history }) => {
   const { registerUser, isAuthenticated } = useContext(AuthContext);
 
-  const [validated, setValidated] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [userRegister, setUserRegister] = useState({
     firstName: "",
     lastName: "",
     email: "",
     password: "",
   });
-
-  const { firstName, lastName, email, password } = userRegister;
 
   //Redirect user if isAuthenticated
   useEffect(() => {
@@ -26,24 +24,44 @@ const Register = ({ history }) => {
   const onChange = (e) =>
     setUserRegister({ ...userRegister, [e.target.name]: e.target.value });
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const form = e.currentTarget;
-    if (form.checkValidity() === false) {
-      e.preventDefault();
-      e.stopPropagation();
-    }
-    setValidated(true);
-    registerUser(userRegister);
-  };
 
+    try {
+      setLoading(true);
+      return await registerUser(userRegister);
+    } catch (err) {
+      toast.error(err.message, {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: true,
+        progress: undefined,
+      });
+    }
+
+    setLoading(false);
+  };
   return (
     <Container>
+      <ToastContainer
+        position="top-right"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
       <div className="card m-3 p-3">
         <h2 className="text-center mb-3">
           <span className="text-primary">Register</span> Account
         </h2>
-        <Form noValidate validated={validated} onSubmit={handleSubmit}>
+        <Form onSubmit={handleSubmit}>
           <Form.Row className="justify-content-md-center">
             <Form.Group as={Col} md="4" controlId="validationCustom02">
               <Form.Label>First name</Form.Label>
@@ -52,9 +70,9 @@ const Register = ({ history }) => {
                 type="text"
                 placeholder="First name"
                 name="firstName"
+                minlength="2"
                 onChange={onChange}
               />
-              <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
             </Form.Group>
           </Form.Row>
           <Form.Row className="justify-content-md-center">
@@ -65,9 +83,9 @@ const Register = ({ history }) => {
                 type="text"
                 placeholder="Last name"
                 name="lastName"
+                minlength="2"
                 onChange={onChange}
               />
-              <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
             </Form.Group>
           </Form.Row>
           <Form.Row className="justify-content-md-center">
@@ -80,10 +98,6 @@ const Register = ({ history }) => {
                 name="email"
                 onChange={onChange}
               />
-              {/* <Form.Text className="text-muted">
-                We'll never share your email with anyone else.
-              </Form.Text> */}
-              <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
             </Form.Group>
           </Form.Row>
           <Form.Row className="justify-content-md-center">
@@ -91,6 +105,7 @@ const Register = ({ history }) => {
               <Form.Label>Password</Form.Label>
               <Form.Control
                 type="password"
+                minlength="6"
                 placeholder="Password"
                 required
                 name="password"
@@ -100,6 +115,7 @@ const Register = ({ history }) => {
           </Form.Row>
           <Form.Row className="justify-content-md-center mt-3">
             <Button
+              disabled={loading}
               to="/addGoal"
               variant="primary"
               type="submit"

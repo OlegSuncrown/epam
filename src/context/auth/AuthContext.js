@@ -5,12 +5,12 @@ export const AuthContext = createContext();
 
 const AuthState = (props) => {
   const [user, setUser] = useState(null);
-  const [token, setToken] = useState(() => localStorage.getItem("AuthToken"));
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [isLoading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
 
   const URL = "https://hwtaweb20201216131958.azurewebsites.net";
+  const imageURL =
+    "https://www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png";
 
   useEffect(() => {
     if (localStorage.getItem("userData")) {
@@ -20,53 +20,62 @@ const AuthState = (props) => {
   }, []);
 
   // Clear state if error happened or logout
-  const logOut = (error = null) => {
+  const logOut = () => {
     localStorage.removeItem("AuthToken");
     localStorage.removeItem("userData");
-    setToken(null);
     setLoading(false);
     setUser(null);
     setIsAuthenticated(false);
-    setError(error);
-    console.log(error);
   };
+
+  // const loadUserPicture = async () => {
+  //   if (localStorage.AuthToken) {
+  //     setAuthToken(localStorage.AuthToken)
+  //   }
+  //   try {
+  //     const {data} = await axios.get('https://hwtaweb20201216131958.azurewebsites.net/GetProfilePicture')
+  //     setUser({...user, image: data || "https://www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png"})
+  //   } catch (err) {
+  //     console.log(err.response.data.errorText)
+  //   }
+  //   console.log('submited')
+  // }
 
   // Load user
   const loadUser = async () => {
-    setError(null);
     if (localStorage.AuthToken) {
       setAuthToken(localStorage.AuthToken);
     }
     try {
       const { data } = await axios.get(`${URL}/GetUserProfileInfo`);
-      localStorage.setItem("userData", JSON.stringify(data));
-      setUser(data);
-    } catch (err) {
-      logOut("Unauthorized");
+      const addImageField = { ...data, image: imageURL };
+      setUser(addImageField);
+      localStorage.setItem("userData", JSON.stringify(addImageField));
+    } catch {
+      logOut();
     }
   };
 
   //Register User
   const registerUser = async (formData) => {
-    setError(null);
     const config = {
       headers: { "Content-Type": "application/json" },
     };
 
     try {
       const res = await axios.post(`${URL}/registration`, formData, config);
-      localStorage.setItem("AuthToken", res.token);
+      localStorage.setItem("AuthToken", res.data.access_token);
       setIsAuthenticated(true);
       setLoading(false);
-
       loadUser();
     } catch (err) {
-      logOut(err.response.data.errorText);
+      logOut();
+      throw new Error(err.response.data.errorText);
     }
   };
 
+  // Login
   const loginUser = async (formData) => {
-    setError(null);
     const config = {
       headers: {
         "Content-Type": "application/json",
@@ -78,7 +87,8 @@ const AuthState = (props) => {
       setIsAuthenticated(true);
       loadUser();
     } catch (err) {
-      logOut(err.response.data.errorText);
+      logOut();
+      throw new Error(err.response.data.errorText);
     }
   };
 

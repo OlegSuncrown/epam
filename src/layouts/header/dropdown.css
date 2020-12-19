@@ -5,9 +5,9 @@
 
 .dropdown-menu {
   top: 100%;
-  left: 50%;
+  left: -40%;
   transform: translate(-50%, 0);
-  min-width: 180px;
+  min-width: 220px;
 }
 
 .nav-link {
