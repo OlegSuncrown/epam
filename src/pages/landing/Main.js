@@ -1,6 +1,5 @@
 import React from "react";
-import { Container, Col, Button, Row, Card } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Container, Col, Row } from "react-bootstrap";
 import workoutImage from "../../assets/cardImageWorkout.svg";
 import smokingImage from "../../assets/cardImageSmoking.svg";
 import weightImage from "../../assets/cardImageWeight.svg";

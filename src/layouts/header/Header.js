@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Navbar, Nav, Container, Image } from "react-bootstrap";
+import { Navbar, Nav, Container } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 import { AuthContext } from "../../context/auth/AuthContext";
 import DropdownMenu from "./DropdownMenu";
@@ -28,20 +28,9 @@ const Header = () => {
             </Nav>
           ) : (
             <>
-              <DropdownMenu />
               <Nav className="d-flex align-items-center">
-                <Nav.Link
-                  exact
-                  to="/dashboard"
-                  as={NavLink}
-                  className="d-none d-md-block p-0"
-                >
-                  <Image
-                    src="https://www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png"
-                    fluid
-                    rounded
-                    style={{ maxHeight: "40px" }}
-                  />
+                <Nav.Link exact to="/dashboard" as={NavLink} className=" p-0">
+                  <DropdownMenu />
                 </Nav.Link>
 
                 <Nav.Link variant="outline-secondary" onClick={logOut}>

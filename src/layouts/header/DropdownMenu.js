@@ -1,39 +1,41 @@
-import React, { useState } from "react";
-import { Container, Image, Dropdown, FormControl, Nav } from "react-bootstrap";
-import { SideBar } from "../../components";
+import React from "react";
+import { Image, Dropdown, Nav } from "react-bootstrap";
+import { SideNav } from "../../components";
 import "./dropdown.css";
 const DropdownMenu = () => {
   const CustomToggle = React.forwardRef(({ children, onClick }, ref) => (
     <Nav.Link
       ref={ref}
-      className="btn btn-outline-secondary btn-sm p-0 px-3"
+      className="btn btn-outline-dark btn-sm border-0 p-0"
       onClick={(e) => {
         e.preventDefault();
         onClick(e);
       }}
     >
-      <i className="fas fa-chevron-down"></i>
-
       {children}
     </Nav.Link>
   ));
 
   return (
-    <Dropdown className="d-lg-none">
-      <Dropdown.Toggle
-        as={CustomToggle}
-        id="dropdown-custom-components"
-      ></Dropdown.Toggle>
-
+    <Dropdown className="">
+      <Dropdown.Toggle as={CustomToggle} id="dropdown-custom-components">
+        <div className="d-flex align-items-center px-2 py-1">
+          <Image
+            src="https://www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png"
+            fluid
+            rounded
+            style={{ maxHeight: "40px" }}
+          />
+          <i
+            className="fas fa-angle-down ml-1"
+            style={{ fontSize: "20px" }}
+          ></i>
+        </div>
+      </Dropdown.Toggle>
       <Dropdown.Menu>
-        <SideBar />
+        <SideNav />
       </Dropdown.Menu>
     </Dropdown>
-    // <DropdownButton title='Menu' menuAlign='right' variant='outline-secondary border-0' className='d-lg-none'>
-    //   <Dropdown.Item className='p-0 m-0 '>
-    //     <SideBar />
-    //   </Dropdown.Item>
-    // </DropdownButton>
   );
 };
 
