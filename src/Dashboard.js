@@ -13,8 +13,8 @@ import SingleGoal from "./pages/goals/SingleGoal";
 const Dashboard = () => {
   let { path } = useRouteMatch();
   return (
-    <>
-      <Container className="py-5">
+    <div className="dashboard">
+      <Container className="py-5 dashboard">
         <Row>
           <Col xs={12} lg={3} className="d-none d-lg-block">
             <SideBar />
@@ -34,7 +34,7 @@ const Dashboard = () => {
           </Col>
         </Row>
       </Container>
-    </>
+    </div>
   );
 };
 

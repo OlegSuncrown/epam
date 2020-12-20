@@ -39,7 +39,7 @@ const SideNav = () => {
       <Button
         variant="flat m-0"
         size="xxl"
-        to="/dashboard/add-goal/1"
+        to="/dashboard/add-goal"
         as={NavLink}
         block
       >

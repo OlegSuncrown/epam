@@ -1,8 +1,8 @@
 import React, { useState, createContext, useEffect } from "react";
 import setAuthToken from "../../utils/setAuthToken";
 import axios from "axios";
-export const AuthContext = createContext();
 
+export const AuthContext = createContext();
 const AuthState = (props) => {
   const URL = "https://hwtaweb20201216131958.azurewebsites.net";
   const imageURL =
@@ -19,8 +19,10 @@ const AuthState = (props) => {
       setIsAuthenticated(true);
     }
 
+    if (localStorage.getItem("userImage")) {
+      setUserImage(JSON.parse(localStorage.getItem("userImage")));
+    }
     setUser(JSON.parse(localStorage.getItem("userData")));
-    setUserImage(JSON.parse(localStorage.getItem("userImage")));
   }, []);
 
   // Clear state if error happened or logout
@@ -73,7 +75,7 @@ const AuthState = (props) => {
       loadImage();
     } catch (err) {
       logOut();
-      throw new Error(err.response.data.errorText);
+      throw new Error(err.response.data.errorText || "Server error");
     }
   };
 
@@ -92,7 +94,7 @@ const AuthState = (props) => {
       loadImage();
     } catch (err) {
       logOut();
-      throw new Error(err.response.data.errorText);
+      throw new Error(err.response.data.errorText || "Server error");
     }
   };
 

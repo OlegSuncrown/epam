@@ -1,0 +1,31 @@
+.progress-days {
+  /* border-radius: 50%; */
+  height: 50px;
+  width: 50px;
+  /* display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; */
+  border: 1px solid rgba(191, 191, 191, 0.476);
+  background-color: white;
+  font-size: 20px;
+}
+
+.current-day {
+  color: rgba(67, 129, 167, 0.877);
+  font-size: 25px;
+}
+
+.end-day {
+  color: rgba(7, 126, 1, 0.476);
+  font-size: 18px;
+}
+
+.days {
+  font-size: 12px;
+  color: rgba(105, 105, 105, 0.476);
+}
+
+.item-goal {
+  background-color: white;
+}

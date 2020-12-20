@@ -33,3 +33,7 @@ body {
   outline: none;
   background-color: rgb(57, 110, 115) !important;
 }
+
+.dashboard {
+  background: #ecece7;
+}

@@ -1,30 +1,60 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { NavLink, Link, useRouteMatch } from "react-router-dom";
-import { Container, Button, Row, Col } from "react-bootstrap";
+import { Container, Button, Row, Col, Spinner } from "react-bootstrap";
 import GoalItem from "./GoalItem";
+import { GoalContext } from "../../context/goals/GoalContext";
+import { Pagination } from "../../components";
 
-const UserGoals = (props) => {
-  // const { goalsList } = useContext(GoalsContext);
-  const { path } = useRouteMatch();
+const UserGoals = () => {
+  const { goalsList, isLoaded, goalsError } = useContext(GoalContext);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [postsPerPage] = useState(3);
+  if (!isLoaded) {
+    return (
+      <div className="text-center">
+        <Spinner animation="border" role="status" className="p-4 mt-5">
+          <span className="sr-only">Loading...</span>
+        </Spinner>
+      </div>
+    );
+  }
 
+  if (goalsError) {
+    return (
+      <h4 className="text-danger text-center">
+        <strong>{goalsError}</strong>
+      </h4>
+    );
+  }
+
+  if (!goalsList.length) {
+    return <h2 className="text-center">Your list is empty</h2>;
+  }
+
+  console.log(goalsList);
+
+  const indexOfLastPost = currentPage * postsPerPage;
+  const indexOfFirstPost = indexOfLastPost - postsPerPage;
+  const currentGoals = goalsList.slice(indexOfFirstPost, indexOfLastPost);
+  const howManyPages = Math.ceil(goalsList.length / postsPerPage);
   return (
     <Container fluid>
-      {/* {goalsList.map(item => {
-                 (<GoalItem 
-                    title={item.title} 
-                    startDate={item.startDate} 
-                    endDate={item.endDate} 
-                    progress={item.progress} 
-                 />) 
-              })} */}
-      <GoalItem title="Walk 10000 steps every day" progress="30" />
-      <GoalItem title="Quit smoking" progress="100" />
-      <GoalItem title="Save money" progress="50" />
-      <GoalItem title="Save money" progress="50" />
+      {currentGoals.map((item) => {
+        return (
+          <GoalItem
+            key={item.goalId}
+            title={item.nameGoal}
+            id={item.goalId}
+            // startDate={item.startDate}
+            // endDate={item.plannedEndDate}
+            // progress={50}
+          />
+        );
+      })}
 
-      <Button to="/addGoal" variant="outline-primary" block as={Link}>
-        Add Goal
-      </Button>
+      <div className="pt-4">
+        <Pagination pages={howManyPages} setCurrentPage={setCurrentPage} />
+      </div>
     </Container>
   );
 };

@@ -1,11 +1,13 @@
 import React, { useContext } from "react";
 import { Navbar, Nav, Container } from "react-bootstrap";
+import { useLocation } from "react-router-dom";
 import { NavLink } from "react-router-dom";
 import { AuthContext } from "../../context/auth/AuthContext";
 import DropdownMenu from "./DropdownMenu";
 
 const Header = () => {
   const { isAuthenticated, logOut } = useContext(AuthContext);
+  let location = useLocation();
 
   return (
     <>
@@ -18,11 +20,18 @@ const Header = () => {
 
           {!isAuthenticated ? (
             <Nav>
-              <Nav.Link to="/login" as={NavLink}>
-                Login
+              <Nav.Link
+                to="/login"
+                as={NavLink}
+                to={{
+                  pathname: "/login",
+                  search: location.search,
+                }}
+              >
+                <strong>Login</strong>
               </Nav.Link>
               <Nav.Link to="/register" as={NavLink}>
-                Register
+                <strong>Register</strong>
               </Nav.Link>
             </Nav>
           ) : (
@@ -32,8 +41,15 @@ const Header = () => {
                   <DropdownMenu />
                 </Nav.Link>
 
-                <Nav.Link variant="outline-secondary" onClick={logOut}>
-                  Logout <i className="fas fa-sign-out-alt ml-1"></i>
+                <Nav.Link
+                  variant="outline-secondary"
+                  onClick={() => {
+                    location.search = "";
+                    logOut();
+                  }}
+                >
+                  <strong>Logout</strong>{" "}
+                  <i className="fas fa-sign-out-alt ml-1"></i>
                 </Nav.Link>
               </Nav>
             </>
