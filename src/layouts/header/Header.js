@@ -28,10 +28,10 @@ const Header = () => {
                   search: location.search,
                 }}
               >
-                Login
+                <strong>Login</strong>
               </Nav.Link>
               <Nav.Link to="/register" as={NavLink}>
-                Register
+                <strong>Register</strong>
               </Nav.Link>
             </Nav>
           ) : (
@@ -48,7 +48,8 @@ const Header = () => {
                     logOut();
                   }}
                 >
-                  Logout <i className="fas fa-sign-out-alt ml-1"></i>
+                  <strong>Logout</strong>{" "}
+                  <i className="fas fa-sign-out-alt ml-1"></i>
                 </Nav.Link>
               </Nav>
             </>

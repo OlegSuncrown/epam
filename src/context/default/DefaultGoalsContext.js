@@ -9,7 +9,7 @@ export const DefaultGolasContext = createContext({
       title: "Quit Smoking",
       description:
         "Pick a date and quit for good. Your loved ones will thank you. Over 20M cigarettes not smoked on Highway to accomplish.",
-      item: "cigarets",
+      item: "cigarettes",
     },
     {
       id: 2,
@@ -23,7 +23,7 @@ export const DefaultGolasContext = createContext({
       title: "Exercise",
       description:
         "Pick the number of days you’ll exercise each week and stay on track with weekly Reports. Over 1M workouts reported by our users.",
-      item: "dollars",
+      item: "days",
     },
   ],
 });

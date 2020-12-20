@@ -1,15 +1,17 @@
-import React, { useState, useContext } from "react";
-import { Button, Row, Form, Col, Dropdown } from "react-bootstrap";
+import React, { useContext } from "react";
+import { Button, Row, Form, Col } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import swal from "sweetalert2";
-import { BrowserRouter as Router, Link, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { DefaultGolasContext } from "../../context/default/DefaultGoalsContext";
 import axios from "axios";
 import setAuthToken from "../../utils/setAuthToken";
+import "./goal-item.css";
 
 const SingleGoal = () => {
   const { register, handleSubmit } = useForm();
   const URL = "https://hwtaweb20201216131958.azurewebsites.net";
+
   const useQuery = () => {
     return new URLSearchParams(useLocation().search);
   };
@@ -27,7 +29,7 @@ const SingleGoal = () => {
     }
 
     try {
-      await axios.post(`${URL}/addNewUserGoal`, formData, config);
+      const res = await axios.post(`${URL}/addNewUserGoal`, formData, config);
       swal.fire("Success", "Goal was successfully added!", "success");
     } catch (err) {
       swal.fire({
@@ -39,11 +41,24 @@ const SingleGoal = () => {
   };
 
   const onSubmit = (data, e) => {
+    // if (Date.now() > new Date(data.startDate).getTime()) {
+    //   swal.fire({
+    //     icon: 'error',
+    //     title: 'Invalid start date' ,
+    //     text: 'You can start only from next day'
+    //   })
+    // }
+    // if (new Date(data.startDate).getTime() < new Date(data.startDate).getTime() - 10) {
+    //   swal.fire({
+    //     icon: 'error',
+    //     title: 'Incorrect end date' ,
+    //     text: 'You can not end goal before you start : )'
+    //   })
+    // }
     data.value = parseInt(data.value);
-    data.startDate = new Date(data.startDate).toISOString();
-    data.endDate = new Date(data.endDate).toISOString();
+    data.startDate = new Date(data.startDate).getTime();
+    data.endDate = new Date(data.endDate).getTime();
     data = { ...data, ...{ regularty: 0 } };
-    console.log(data);
     postGoal(data);
     e.target.reset();
   };
@@ -59,138 +74,125 @@ const SingleGoal = () => {
   }
 
   return (
-    <div className="d-flex justify-content-center h-100">
-      <Form
-        className="h-75 w-75 d-flex flex-column justify-content-between"
-        onSubmit={handleSubmit(onSubmit)}
-      >
-        <Form.Row className="align-self-center">
-          {isNew ? (
-            <Form.Row>
-              <Form.Label htmlFor="title">Add cutom goal name</Form.Label>
-              <Form.Control
-                placeholder="Enter goal name here"
-                name="goalTitle"
-                ref={register}
-                required
-                size="lg"
-                type="text"
-                id="goalTitle"
-              />
-            </Form.Row>
-          ) : (
-            <Form.Row>
-              <Form.Control
-                className="border-0 text-uppercase"
-                defaultValue={goal.title}
-                name="goalTitle"
-                ref={register}
-                required
-                size="lg"
-                type="text"
-                id="title"
-              />
-            </Form.Row>
-          )}
-        </Form.Row>
-        {isNew ? (
+    <Row>
+      <Col className="col-md-10 mx-auto">
+        <Form
+          className="d-flex flex-column justify-content-between h-100 add-goal-form p-4"
+          onSubmit={handleSubmit(onSubmit)}
+        >
+          <h2 className="text-center pb-1">Add your goal</h2>
           <Form.Row>
-            <Form.Label htmlFor="title">Add cutom goal description</Form.Label>
+            <Form.Label htmlFor="title" className="add-goal-label">
+              Goal title
+            </Form.Label>
             <Form.Control
+              className="add-goal-input"
+              defaultValue={isNew ? "" : goal.title}
+              name="goalTitle"
+              ref={register}
+              required
+              size="sm"
+              type="text"
+              id="title"
+              placeholder="Add title..."
+            />
+          </Form.Row>
+
+          <Form.Row className="mt-3">
+            <Form.Label htmlFor="text" className="add-goal-label">
+              Goal description
+            </Form.Label>
+            <Form.Control
+              className="add-goal-input"
               as="textarea"
-              rows={3}
+              rows={2}
+              defaultValue={isNew ? "" : goal.description}
               placeholder="Enter goal description here"
               name="description"
               ref={register}
               required
-              size="lg"
+              size="sm"
+              id="text"
             />
           </Form.Row>
-        ) : (
-          <Form.Group>
-            <Form.Control
-              as="textarea"
-              className="border-0"
-              defaultValue={goal.description}
-              name="description"
-              ref={register}
-              required
-              size="lg"
-            />
-          </Form.Group>
-        )}
 
-        <Form.Row>
-          <Form.Group as={Col} md="6" controlId="validationCustom01">
-            <Form.Label>Select Start date</Form.Label>
-            <Form.Control
-              required
-              type="date"
-              name="startDate"
-              size="lg"
-              ref={register}
-            />
-            <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-          </Form.Group>
-          <Form.Group as={Col} md="6" controlId="validationCustom02">
-            <Form.Label>Select End date</Form.Label>
-            <Form.Control
-              required
-              type="date"
-              name="endDate"
-              ref={register}
-              size="lg"
-            />
-            <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-          </Form.Group>
-        </Form.Row>
-        <Form.Row>
-          <Form.Group as={Col} md="6" controlId="validationCustom01">
-            <Form.Label>Your goal per day</Form.Label>
-            <Form.Control
-              required
-              type="number"
-              defaultValue={0}
-              name="value"
-              ref={register}
-              size="lg"
-            />
-            <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-          </Form.Group>
-          {isNew ? (
-            <Form.Group as={Col} md="6" controlId="validationCustom02">
-              <Form.Label>Enter type of value</Form.Label>
+          <Form.Row className="mt-3">
+            <Form.Group as={Col} md="6" className="p-0">
+              <Form.Label className="add-goal-label">
+                Select Start date
+              </Form.Label>
               <Form.Control
                 required
-                type="text"
-                name="valueType"
+                type="date"
+                name="startDate"
+                size="md"
                 ref={register}
-                size="lg"
+                className="add-goal-input"
               />
-              <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
             </Form.Group>
-          ) : (
-            <Form.Group as={Col} md="6" controlId="validationCustom02">
+            <Form.Group as={Col} md="6">
+              <Form.Label className="add-goal-label">
+                Select End date
+              </Form.Label>
               <Form.Control
-                className="border-0 text-uppercase mt-4 text-center"
                 required
-                type="text"
-                name="valueType"
-                defaultValue={goal.item}
+                type="date"
+                name="endDate"
                 ref={register}
-                size="lg"
+                size="md"
+                className="add-goal-input"
               />
-              <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
             </Form.Group>
-          )}
-        </Form.Row>
-        <Form.Row className="d-flex justify-content-center">
-          <Button className="px-5" type="submit" variant="info" size="lg">
-            GO
-          </Button>
-        </Form.Row>
-      </Form>
-    </div>
+          </Form.Row>
+
+          <Form.Row>
+            <Form.Group as={Col} md="6">
+              <Form.Label className="add-goal-label">
+                Your goal per day
+              </Form.Label>
+              <Form.Control
+                required
+                type="number"
+                defaultValue={0}
+                name="value"
+                ref={register}
+                size="md"
+                className="add-goal-input"
+              />
+            </Form.Group>
+
+            <Form.Group as={Col} md="6">
+              <Form.Label className="add-goal-label">
+                Enter value (kg, $, pc, etc...)
+              </Form.Label>
+
+              <Form.Control
+                className="add-goal-input"
+                autocomplete="off"
+                list="items"
+                name="valueType"
+                onChange={(e) => {
+                  console.log(e.target.value);
+                }}
+                defaultValue={isNew ? "" : goal.item}
+                as="input"
+              />
+              <datalist id="items" ref={register}>
+                <option value="pc" />
+                <option value="kg" />
+                <option value="$" />
+                <option value="km" />
+              </datalist>
+            </Form.Group>
+          </Form.Row>
+          <Form.Row className="d-flex justify-content-center">
+            <Button className="px-5" type="submit" variant="primary" size="md">
+              Let's begin
+            </Button>
+          </Form.Row>
+        </Form>
+      </Col>
+    </Row>
   );
 };
 

@@ -73,7 +73,7 @@ const AuthState = (props) => {
       loadImage();
     } catch (err) {
       logOut();
-      throw new Error(err.response.data.errorText);
+      throw new Error(err.response.data.errorText || "Server error");
     }
   };
 
@@ -92,7 +92,7 @@ const AuthState = (props) => {
       loadImage();
     } catch (err) {
       logOut();
-      throw new Error(err.response.data.errorText);
+      throw new Error(err.response.data.errorText || "Server error");
     }
   };
 
