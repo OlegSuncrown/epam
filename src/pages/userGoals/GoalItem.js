@@ -2,7 +2,15 @@ import React, { useState } from "react";
 import { Col, ProgressBar, Row, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import "./goals.css";
-const GoalItem = ({ title, id, startDate, progress, endDate }) => {
+const GoalItem = ({
+  title,
+  id,
+  startDate,
+  progress,
+  endDate,
+  allDays,
+  currentDay,
+}) => {
   return (
     <>
       <Link to={`goals/${id}`} className="text-decoration-none">
@@ -29,8 +37,8 @@ const GoalItem = ({ title, id, startDate, progress, endDate }) => {
           </Col>
           <Col className="col-12 col-sm-2">
             <div className="text-center">
-              <span className="current-day">3/</span>
-              <span className="end-day">30</span>
+              <span className="current-day">{currentDay}/</span>
+              <span className="end-day">{allDays}</span>
               <div className="text-center">
                 <span className="days">days left</span>
               </div>
