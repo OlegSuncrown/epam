@@ -6,3 +6,4 @@ export { default as ProfilePage } from "./profile/ProfilePage";
 export { default as UserGoalsPage } from "./userGoals/UserGoalsPage";
 export { default as SeasonalGoals } from "./seasonalGoals/SeasonalGoalsPage";
 export { default as SingleGoal } from "./goals/SingleGoal";
+export { default as Goal } from "./goals/Goal";

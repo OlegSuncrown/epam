@@ -44,6 +44,7 @@ const UserGoals = () => {
           <GoalItem
             key={item.goalId}
             title={item.nameGoal}
+            id={item.goalId}
             // startDate={item.startDate}
             // endDate={item.plannedEndDate}
             // progress={50}
