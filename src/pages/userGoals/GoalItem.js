@@ -6,17 +6,16 @@ const GoalItem = ({ title, startDate, progress, endDate }) => {
   return (
     <>
       {/* <Link to="/" className="text-decoration-none"> */}
-      <Row className="hover-row mb-3 bg-light py-3">
+      <Row className="item-goal mb-3  py-1">
         <Col className="col-12 text-center">
-          <Link to="/">{/* <i class="fas fa-trash float-right"></i> */}</Link>
-          <h4>
+          <h4 className="m-0 p-0">
             <strong>{title || "Save money"}</strong>
           </h4>
-          <hr />
+          <hr className="m-0 mt-2" />
         </Col>
         <Col className="col-12 col-sm-10 mx-auto d-flex align-items-center">
           <ProgressBar
-            className="w-100"
+            className="w-100 shadow"
             now={progress}
             label={`${progress}%`}
             variant={

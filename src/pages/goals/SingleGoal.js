@@ -3,14 +3,18 @@ import { Button, Row, Form, Col } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import swal from "sweetalert2";
 import { useLocation } from "react-router-dom";
-import { DefaultGolasContext } from "../../context/default/DefaultGoalsContext";
-import { AuthContext } from "../../context/auth/AuthContext";
 import axios from "axios";
 import setAuthToken from "../../utils/setAuthToken";
 import "./goal-item.css";
 
+import { DefaultGolasContext } from "../../context/default/DefaultGoalsContext";
+import { AuthContext } from "../../context/auth/AuthContext";
+import { GoalContext } from "../../context/goals/GoalContext";
+
 const SingleGoal = () => {
   const { logOut } = useContext(AuthContext);
+  const { loadGoals } = useContext(GoalContext);
+
   const { register, handleSubmit } = useForm();
   const URL = "https://hwtaweb20201216131958.azurewebsites.net";
   const location = useLocation();
@@ -33,6 +37,7 @@ const SingleGoal = () => {
 
     try {
       await axios.post(`${URL}/addNewUserGoal`, formData, config);
+      loadGoals();
       swal.fire("Success", "Goal was successfully added!", "success");
     } catch (err) {
       if (err.response.status === 401) {
@@ -177,7 +182,7 @@ const SingleGoal = () => {
 
               <Form.Control
                 className="add-goal-input"
-                autocomplete="off"
+                autoComplete="off"
                 list="items"
                 name="valueType"
                 ref={register}

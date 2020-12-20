@@ -3,11 +3,12 @@ import { NavLink, Link, useRouteMatch } from "react-router-dom";
 import { Container, Button, Row, Col, Spinner } from "react-bootstrap";
 import GoalItem from "./GoalItem";
 import { GoalContext } from "../../context/goals/GoalContext";
-const UserGoals = () => {
-  const { goalsList, isLoaded, goalsError, loadGoals } = useContext(
-    GoalContext
-  );
+import { Pagination } from "../../components";
 
+const UserGoals = () => {
+  const { goalsList, isLoaded, goalsError } = useContext(GoalContext);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [postsPerPage] = useState(3);
   if (!isLoaded) {
     return (
       <div className="text-center">
@@ -32,9 +33,13 @@ const UserGoals = () => {
 
   console.log(goalsList);
 
+  const indexOfLastPost = currentPage * postsPerPage;
+  const indexOfFirstPost = indexOfLastPost - postsPerPage;
+  const currentGoals = goalsList.slice(indexOfFirstPost, indexOfLastPost);
+  const howManyPages = Math.ceil(goalsList.length / postsPerPage);
   return (
     <Container fluid>
-      {goalsList.map((item) => {
+      {currentGoals.map((item) => {
         return (
           <GoalItem
             key={item.goalId}
@@ -46,9 +51,9 @@ const UserGoals = () => {
         );
       })}
 
-      <Button to="/addGoal" variant="outline-primary" block as={Link}>
-        Add Goal
-      </Button>
+      <div className="pt-4">
+        <Pagination pages={howManyPages} setCurrentPage={setCurrentPage} />
+      </div>
     </Container>
   );
 };

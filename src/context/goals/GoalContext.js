@@ -27,6 +27,7 @@ const GoalState = (props) => {
     } catch (err) {
       if (err.response.status === 401) {
         location.search = "";
+        setGoalsError("");
         logOut();
       }
       setGoalsList([]);
@@ -36,7 +37,7 @@ const GoalState = (props) => {
   };
 
   useEffect(() => {
-    if (isAuthenticated) {
+    if (isAuthenticated || localStorage.AuthToken) {
       loadGoals();
     }
   }, [isAuthenticated]);
