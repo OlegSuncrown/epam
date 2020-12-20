@@ -12,7 +12,7 @@ const AdsCard = (props) => {
           </h2>
           <p className="mb-4">{props.text}</p>
           <Button
-            to="/dashboard/add-goal/1"
+            to={`dashboard/add-goal?title=${props.title}`}
             className="btn btn-primary px-5 mb-4"
             as={Link}
           >

@@ -37,7 +37,7 @@ const Hero = () => {
           >
             <span>Featured</span>
           </Link>
-          <Link to="/dashboard/goals/new" className="hero-link">
+          <Link to="/dashboard/add-goal" className="hero-link">
             <span>Create your own</span>
           </Link>
         </Col>

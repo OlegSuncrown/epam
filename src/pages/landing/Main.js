@@ -17,7 +17,7 @@ const Main = () => {
       reported by our users."
       />
       <AdsCard
-        title="Lose weight"
+        title="Loose weight"
         img={weightImage}
         text="Decide on your target weight
       and set a timeline to reach it. 
