@@ -43,7 +43,6 @@ const SingleGoal = () => {
     data.startDate = new Date(data.startDate).toISOString();
     data.endDate = new Date(data.endDate).toISOString();
     data = { ...data, ...{ regularty: 0 } };
-    console.log(data);
     postGoal(data);
     e.target.reset();
   };
