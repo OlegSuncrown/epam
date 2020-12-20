@@ -56,8 +56,10 @@ const SingleGoal = () => {
     //   })
     // }
     data.value = parseInt(data.value);
-    data.startDate = new Date(data.startDate).getTime();
-    data.endDate = new Date(data.endDate).getTime();
+    data.startDate = new Date(data.startDate).toISOString();
+    data.endDate = new Date(data.endDate).toISOString();
+    // data.startDate = new Date(data.startDate).getTime();
+    // data.endDate = new Date(data.endDate).getTime();
     data = { ...data, ...{ regularty: 0 } };
     postGoal(data);
     e.target.reset();
@@ -171,13 +173,11 @@ const SingleGoal = () => {
                 autocomplete="off"
                 list="items"
                 name="valueType"
-                onChange={(e) => {
-                  console.log(e.target.value);
-                }}
+                ref={register}
                 defaultValue={isNew ? "" : goal.item}
                 as="input"
               />
-              <datalist id="items" ref={register}>
+              <datalist id="items">
                 <option value="pc" />
                 <option value="kg" />
                 <option value="$" />
