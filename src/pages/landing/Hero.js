@@ -20,9 +20,9 @@ const Hero = () => {
         <Col className="col-12 col-md-11 mx-auto">
           <h1 className="hero-title text-dark mb-4">
             <strong>
-              What do you want
+              Want to finally
               <br />
-              <span>to accomplish?</span>
+              <span>accomplish your goal?</span>
             </strong>
           </h1>
           <h4 className="text-left text-dark hero-sub-title mb-4">

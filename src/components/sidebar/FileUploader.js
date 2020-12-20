@@ -42,7 +42,7 @@ const FileUploader = () => {
       <Form>
         <label className="uploadButton" htmlFor="upload-photo">
           <span className="text-info btn-upload">
-            Upload avatar{" "}
+            Set profile photo
             {isLoading && (
               <Spinner
                 as="span"

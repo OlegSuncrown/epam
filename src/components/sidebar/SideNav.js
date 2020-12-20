@@ -24,7 +24,7 @@ const SideNav = () => {
         block
       >
         <i className="fas fa-dot-circle mr-3"></i>
-        User Goals
+        My Goals
       </Button>
       <Button
         variant="flat m-0"
