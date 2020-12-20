@@ -37,7 +37,7 @@ const GoalState = (props) => {
         const currentDay =
           date_diff_indays(Date.now(), item.plannedEndDate) > allDays
             ? 0
-            : date_diff_indays(Date.now(), item.plannedEndDate);
+            : allDays - date_diff_indays(Date.now(), item.plannedEndDate);
         const progress = Math.round((currentDay * 100) / allDays);
         return {
           ...item,
