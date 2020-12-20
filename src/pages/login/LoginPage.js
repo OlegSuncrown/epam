@@ -2,7 +2,7 @@ import React, { useContext, useState, useEffect } from "react";
 import { Form, Button, Col, Container } from "react-bootstrap";
 import { AuthContext } from "../../context/auth/AuthContext";
 import { ToastContainer, toast } from "react-toastify";
-
+import { useLocation } from "react-router-dom";
 const LoginPage = ({ history }) => {
   const { loginUser, isAuthenticated } = useContext(AuthContext);
 
@@ -12,6 +12,9 @@ const LoginPage = ({ history }) => {
   });
 
   const [loading, setLoading] = useState(false);
+
+  const query = new URLSearchParams(useLocation().search);
+  const search = useLocation().search;
 
   // Get value from the form
   const onChange = (e) =>
@@ -34,13 +37,16 @@ const LoginPage = ({ history }) => {
         progress: undefined,
       });
     }
-
     setLoading(false);
   };
 
   useEffect(() => {
     if (isAuthenticated) {
-      history.push("/dashboard");
+      if (query.get("title")) {
+        history.push(`/dashboard/add-goal${search}`);
+      } else {
+        history.push("/dashboard");
+      }
     }
   }, [isAuthenticated]);
 

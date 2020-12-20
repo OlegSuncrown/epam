@@ -1,8 +1,8 @@
 import React, { useState, createContext, useEffect } from "react";
 import setAuthToken from "../../utils/setAuthToken";
 import axios from "axios";
-export const AuthContext = createContext();
 
+export const AuthContext = createContext();
 const AuthState = (props) => {
   const URL = "https://hwtaweb20201216131958.azurewebsites.net";
   const imageURL =
