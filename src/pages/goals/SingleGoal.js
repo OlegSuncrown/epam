@@ -4,13 +4,16 @@ import { useForm } from "react-hook-form";
 import swal from "sweetalert2";
 import { useLocation } from "react-router-dom";
 import { DefaultGolasContext } from "../../context/default/DefaultGoalsContext";
+import { AuthContext } from "../../context/auth/AuthContext";
 import axios from "axios";
 import setAuthToken from "../../utils/setAuthToken";
 import "./goal-item.css";
 
 const SingleGoal = () => {
+  const { logOut } = useContext(AuthContext);
   const { register, handleSubmit } = useForm();
   const URL = "https://hwtaweb20201216131958.azurewebsites.net";
+  const location = useLocation();
 
   const useQuery = () => {
     return new URLSearchParams(useLocation().search);
@@ -29,9 +32,13 @@ const SingleGoal = () => {
     }
 
     try {
-      const res = await axios.post(`${URL}/addNewUserGoal`, formData, config);
+      await axios.post(`${URL}/addNewUserGoal`, formData, config);
       swal.fire("Success", "Goal was successfully added!", "success");
     } catch (err) {
+      if (err.response.status === 401) {
+        location.search = "";
+        logOut();
+      }
       swal.fire({
         icon: "error",
         title: "Oops...",

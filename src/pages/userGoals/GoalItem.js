@@ -1,23 +1,22 @@
 import React, { useState } from "react";
-import { Container, Col, ProgressBar, Row } from "react-bootstrap";
+import { Col, ProgressBar, Row, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
-
+import "./goals.css";
 const GoalItem = ({ title, startDate, progress, endDate }) => {
   return (
     <>
       {/* <Link to="/" className="text-decoration-none"> */}
-      <Row className="hover-row mb-3 bg-light py-3 shadow">
+      <Row className="hover-row mb-3 bg-light py-3">
         <Col className="col-12 text-center">
-          <Link to="/">
-            <i class="fas fa-trash float-right"></i>
-          </Link>
+          <Link to="/">{/* <i class="fas fa-trash float-right"></i> */}</Link>
           <h4>
             <strong>{title || "Save money"}</strong>
           </h4>
           <hr />
         </Col>
-        <Col className="col-12 col-sm-11 mx-auto mb-2 ">
+        <Col className="col-12 col-sm-10 mx-auto d-flex align-items-center">
           <ProgressBar
+            className="w-100"
             now={progress}
             label={`${progress}%`}
             variant={
@@ -29,23 +28,28 @@ const GoalItem = ({ title, startDate, progress, endDate }) => {
             }
           />
         </Col>
-        <Col className="col-12 col-sm-11 mx-auto d-flex justify-content-between">
-          <h6>
-            <span>
-              <strong className="mr-2">Start:</strong>
-            </span>
-            {startDate || "21.11.2020"}
-          </h6>
-          <h6>
-            <span>
-              <strong className="mr-2">End:</strong>
-            </span>{" "}
-            {endDate || "30.12.2020"}
-          </h6>
+        <Col className="col-12 col-sm-2">
+          <div className="text-center">
+            <span className="current-day">3/</span>
+            <span className="end-day">30</span>
+            <div className="text-center">
+              <span className="days">days left</span>
+            </div>
+          </div>
         </Col>
-        {/* <Col className="col-6">
-            {endDate || "30.12.2020"}
-          </Col> */}
+        <Col className="col-12 text-center mt-2 mt-sm-0">
+          <Button
+            to="/dashboard/user-goals"
+            variant="outline-warning mr-4"
+            size="sm"
+            as={Link}
+          >
+            More info
+          </Button>
+          <Button to="/dashboard" variant="outline-danger" as={Link} size="sm">
+            Complete
+          </Button>
+        </Col>
       </Row>
       {/* </Link> */}
     </>

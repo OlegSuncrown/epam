@@ -19,8 +19,10 @@ const AuthState = (props) => {
       setIsAuthenticated(true);
     }
 
+    if (localStorage.getItem("userImage")) {
+      setUserImage(JSON.parse(localStorage.getItem("userImage")));
+    }
     setUser(JSON.parse(localStorage.getItem("userData")));
-    setUserImage(JSON.parse(localStorage.getItem("userImage")));
   }, []);
 
   // Clear state if error happened or logout
