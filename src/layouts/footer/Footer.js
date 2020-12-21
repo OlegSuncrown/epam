@@ -18,8 +18,8 @@ const Footer = () => {
       </Col>
 
       <Col className="d-flex justify-content-center align-items-center">
-        <i class="fab fa-facebook-square mr-4 shadow"></i>
-        <i class="fab fa-instagram-square shadow"></i>
+        <i className="fab fa-facebook-square mr-4 shadow"></i>
+        <i className="fab fa-instagram-square shadow"></i>
 
         {/* <img className='footer-icon' src={instagramIcon} />
         <img className='footer-icon' src={facebookIcon} /> */}
