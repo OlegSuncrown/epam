@@ -1,11 +1,6 @@
 .progress-days {
-  /* border-radius: 50%; */
   height: 50px;
   width: 50px;
-  /* display: inline-flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center; */
   border: 1px solid rgba(191, 191, 191, 0.476);
   background-color: white;
   font-size: 20px;
@@ -28,4 +23,14 @@
 
 .item-goal {
   background-color: white;
+}
+
+.delete-goal {
+  color: rgba(218, 85, 85, 0.808);
+  font-size: 14px;
+}
+
+.delete-goal:hover {
+  color: rgba(245, 43, 43, 0.808);
+  cursor: pointer;
 }

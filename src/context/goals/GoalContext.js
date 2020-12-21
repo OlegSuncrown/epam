@@ -62,12 +62,26 @@ const GoalState = (props) => {
     }
   };
 
+  const deleteGoals = async (goalId) => {
+    setIsLoaded(false);
+    try {
+      await axios.delete(`${URL}/api/UserGoal/DeleteUserGoal`, {
+        data: { goalId: goalId },
+      });
+
+      loadGoals();
+      setIsLoaded(true);
+    } catch (err) {
+      setIsLoaded(true);
+    }
+  };
+
   useEffect(() => {
     if (isAuthenticated || localStorage.AuthToken) {
       loadGoals();
     }
   }, [isAuthenticated]);
-
+  console.log(isLoaded);
   return (
     <GoalContext.Provider
       value={{
@@ -75,6 +89,7 @@ const GoalState = (props) => {
         isLoaded,
         goalsError,
         loadGoals,
+        deleteGoals,
       }}
     >
       {props.children}

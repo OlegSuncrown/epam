@@ -63,11 +63,11 @@ const SingleGoal = () => {
   };
 
   const onSubmit = (data, e) => {
-    if (date_diff_indays(Date.now(), data.startDate) <= 0) {
+    if (date_diff_indays(Date.now(), data.startDate) < 0) {
       swal.fire({
         icon: "error",
         title: "Invalid start date",
-        text: "You can start only from next day",
+        text: "You can start from today or later",
       });
       return;
     }
@@ -75,8 +75,8 @@ const SingleGoal = () => {
     if (date_diff_indays(data.startDate, data.endDate) < 1) {
       swal.fire({
         icon: "error",
-        title: "Invalid start date",
-        text: "Invalid date range",
+        title: "Invalid date range",
+        text: "Please, provide valid date range",
       });
 
       return;
@@ -180,7 +180,7 @@ const SingleGoal = () => {
               <Form.Control
                 required
                 type="number"
-                defaultValue={0}
+                defaultValue={1}
                 name="value"
                 ref={register}
                 size="md"
@@ -201,6 +201,7 @@ const SingleGoal = () => {
                 ref={register}
                 defaultValue={isNew ? "" : goal.item}
                 as="input"
+                required
               />
               <datalist id="items">
                 <option value="pc" />

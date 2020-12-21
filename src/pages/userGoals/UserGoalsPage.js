@@ -6,7 +6,9 @@ import { GoalContext } from "../../context/goals/GoalContext";
 import { Pagination } from "../../components";
 
 const UserGoals = () => {
-  const { goalsList, isLoaded, goalsError } = useContext(GoalContext);
+  const { goalsList, isLoaded, goalsError, deleteGoals } = useContext(
+    GoalContext
+  );
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage] = useState(3);
   if (!isLoaded) {
@@ -31,8 +33,6 @@ const UserGoals = () => {
     return <h2 className="text-center">Your list is empty</h2>;
   }
 
-  // console.log(goalsList);
-
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
   const currentGoals = goalsList.slice(indexOfFirstPost, indexOfLastPost);
@@ -48,9 +48,8 @@ const UserGoals = () => {
             allDays={item.allDays}
             currentDay={item.currentDay}
             progress={item.progress}
-            // startDate={item.startDate}
-            // endDate={item.plannedEndDate}
-            // progress={50}
+            deleteGoals={deleteGoals}
+            isLoaded={isLoaded}
           />
         );
       })}
