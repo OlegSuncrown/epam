@@ -104,7 +104,7 @@ const SingleGoal = () => {
     <Row>
       <Col className="col-md-10 mx-auto">
         <Form
-          className="d-flex flex-column justify-content-between h-100 add-goal-form p-4"
+          className="d-flex flex-column justify-content-between h-100 add-goal-form p-4 shadow"
           onSubmit={handleSubmit(onSubmit)}
         >
           <h2 className="text-center pb-1">Add your goal</h2>

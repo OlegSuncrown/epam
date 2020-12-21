@@ -62,17 +62,6 @@ const FileUploader = () => {
           style={{ visibility: "hidden" }}
         />
       </Form>
-      {/* <form>
-        <label className="uploadButton" htmlFor="upload-photo">
-          <strong className="h5">Upload avatar</strong>
-        </label>
-        <input
-          type="file"
-          name="photo"
-          id="upload-photo"
-          style={{ visibility: "hidden" }}
-        />
-      </form> */}
     </>
   );
 };
