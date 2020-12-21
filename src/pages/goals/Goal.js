@@ -20,25 +20,40 @@ let goal = {
 
 const Goal = ({ match }) => {
   const { id } = match.params;
+
   const { goalsList, isLoaded, goalsError } = useContext(GoalContext);
 
-  // let g = goalsList.find((el) => el.goalId === Number(id));
+  let g = goalsList.find((el) => el.goalId === Number(id));
+  // console.log(g);
+  // console.log(goalsList);
 
   const preselectedDays = configureData(goal);
 
   console.log(configureData(goal));
 
-  const minimumDate = {
+  const [minimumDate, setMinimumDate] = useState({
     year: new Date(goal.startDate).getFullYear(),
     month: new Date(goal.startDate).getMonth() + 1,
     day: new Date(goal.startDate).getDate(),
-  };
+  });
 
-  const maximumDate = {
+  const [maximumDate, setMaximumDate] = useState({
     year: new Date(goal.endDate).getFullYear(),
     month: new Date(goal.endDate).getMonth() + 1,
     day: new Date(goal.endDate).getDate(),
-  };
+  });
+
+  // const minimumDate = {
+  //   year: new Date(goal.startDate).getFullYear(),
+  //   month: new Date(goal.startDate).getMonth() + 1,
+  //   day: new Date(goal.startDate).getDate(),
+  // };
+
+  // const maximumDate = {
+  //   year: new Date(goal.endDate).getFullYear(),
+  //   month: new Date(goal.endDate).getMonth() + 1,
+  //   day: new Date(goal.endDate).getDate(),
+  // };
 
   let today = new Date();
   let todayDate = {
@@ -78,7 +93,9 @@ const Goal = ({ match }) => {
       })
       .then((result) => {
         if (result.isConfirmed) {
+          setButtonDisabled(true);
           setDiscardButtonDisabled(true);
+
           swal.fire("Oh, no!", "Oh, no no no", "success");
         }
       });
@@ -89,6 +106,16 @@ const Goal = ({ match }) => {
       <div className="text-center">
         <Spinner animation="border" role="status" className="p-4 mt-5">
           <span className="sr-only">Loading...</span>
+        </Spinner>
+      </div>
+    );
+  }
+
+  if (!goal) {
+    return (
+      <div className="text-center">
+        <Spinner animation="border" role="status" className="p-4 mt-5">
+          <span className="sr-only">This goal does not exist</span>
         </Spinner>
       </div>
     );
