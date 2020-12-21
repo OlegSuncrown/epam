@@ -55,7 +55,8 @@ const ProfilePage = () => {
           {currentUsers.map((user, index) => {
             return (
               <UserProfileCard
-                name={user.firstName}
+                firstName={user.firstName}
+                secondName={user.secondName}
                 picture={user.picture}
                 key={index}
               />

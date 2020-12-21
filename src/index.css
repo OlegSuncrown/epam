@@ -38,3 +38,7 @@ body {
 .dashboard {
   background: #ecece7;
 }
+
+.userCard {
+  height: 240px;
+}
