@@ -3,7 +3,7 @@ import setAuthToken from "../../utils/setAuthToken";
 import axios from "axios";
 import { useLocation } from "react-router-dom";
 import { AuthContext } from "../auth/AuthContext";
-
+import swal from "sweetalert2";
 export const GoalContext = createContext();
 
 const GoalState = (props) => {
@@ -23,6 +23,27 @@ const GoalState = (props) => {
         Date.UTC(dt1.getFullYear(), dt1.getMonth(), dt1.getDate())) /
         (1000 * 60 * 60 * 24)
     );
+  };
+
+  const completeGoal = async (id) => {
+    if (localStorage.AuthToken) {
+      setAuthToken(localStorage.AuthToken);
+    }
+
+    const data = {
+      goalId: id,
+      isCompleted: true,
+    };
+
+    try {
+      await axios.post(`${URL}/completeUserGoal`, data);
+      console.log("updated");
+      swal.fire("Success", "Goal was successfully completed!", "success");
+      // loadGoals();
+      setIsLoaded(true);
+    } catch (err) {
+      setIsLoaded(true);
+    }
   };
 
   ///getAllUserGoals
@@ -81,7 +102,7 @@ const GoalState = (props) => {
       loadGoals();
     }
   }, [isAuthenticated]);
-  console.log(isLoaded);
+
   return (
     <GoalContext.Provider
       value={{
@@ -90,6 +111,7 @@ const GoalState = (props) => {
         goalsError,
         loadGoals,
         deleteGoals,
+        completeGoal,
       }}
     >
       {props.children}

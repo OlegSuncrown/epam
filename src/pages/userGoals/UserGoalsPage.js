@@ -6,9 +6,13 @@ import { GoalContext } from "../../context/goals/GoalContext";
 import { Pagination } from "../../components";
 
 const UserGoals = () => {
-  const { goalsList, isLoaded, goalsError, deleteGoals } = useContext(
-    GoalContext
-  );
+  const {
+    goalsList,
+    isLoaded,
+    goalsError,
+    deleteGoals,
+    completeGoal,
+  } = useContext(GoalContext);
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage] = useState(3);
   if (!isLoaded) {
@@ -50,6 +54,7 @@ const UserGoals = () => {
             progress={item.progress}
             deleteGoals={deleteGoals}
             isLoaded={isLoaded}
+            completeGoal={completeGoal}
           />
         );
       })}

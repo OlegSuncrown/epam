@@ -10,6 +10,7 @@ const GoalItem = ({
   allDays,
   currentDay,
   deleteGoals,
+  completeGoal,
 }) => {
   if (!isLoaded) {
     return (
@@ -68,7 +69,8 @@ const GoalItem = ({
             More info
           </Button>
           <Button
-            to={`goals/${id}`}
+            onClick={() => completeGoal(+id)}
+            // to={`goals/${id}`}
             variant="outline-danger"
             as={Link}
             size="sm"

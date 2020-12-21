@@ -63,24 +63,24 @@ const SingleGoal = () => {
   };
 
   const onSubmit = (data, e) => {
-    if (date_diff_indays(Date.now(), data.startDate) < 0) {
-      swal.fire({
-        icon: "error",
-        title: "Invalid start date",
-        text: "You can start from today or later",
-      });
-      return;
-    }
+    // if (date_diff_indays(Date.now(), data.startDate) < 0) {
+    //   swal.fire({
+    //     icon: "error",
+    //     title: "Invalid start date",
+    //     text: "You can start from today or later",
+    //   });
+    //   return;
+    // }
 
-    if (date_diff_indays(data.startDate, data.endDate) < 1) {
-      swal.fire({
-        icon: "error",
-        title: "Invalid date range",
-        text: "Please, provide valid date range",
-      });
+    // if (date_diff_indays(data.startDate, data.endDate) < 1) {
+    //   swal.fire({
+    //     icon: "error",
+    //     title: "Invalid date range",
+    //     text: "Please, provide valid date range",
+    //   });
 
-      return;
-    }
+    //   return;
+    // }
     data.value = parseInt(data.value);
     data.startDate = new Date(data.startDate).toISOString();
     data.endDate = new Date(data.endDate).toISOString();
