@@ -24,8 +24,9 @@ const BagesPage = () => {
     const streaksOfFiveGoals = Math.floor(completedGoals.length / 5);
     const streaksOfTenGoals = Math.floor(completedGoals.length / 10);
     const streaksOfFiftyGoals = Math.floor(completedGoals.length / 50);
+
     const addStreaks = (streakSize, streaksCount) => {
-      for (let i = 0; i <= streaksCount; i++) {
+      for (let i = 0; i < streaksCount; i++) {
         outputArr.push({ type: "streak", title: streakSize });
       }
     };
@@ -44,7 +45,10 @@ const BagesPage = () => {
     return outputArr;
   };
 
-  //hardcoded value
+  // useEffect(() => {
+  //   setBagesList(calculateBages(goalsList));
+  // }, [goalsList]);
+
   if (!bagesList.length) {
     setBagesList(calculateBages(goalsList));
   }

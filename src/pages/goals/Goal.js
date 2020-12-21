@@ -2,11 +2,13 @@ import React, { useState, useContext, useEffect } from "react";
 import "react-modern-calendar-datepicker/lib/DatePicker.css";
 import { Container, Spinner, Card } from "react-bootstrap";
 import { GoalContext } from "../../context/goals/GoalContext";
-import GoalProogress from "./Buttons";
+import GoalProgress from "./GoalProgress";
 
 const Goal = ({ match }) => {
   const { id } = match.params;
-  const { goalsList, isLoaded, goalsError } = useContext(GoalContext);
+  const { goalsList, isLoaded, goalsError, deleteGoals } = useContext(
+    GoalContext
+  );
   let goal = goalsList.find((el) => el.goalId === Number(id));
 
   if (!isLoaded) {
@@ -21,10 +23,10 @@ const Goal = ({ match }) => {
 
   if (!goal) {
     return (
-      <div className="text-center">
-        <Spinner animation="border" role="status" className="p-4 mt-5">
-          <span className="sr-only">This goal does not exist</span>
-        </Spinner>
+      <div className="d-flex h-100 justify-content-center align-items-center text-danger">
+        <div className="align-items-center w-60 h-20">
+          <h1>Goal does not exist or was deleted</h1>
+        </div>
       </div>
     );
   }
@@ -53,7 +55,7 @@ const Goal = ({ match }) => {
         <Card.Body>{goal.description}</Card.Body>
       </Card>
       <div className="d-flex flex-column justify-content-between align-items-center">
-        <GoalProogress goal={goal} />
+        <GoalProgress goal={goal} />
       </div>
     </Container>
   );
