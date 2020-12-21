@@ -21,11 +21,7 @@ const ProfilePage = () => {
     }
   };
 
-  useEffect(() => {
-    fetchUsers();
-
-    return () => {};
-  }, [usersList]);
+  useEffect(fetchUsers, []);
 
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
@@ -56,7 +52,7 @@ const ProfilePage = () => {
             return (
               <UserProfileCard
                 firstName={user.firstName}
-                secondName={user.secondName}
+                // secondName={user.secondName}
                 picture={user.picture}
                 key={index}
               />

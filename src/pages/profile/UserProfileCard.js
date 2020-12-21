@@ -37,7 +37,8 @@ const UserProfileCard = ({ firstName, secondName, picture }) => {
               className="avatar"
             />
           </Figure>
-          <div>{firstName + " " + secondName}</div>
+          <div>{firstName}</div>
+          {/* <div>{firstName + " " + secondName}</div> */}
         </Modal.Body>
         <Modal.Footer>
           <Container>
