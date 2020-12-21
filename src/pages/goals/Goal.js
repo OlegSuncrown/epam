@@ -2,7 +2,7 @@ import React, { useState, useContext, useEffect } from "react";
 import "react-modern-calendar-datepicker/lib/DatePicker.css";
 import { Container, Spinner, Card } from "react-bootstrap";
 import { GoalContext } from "../../context/goals/GoalContext";
-import GoalProogress from "./GoalProgress";
+import GoalProogress from "./Buttons";
 
 const Goal = ({ match }) => {
   const { id } = match.params;

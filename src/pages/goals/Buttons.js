@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import "react-modern-calendar-datepicker/lib/DatePicker.css";
 import { Calendar } from "react-modern-calendar-datepicker";
 import { Container, Button, Row, Col, Spinner, Card } from "react-bootstrap";
@@ -29,6 +29,15 @@ const GoalProgress = ({ goal }) => {
   const [selectedDayRange, setSelectedDayRange] = useState(preselectedDays);
   const [buttonDisabled, setButtonDisabled] = useState(false);
   const [discardButtonDisabled, setDiscardButtonDisabled] = useState(false);
+  const [inProgress, setInProgress] = useState(false);
+
+  useEffect(() => {
+    if (goal.progress > 0) {
+      setInProgress(true);
+    } else {
+      setButtonDisabled(true);
+    }
+  });
 
   if (preselectedDays.includes(todayDate)) {
     setButtonDisabled(true);
