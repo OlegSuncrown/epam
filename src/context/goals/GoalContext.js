@@ -49,7 +49,6 @@ const GoalState = (props) => {
 
       setGoalsError("");
       setIsLoaded(true);
-      console.log(formatDate);
       setGoalsList(formatDate);
     } catch (err) {
       if (err.response.status === 401) {

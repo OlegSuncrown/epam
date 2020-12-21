@@ -25,6 +25,12 @@ export const DefaultGolasContext = createContext({
         "Pick the number of days you’ll exercise each week and stay on track with weekly Reports. Over 1M workouts reported by our users.",
       item: "days",
     },
+    {
+      id: 4,
+      title: "Default",
+      description: "",
+      item: "",
+    },
   ],
 });
 

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./pagination.css";
+import { Link } from "react-router-dom";
 function Pagination({ pages = 10, setCurrentPage }) {
   //Set number of pages
   const numberOfPages = [];
@@ -57,29 +58,30 @@ function Pagination({ pages = 10, setCurrentPage }) {
 
   return (
     <div className="pagination-container">
-      <a
-        href="#"
+      <Link
+        style={{ fontSize: "12px" }}
         className={`${currentButton === 1 ? "disabled" : ""}`}
         onClick={() =>
           setCurrentButton((prev) => (prev <= 1 ? prev : prev - 1))
         }
       >
         <i class="fas fa-arrow-left"></i>
-      </a>
+      </Link>
 
       {arrOfCurrButtons.map((item, index) => {
         return (
-          <a
+          <Link
             key={index}
             className={`${currentButton === item ? "active" : "pag-btn"}`}
             onClick={() => setCurrentButton(item)}
           >
             {item}
-          </a>
+          </Link>
         );
       })}
 
-      <a
+      <Link
+        style={{ fontSize: "12px" }}
         className={`${
           currentButton === numberOfPages.length ? "disabled" : ""
         }`}
@@ -90,7 +92,7 @@ function Pagination({ pages = 10, setCurrentPage }) {
         }
       >
         <i class="fas fa-arrow-right"></i>
-      </a>
+      </Link>
     </div>
   );
 }
