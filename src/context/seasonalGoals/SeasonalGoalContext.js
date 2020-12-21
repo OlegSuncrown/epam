@@ -53,7 +53,7 @@ const SeasonalGoalState = (props) => {
       console.log(formatDate);
       setGoalsList(formatDate);
     } catch (err) {
-      if (err.response.status === 401) {
+      if (err.response?.status === 401) {
         location.search = "";
         setGoalsError("");
         logOut();

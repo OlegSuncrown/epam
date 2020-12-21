@@ -36,6 +36,7 @@ const SideNav = () => {
         <i className="fas fa-globe mr-3"></i>
         Season Goals
       </Button>
+
       <Button
         variant="flat m-0"
         size="xxl"

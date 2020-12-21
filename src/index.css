@@ -11,6 +11,7 @@ body {
 
 .main-content {
   flex: 1 1 auto;
+  background: #ecece7;
 }
 
 .footer {
@@ -36,4 +37,8 @@ body {
 
 .dashboard {
   background: #ecece7;
+}
+
+.userCard {
+  height: 240px;
 }

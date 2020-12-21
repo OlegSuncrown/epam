@@ -1,64 +1,70 @@
-import React, { useState } from "react";
-import { Container, Row, Pagination } from "react-bootstrap";
+import React, { useState, useContext } from "react";
+import { Container, Row } from "react-bootstrap";
 import Bage from "./Bage";
+import { Pagination } from "../../components/";
+import { GoalContext } from "../../context/goals/GoalContext";
 
 const BagesPage = () => {
-  // const bagesList = useContext(BagesContext);
-
   const [currentPage, setCurrentPage] = useState(1);
+  const [postsPerPage] = useState(6);
+  const [bagesList, setBagesList] = useState([]);
+  // const { goalsList } = useContext(GoalContext);
+  const goalsList = [
+    { nameGoal: "asdasd", isCompleted: true },
+    { nameGoal: "asdasd", isCompleted: true },
+    { nameGoal: "asdasd", isCompleted: true },
+    { nameGoal: "asdasd", isCompleted: true },
+    { nameGoal: "asdasd", isCompleted: true },
+  ];
+  console.log(goalsList);
+
+  const calculateBages = (goalsList) => {
+    const outputArr = [];
+    const completedGoals = goalsList.filter((goal) => goal.isCompleted);
+    const streaksOfFiveGoals = Math.floor(completedGoals.length / 5);
+    const streaksOfTenGoals = Math.floor(completedGoals.length / 10);
+    const streaksOfFiftyGoals = Math.floor(completedGoals.length / 50);
+    const addStreaks = (streakSize, streaksCount) => {
+      for (let i = 0; i <= streaksCount; i++) {
+        outputArr.push({ type: "streak", title: streakSize });
+      }
+    };
+
+    completedGoals.forEach((goal) => {
+      outputArr.push({
+        type: "completed goal",
+        title: `Completed ${goal.nameGoal}`,
+      });
+    });
+
+    addStreaks(5, streaksOfFiveGoals);
+    addStreaks(10, streaksOfTenGoals);
+    addStreaks(50, streaksOfFiftyGoals);
+
+    return outputArr;
+  };
 
   //hardcoded value
-  const bagesList = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
-
-  let bagesListLength = bagesList.length;
-  const perPage = 6;
-  const totalPages = Math.ceil(bagesListLength / perPage);
-  let startIndex = (currentPage - 1) * perPage;
-  let endIndex = startIndex + perPage;
-  let currentPageItems = bagesList.slice(startIndex, endIndex);
-
-  let items = [];
-  for (let number = 1; number <= totalPages; number++) {
-    items.push(
-      <Pagination.Item
-        key={number}
-        active={number === +currentPage}
-        onClick={(e) => setCurrentPage(parseInt(e.target.innerText))}
-      >
-        {number}
-      </Pagination.Item>
-    );
+  if (!bagesList.length) {
+    setBagesList(calculateBages(goalsList));
   }
+
+  const indexOfLastPost = currentPage * postsPerPage;
+  const indexOfFirstPost = indexOfLastPost - postsPerPage;
+  const currentBages = bagesList.slice(indexOfFirstPost, indexOfLastPost);
+  const howManyPages = Math.ceil(bagesList.length / postsPerPage);
 
   return (
     <>
       <Container className="sm-5 p-3 mt-2">
-        <Row className="justify-content-md-end m-2 mb-2">
-          <Pagination>
-            <Pagination.First onClick={() => setCurrentPage(1)} />
-            <Pagination.Prev
-              onClick={() => {
-                let prev = currentPage - 1;
-                prev = prev < 1 ? 1 : prev;
-                setCurrentPage(prev);
-              }}
-            />
-            {items}
-            <Pagination.Next
-              onClick={() => {
-                let last = currentPage + 1;
-                last = last > totalPages ? totalPages : last;
-                setCurrentPage(last);
-              }}
-            />
-            <Pagination.Last onClick={() => setCurrentPage(totalPages)} />
-          </Pagination>
-        </Row>
         <Row className="justify-content-md-center p-2">
-          {currentPageItems.map((item) => (
-            <Bage key={item} />
+          {currentBages.map((item, index) => (
+            <Bage key={index} title={item.title} type={item.type} />
           ))}
         </Row>
+        <div className="pt-4">
+          <Pagination pages={howManyPages} setCurrentPage={setCurrentPage} />
+        </div>
       </Container>
     </>
   );
