@@ -52,6 +52,7 @@ const GoalItem = ({
           <div className="text-center">
             <span className="current-day">{currentDay}/</span>
             <span className="end-day">{allDays}</span>
+
             <div className="text-center">
               <span className="days">days left</span>
             </div>

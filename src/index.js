@@ -7,12 +7,16 @@ import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
 import AuthState from "./context/auth/AuthContext";
 import GoalState from "./context/goals/GoalContext";
+import SeasonalGoalState from "./context/seasonalGoals/SeasonalGoalContext";
+
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
       <AuthState>
         <GoalState>
-          <App />
+          <SeasonalGoalState>
+            <App />
+          </SeasonalGoalState>
         </GoalState>
       </AuthState>
     </BrowserRouter>

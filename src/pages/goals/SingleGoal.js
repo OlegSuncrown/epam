@@ -1,11 +1,11 @@
 import React, { useContext } from "react";
 import { Button, Row, Form, Col } from "react-bootstrap";
 import { useForm } from "react-hook-form";
-import swal from "sweetalert2";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
 import setAuthToken from "../../utils/setAuthToken";
 import "./goal-item.css";
+import swal from "sweetalert2";
 
 import { DefaultGolasContext } from "../../context/default/DefaultGoalsContext";
 import { AuthContext } from "../../context/auth/AuthContext";
@@ -104,7 +104,7 @@ const SingleGoal = () => {
     <Row>
       <Col className="col-md-10 mx-auto">
         <Form
-          className="d-flex flex-column justify-content-between h-100 add-goal-form p-4"
+          className="d-flex flex-column justify-content-between h-100 add-goal-form p-4 shadow"
           onSubmit={handleSubmit(onSubmit)}
         >
           <h2 className="text-center pb-1">Add your goal</h2>

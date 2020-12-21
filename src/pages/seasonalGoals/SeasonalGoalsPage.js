@@ -1,33 +1,65 @@
-import React, { useState, useContext } from "react";
-import { Link } from "react-router-dom";
-import { Container, Col, Row } from "react-bootstrap";
+import React, { useState, useContext, useEffect } from "react";
+import { NavLink, Link, useRouteMatch } from "react-router-dom";
+import { Container, Button, Row, Col, Spinner } from "react-bootstrap";
 import GoalItem from "../userGoals/GoalItem";
+import { GoalContext } from "../../context/goals/GoalContext";
+import { Pagination } from "../../components";
 
-const SeasonalGoals = (props) => {
-  // const goalsList = useContext(GoalsContext);
+const UserGoals = () => {
+  const { goalsList, isLoaded, goalsError } = useContext(GoalContext);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [postsPerPage] = useState(3);
+  if (!isLoaded) {
+    return (
+      <div className="text-center">
+        <Spinner animation="border" role="status" className="p-4 mt-5">
+          <span className="sr-only">Loading...</span>
+        </Spinner>
+      </div>
+    );
+  }
 
+  if (goalsError) {
+    return (
+      <h4 className="text-danger text-center">
+        <strong>{goalsError}</strong>
+      </h4>
+    );
+  }
+
+  if (!goalsList.length) {
+    return <h2 className="text-center">Your list is empty</h2>;
+  }
+
+  // console.log(goalsList);
+
+  const indexOfLastPost = currentPage * postsPerPage;
+  const indexOfFirstPost = indexOfLastPost - postsPerPage;
+  const currentGoals = goalsList.slice(indexOfFirstPost, indexOfLastPost);
+  const howManyPages = Math.ceil(goalsList.length / postsPerPage);
   return (
     <Container fluid>
-      <Row>
-        <Col xs={6} md={4}>
-          Title
-        </Col>
-        <Col className=" col-sm-3">Start date</Col>
-        <Col className="d-none d-sm-block col-sm-3">End Date</Col>
-        <Col className="d-none d-md-block">Progress</Col>
-      </Row>
+      {currentGoals.map((item) => {
+        return (
+          <GoalItem
+            key={item.goalId}
+            title={item.nameGoal}
+            id={item.goalId}
+            allDays={item.allDays}
+            currentDay={item.currentDay}
+            progress={item.progress}
+            // startDate={item.startDate}
+            // endDate={item.plannedEndDate}
+            // progress={50}
+          />
+        );
+      })}
 
-      {/* {goalsList.map(item => {
-                 (<GoalItem 
-                    title={item.title} 
-                    startDate={item.startDate} 
-                    endDate={item.endDate} 
-                    progress={item.progress} 
-                 />) 
-              })} */}
-      <GoalItem title="1000 push-ups this month" progress="14" />
+      <div className="pt-4">
+        <Pagination pages={howManyPages} setCurrentPage={setCurrentPage} />
+      </div>
     </Container>
   );
 };
 
-export default SeasonalGoals;
+export default UserGoals;
