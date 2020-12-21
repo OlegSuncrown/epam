@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import { Col, ProgressBar, Row, Button, Spinner } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import "./goals.css";
 const GoalItem = ({
+  goal,
   title,
   id,
   progress,
@@ -23,21 +24,33 @@ const GoalItem = ({
   }
   return (
     <>
-      {/* <Link to={`goals/${id}`} className="text-decoration-none"> */}
-      <Row className="item-goal mb-3  py-1">
+      <Row className="item-goal mb-3 py-1">
         <Col className="col-12 text-center">
           <h4 className="m-0 p-0">
             <i
               onClick={() => deleteGoals(+id)}
-              class="fas fa-trash float-right p-2 delete-goal"
+              className="fas fa-trash float-right p-2 delete-goal"
             ></i>
             <strong>{title}</strong>
           </h4>
           <hr className="m-0 mt-2" />
         </Col>
-        <Col className="col-12 col-sm-10 mx-auto d-flex align-items-center">
+
+        {/* Icon */}
+        <Col className="col-6 col-sm-2 d-flex align-items-center justify-content-end">
+          {goal.fullyCompleted ? (
+            <i className="icon-goal-completed far fa-check-circle"></i>
+          ) : !goal.fullyCompleted && goal.isCompleted ? (
+            <i className="fas icon-goal-done fa-times"></i>
+          ) : (
+            <i className="fas icon-goal-active fa-exclamation-circle"></i>
+          )}
+        </Col>
+
+        {/* Progress Bar */}
+        <Col className="col-12 col-sm-8 mx-auto d-flex align-items-center">
           <ProgressBar
-            className="w-100 shadow"
+            className="w-100 shadow "
             now={progress}
             label={`${progress}%`}
             variant={
@@ -49,7 +62,7 @@ const GoalItem = ({
             }
           />
         </Col>
-        <Col className="col-12 col-sm-2">
+        <Col className="col-6 col-sm-2 ">
           <div className="text-center">
             <span className="current-day">{currentDay}/</span>
             <span className="end-day">{allDays}</span>
@@ -70,16 +83,13 @@ const GoalItem = ({
           </Button>
           <Button
             onClick={() => completeGoal(+id)}
-            // to={`goals/${id}`}
             variant="outline-danger"
-            as={Link}
             size="sm"
           >
             Complete
           </Button>
         </Col>
       </Row>
-      {/* </Link> */}
     </>
   );
 };

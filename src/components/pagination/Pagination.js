@@ -1,9 +1,8 @@
 import React, { useState, useEffect, useContext } from "react";
 import "./pagination.css";
-import { Link } from "react-router-dom";
 import { GoalContext } from "../../context/goals/GoalContext";
 function Pagination({ pages = 10, setCurrentPage }) {
-  const { goalsList } = useContext(GoalContext);
+  const { sortedGoals, goalsList } = useContext(GoalContext);
   //Set number of pages
   const numberOfPages = [];
   for (let i = 1; i <= pages; i++) {
@@ -56,11 +55,11 @@ function Pagination({ pages = 10, setCurrentPage }) {
 
     setArrOfCurrButtons(tempNumberOfPages);
     setCurrentPage(currentButton);
-  }, [currentButton, goalsList]);
+  }, [currentButton, sortedGoals, goalsList]);
 
   return (
     <div className="pagination-container">
-      <Link
+      <a
         style={{ fontSize: "12px" }}
         className={`${currentButton === 1 ? "disabled" : ""}`}
         onClick={() =>
@@ -68,21 +67,21 @@ function Pagination({ pages = 10, setCurrentPage }) {
         }
       >
         <i className="fas fa-arrow-left"></i>
-      </Link>
+      </a>
 
       {arrOfCurrButtons.map((item, index) => {
         return (
-          <Link
+          <a
             key={index}
             className={`${currentButton === item ? "active" : "pag-btn"}`}
             onClick={() => setCurrentButton(item)}
           >
             {item}
-          </Link>
+          </a>
         );
       })}
 
-      <Link
+      <a
         style={{ fontSize: "12px" }}
         className={`${
           currentButton === numberOfPages.length ? "disabled" : ""
@@ -94,7 +93,7 @@ function Pagination({ pages = 10, setCurrentPage }) {
         }
       >
         <i className="fas fa-arrow-right"></i>
-      </Link>
+      </a>
     </div>
   );
 }
