@@ -6,9 +6,7 @@ import GoalProogress from "./Buttons";
 
 const Goal = ({ match }) => {
   const { id } = match.params;
-
   const { goalsList, isLoaded, goalsError } = useContext(GoalContext);
-
   let goal = goalsList.find((el) => el.goalId === Number(id));
 
   if (!isLoaded) {
