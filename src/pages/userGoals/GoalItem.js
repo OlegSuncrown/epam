@@ -14,7 +14,7 @@ const GoalItem = ({
   return (
     <>
       <Link to={`goals/${id}`} className="text-decoration-none">
-        <Row className="item-goal mb-3  py-1">
+        <Row className="item-goal mb-3  py-1 shadow">
           <Col className="col-12 text-center">
             <h4 className="m-0 p-0">
               <strong>{title || "Save money"}</strong>
