@@ -1,11 +1,11 @@
 import React, { useContext } from "react";
 import { Button, Row, Form, Col } from "react-bootstrap";
 import { useForm } from "react-hook-form";
-import swal from "sweetalert2";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
 import setAuthToken from "../../utils/setAuthToken";
 import "./goal-item.css";
+import swal from "sweetalert2";
 
 import { DefaultGolasContext } from "../../context/default/DefaultGoalsContext";
 import { AuthContext } from "../../context/auth/AuthContext";
