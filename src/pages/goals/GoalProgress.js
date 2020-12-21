@@ -1,11 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import "react-modern-calendar-datepicker/lib/DatePicker.css";
 import { Calendar } from "react-modern-calendar-datepicker";
 import { Container, Button, Row, Col, Spinner, Card } from "react-bootstrap";
+import { GoalContext } from "../../context/goals/GoalContext";
 import swal from "sweetalert2";
 import configureData from "../../utils/configureData";
 
 const GoalProgress = ({ goal }) => {
+  const { deleteGoals } = useContext(GoalContext);
+
   let today = new Date();
   let todayDate = {
     year: today.getFullYear(),
@@ -30,12 +33,17 @@ const GoalProgress = ({ goal }) => {
   const [buttonDisabled, setButtonDisabled] = useState(false);
   const [discardButtonDisabled, setDiscardButtonDisabled] = useState(false);
   const [inProgress, setInProgress] = useState(false);
+  const [isCompleted, setIsCompleted] = useState(false);
 
   useEffect(() => {
     if (goal.progress > 0) {
       setInProgress(true);
     } else {
       setButtonDisabled(true);
+    }
+
+    if (goal.isCompleted) {
+      setIsCompleted(true);
     }
   });
 
@@ -68,7 +76,7 @@ const GoalProgress = ({ goal }) => {
         if (result.isConfirmed) {
           setButtonDisabled(true);
           setDiscardButtonDisabled(true);
-
+          deleteGoals(goal.goalId);
           swal.fire("Oh, no!", "Oh, no no no", "success");
         }
       });
@@ -86,38 +94,52 @@ const GoalProgress = ({ goal }) => {
 
   return (
     <Container>
-      <Calendar
-        value={selectedDayRange}
-        minimumDate={minimumDate}
-        maximumDate={maximumDate}
-        shouldHighlightWeekends
-      />
-      <div className="d-flex">
-        <Row className="mt-3">
-          <Col sm={12} lg={6} className="mt-3 d-flex justify-content-center">
-            <Button
-              className="px-5"
-              variant="success"
-              size="lg"
-              onClick={handleReportSubmit}
-              disabled={buttonDisabled}
-            >
-              Submit
-            </Button>
-          </Col>
-          <Col sm={12} lg={6} className="mt-3 d-flex justify-content-center">
-            <Button
-              className="px-5"
-              variant="danger"
-              size="lg"
-              onClick={handleReportDiscard}
-              disabled={discardButtonDisabled}
-            >
-              Discard
-            </Button>
-          </Col>
-        </Row>
-      </div>
+      {isCompleted ? (
+        <div>Completed</div>
+      ) : (
+        <>
+          <Calendar
+            value={selectedDayRange}
+            minimumDate={minimumDate}
+            maximumDate={maximumDate}
+            shouldHighlightWeekends
+          />
+          <div className="d-flex">
+            <Row className="mt-3">
+              <Col
+                sm={12}
+                lg={6}
+                className="mt-3 d-flex justify-content-center"
+              >
+                <Button
+                  className="px-5"
+                  variant="success"
+                  size="lg"
+                  onClick={handleReportSubmit}
+                  disabled={buttonDisabled}
+                >
+                  Submit
+                </Button>
+              </Col>
+              <Col
+                sm={12}
+                lg={6}
+                className="mt-3 d-flex justify-content-center"
+              >
+                <Button
+                  className="px-5"
+                  variant="danger"
+                  size="lg"
+                  onClick={handleReportDiscard}
+                  disabled={discardButtonDisabled}
+                >
+                  Discard
+                </Button>
+              </Col>
+            </Row>
+          </div>
+        </>
+      )}
     </Container>
   );
 };

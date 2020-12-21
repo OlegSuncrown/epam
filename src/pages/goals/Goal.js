@@ -2,11 +2,13 @@ import React, { useState, useContext, useEffect } from "react";
 import "react-modern-calendar-datepicker/lib/DatePicker.css";
 import { Container, Spinner, Card } from "react-bootstrap";
 import { GoalContext } from "../../context/goals/GoalContext";
-import GoalProogress from "./Buttons";
+import GoalProgress from "./GoalProgress";
 
 const Goal = ({ match }) => {
   const { id } = match.params;
-  const { goalsList, isLoaded, goalsError } = useContext(GoalContext);
+  const { goalsList, isLoaded, goalsError, deleteGoals } = useContext(
+    GoalContext
+  );
   let goal = goalsList.find((el) => el.goalId === Number(id));
 
   if (!isLoaded) {
@@ -53,7 +55,7 @@ const Goal = ({ match }) => {
         <Card.Body>{goal.description}</Card.Body>
       </Card>
       <div className="d-flex flex-column justify-content-between align-items-center">
-        <GoalProogress goal={goal} />
+        <GoalProgress goal={goal} />
       </div>
     </Container>
   );
