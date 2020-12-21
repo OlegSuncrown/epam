@@ -36,7 +36,7 @@ const GoalProgress = ({ goal }) => {
   const [isCompleted, setIsCompleted] = useState(false);
 
   useEffect(() => {
-    if (goal.progress > 0) {
+    if (goal.progress >= 0) {
       setInProgress(true);
     } else {
       setButtonDisabled(true);
@@ -48,6 +48,7 @@ const GoalProgress = ({ goal }) => {
   });
 
   if (preselectedDays.includes(todayDate)) {
+    console.log("I am here");
     setButtonDisabled(true);
   }
 
