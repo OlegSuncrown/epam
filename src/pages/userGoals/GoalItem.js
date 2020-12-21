@@ -60,7 +60,7 @@ const GoalItem = ({
         </Col>
         <Col className="col-12 text-center mt-2 mt-sm-0">
           <Button
-            to="/dashboard/user-goals"
+            to={`goals/${id}`}
             variant="outline-warning mr-4"
             size="sm"
             as={Link}
