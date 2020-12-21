@@ -103,6 +103,7 @@ const GoalProgress = ({ goal }) => {
             minimumDate={minimumDate}
             maximumDate={maximumDate}
             shouldHighlightWeekends
+            colorPrimary="#0fbcf9" // added this
           />
           <div className="d-flex">
             <Row className="mt-3">

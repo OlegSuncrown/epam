@@ -23,10 +23,10 @@ const Goal = ({ match }) => {
 
   if (!goal) {
     return (
-      <div className="text-center">
-        <Spinner animation="border" role="status" className="p-4 mt-5">
-          <span className="sr-only">This goal does not exist</span>
-        </Spinner>
+      <div className="d-flex h-100 justify-content-center align-items-center text-danger">
+        <div className="align-items-center w-60 h-20">
+          <h1>Goal does not exist or was deleted</h1>
+        </div>
       </div>
     );
   }
