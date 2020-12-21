@@ -52,28 +52,41 @@ const SingleGoal = () => {
     }
   };
 
+  const date_diff_indays = (date1, date2) => {
+    let dt1 = new Date(date1);
+    let dt2 = new Date(date2);
+    return Math.floor(
+      (Date.UTC(dt2.getFullYear(), dt2.getMonth(), dt2.getDate()) -
+        Date.UTC(dt1.getFullYear(), dt1.getMonth(), dt1.getDate())) /
+        (1000 * 60 * 60 * 24)
+    );
+  };
+
   const onSubmit = (data, e) => {
-    // if (Date.now() > new Date(data.startDate).getTime()) {
-    //   swal.fire({
-    //     icon: 'error',
-    //     title: 'Invalid start date' ,
-    //     text: 'You can start only from next day'
-    //   })
-    // }
-    // if (new Date(data.startDate).getTime() < new Date(data.startDate).getTime() - 10) {
-    //   swal.fire({
-    //     icon: 'error',
-    //     title: 'Incorrect end date' ,
-    //     text: 'You can not end goal before you start : )'
-    //   })
-    // }
+    if (date_diff_indays(Date.now(), data.startDate) <= 0) {
+      swal.fire({
+        icon: "error",
+        title: "Invalid start date",
+        text: "You can start only from next day",
+      });
+      return;
+    }
+
+    if (date_diff_indays(data.startDate, data.endDate) < 1) {
+      swal.fire({
+        icon: "error",
+        title: "Invalid start date",
+        text: "Invalid date range",
+      });
+
+      return;
+    }
     data.value = parseInt(data.value);
     data.startDate = new Date(data.startDate).toISOString();
     data.endDate = new Date(data.endDate).toISOString();
-    // data.startDate = new Date(data.startDate).getTime();
-    // data.endDate = new Date(data.endDate).getTime();
     data = { ...data, ...{ regularty: 0 } };
     postGoal(data);
+    location.search = "";
     e.target.reset();
   };
 
@@ -101,7 +114,7 @@ const SingleGoal = () => {
             </Form.Label>
             <Form.Control
               className="add-goal-input"
-              defaultValue={isNew ? "" : goal.title}
+              defaultValue={isNew ? "" : goal.title || ""}
               name="goalTitle"
               ref={register}
               required

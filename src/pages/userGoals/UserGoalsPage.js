@@ -31,7 +31,7 @@ const UserGoals = () => {
     return <h2 className="text-center">Your list is empty</h2>;
   }
 
-  console.log(goalsList);
+  // console.log(goalsList);
 
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
@@ -45,6 +45,9 @@ const UserGoals = () => {
             key={item.goalId}
             title={item.nameGoal}
             id={item.goalId}
+            allDays={item.allDays}
+            currentDay={item.currentDay}
+            progress={item.progress}
             // startDate={item.startDate}
             // endDate={item.plannedEndDate}
             // progress={50}
