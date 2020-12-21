@@ -1,4 +1,4 @@
-import Axios from "axios";
+import axios from "axios";
 import { React, useState } from "react";
 import {
   Card,
@@ -12,10 +12,21 @@ import {
 } from "react-bootstrap";
 import profilePictureDefault from "../../assets/profilePicture.jpg";
 
-const UserProfileCard = ({ firstName, secondName, picture }) => {
+const UserProfileCard = ({ firstName, secondName, picture, userId }) => {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const showProfile = () => setShow(true);
+  const URL = "https://hwtaweb20201216131958.azurewebsites.net";
+
+  const addFriend = async () => {
+    try {
+      const { data } = await axios.post(`${URL}/AddFriend`, {
+        friendId: userId,
+      });
+    } catch (e) {
+      console.log(e);
+    }
+  };
 
   if (!picture) {
     picture = profilePictureDefault;
@@ -45,6 +56,7 @@ const UserProfileCard = ({ firstName, secondName, picture }) => {
             <Row className="d-flex justify-content-between">
               <Col className="col-12 col-md-6">
                 <Button
+                  onClick={addFriend}
                   variant="flat m-0"
                   size="l"
                   to="/dashboard/add-goal"
@@ -74,7 +86,7 @@ const UserProfileCard = ({ firstName, secondName, picture }) => {
         </Modal.Footer>
       </Modal>
 
-      <Col className="col-12 col-sm-6 col-md-3 my-3 btn" onClick={showProfile}>
+      <Col className="col-12 col-sm-6 col-md-3 my-2 btn" onClick={showProfile}>
         <Card className="shadow d-flex align-items-center userCard">
           <Card.Img className="avatar" variant="top" src={picture} />
           <Card.Body>
