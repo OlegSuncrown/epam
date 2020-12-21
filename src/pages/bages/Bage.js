@@ -1,11 +1,14 @@
 import React, { useState } from "react";
 import { Modal, Figure, Button, Col } from "react-bootstrap";
+import Award from "../../assets/award.png";
+import GoldenAward from "../../assets/golden-award.png";
 
-const Bage = () => {
+const Bage = ({ title, type }) => {
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+  const isStreak = type === "streak";
 
   return (
     <>
@@ -15,7 +18,7 @@ const Bage = () => {
             width={171}
             height={180}
             alt="171x180"
-            src="https://cs9.pikabu.ru/post_img/2017/05/12/8/1494592816133830021.jpg"
+            src={isStreak ? GoldenAward : Award}
             roundedCircle
             className="border border-warning"
           />
@@ -31,11 +34,11 @@ const Bage = () => {
               width={171}
               height={180}
               alt="171x180"
-              src="https://cs9.pikabu.ru/post_img/2017/05/12/8/1494592816133830021.jpg"
+              src={isStreak ? GoldenAward : Award}
               roundedCircle
             />
           </Figure>
-          <div>Description of the bage</div>
+          <div>{isStreak ? `Streak of ${title} Goals!` : title}</div>
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
