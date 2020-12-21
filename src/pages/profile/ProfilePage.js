@@ -1,8 +1,7 @@
 import { React, useState, useEffect } from "react";
-import { Container, Row, Spinner } from "react-bootstrap";
+import { Container, Row, Spinner, Tabs, Tab } from "react-bootstrap";
 import UserProfileCard from "./UserProfileCard";
 import axios from "axios";
-import profilePicture from "../../assets/profilePicture.jpg";
 import { Pagination } from "../../components";
 import UserAvatar from "../../components/sidebar/UserAvatar";
 
@@ -45,24 +44,32 @@ const ProfilePage = () => {
   return (
     <>
       <UserAvatar onlyMd="true" />
-
-      <Container fluid>
-        <Row>
-          {currentUsers.map((user, index) => {
-            return (
-              <UserProfileCard
-                firstName={user.firstName}
-                // secondName={user.secondName}
-                picture={user.picture}
-                key={index}
+      <Tabs defaultActiveKey="users" id="uncontrolled-tab-example">
+        <Tab eventKey="Friends" title="Friends"></Tab>
+        <Tab eventKey="users" title="All users">
+          <Container fluid>
+            <Row>
+              {currentUsers.map((user, index) => {
+                return (
+                  <UserProfileCard
+                    firstName={user.firstName}
+                    // secondName={user.secondName}
+                    picture={user.picture}
+                    key={user.userId}
+                    userId={user.userId}
+                  />
+                );
+              })}
+            </Row>
+            <div className="pt-4">
+              <Pagination
+                pages={howManyPages}
+                setCurrentPage={setCurrentPage}
               />
-            );
-          })}
-        </Row>
-        <div className="pt-4">
-          <Pagination pages={howManyPages} setCurrentPage={setCurrentPage} />
-        </div>
-      </Container>
+            </div>
+          </Container>
+        </Tab>
+      </Tabs>
     </>
   );
 };

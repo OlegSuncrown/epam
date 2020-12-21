@@ -38,7 +38,9 @@ const Bage = ({ title, type }) => {
               roundedCircle
             />
           </Figure>
-          <div>{isStreak ? `Streak of ${title} Goals!` : title}</div>
+          <div className="text-center">
+            {isStreak ? `Streak of ${title} Goals!` : title}
+          </div>
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>

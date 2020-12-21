@@ -6,7 +6,7 @@ const Hero = () => {
   const scrollToFeatured = () => {
     let scrollInterval = window.setInterval(() => {
       let pos = window.pageYOffset;
-      if (pos < 970) {
+      if (pos < 650) {
         window.scrollTo(0, pos + 20);
       } else {
         window.clearInterval(scrollInterval);
