@@ -1,7 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import "./pagination.css";
 import { Link } from "react-router-dom";
+import { GoalContext } from "../../context/goals/GoalContext";
 function Pagination({ pages = 10, setCurrentPage }) {
+  const { goalsList } = useContext(GoalContext);
   //Set number of pages
   const numberOfPages = [];
   for (let i = 1; i <= pages; i++) {
@@ -54,7 +56,7 @@ function Pagination({ pages = 10, setCurrentPage }) {
 
     setArrOfCurrButtons(tempNumberOfPages);
     setCurrentPage(currentButton);
-  }, [currentButton]);
+  }, [currentButton, goalsList]);
 
   return (
     <div className="pagination-container">
@@ -65,7 +67,7 @@ function Pagination({ pages = 10, setCurrentPage }) {
           setCurrentButton((prev) => (prev <= 1 ? prev : prev - 1))
         }
       >
-        <i class="fas fa-arrow-left"></i>
+        <i className="fas fa-arrow-left"></i>
       </Link>
 
       {arrOfCurrButtons.map((item, index) => {
@@ -91,7 +93,7 @@ function Pagination({ pages = 10, setCurrentPage }) {
           )
         }
       >
-        <i class="fas fa-arrow-right"></i>
+        <i className="fas fa-arrow-right"></i>
       </Link>
     </div>
   );
