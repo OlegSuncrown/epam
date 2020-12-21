@@ -65,7 +65,7 @@ function Pagination({ pages = 10, setCurrentPage }) {
           setCurrentButton((prev) => (prev <= 1 ? prev : prev - 1))
         }
       >
-        <i class="fas fa-arrow-left"></i>
+        <i className="fas fa-arrow-left"></i>
       </Link>
 
       {arrOfCurrButtons.map((item, index) => {
@@ -91,7 +91,7 @@ function Pagination({ pages = 10, setCurrentPage }) {
           )
         }
       >
-        <i class="fas fa-arrow-right"></i>
+        <i className="fas fa-arrow-right"></i>
       </Link>
     </div>
   );
