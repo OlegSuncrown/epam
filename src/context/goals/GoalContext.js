@@ -118,22 +118,6 @@ const GoalState = (props) => {
     }
   };
 
-  // const completeGoal = async (id) => {
-  //   const data = {
-  //     goalId: id,
-  //     isCompleted: true,
-  //   };
-
-  //   try {
-  //     await axios.post(`${URL}/completeUserGoal`, data);
-  //     swal.fire("Success", "Goal was completed!", "success");
-  //     loadGoals();
-  //     setIsLoaded(true);
-  //   } catch (err) {
-  //     setIsLoaded(true);
-  //   }
-  // };
-
   // Delete Goals
   const deleteGoals = async (goalId) => {
     setIsLoaded(false);
