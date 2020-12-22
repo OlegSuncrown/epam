@@ -1,7 +1,6 @@
-import { React, useState, useEffect, useContext } from "react";
+import { React, useState, useContext } from "react";
 import { Container, Row, Spinner, Tabs, Tab } from "react-bootstrap";
 import UserProfileCard from "./UserProfileCard";
-import axios from "axios";
 import { Pagination } from "../../components";
 import UserAvatar from "../../components/sidebar/UserAvatar";
 import { UsersContext } from "../../context/users/UsersContext";
@@ -9,7 +8,6 @@ import { UsersContext } from "../../context/users/UsersContext";
 const ProfilePage = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage] = useState(8);
-  const URL = "https://hwtaweb20201216131958.azurewebsites.net";
   const { usersList, friendsList, setIsLoaded, isLoaded } = useContext(
     UsersContext
   );

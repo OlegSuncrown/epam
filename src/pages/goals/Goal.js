@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import "react-modern-calendar-datepicker/lib/DatePicker.css";
 import { Container, Spinner, Card } from "react-bootstrap";
 import { GoalContext } from "../../context/goals/GoalContext";
