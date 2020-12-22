@@ -8,6 +8,7 @@ import { BrowserRouter } from "react-router-dom";
 import AuthState from "./context/auth/AuthContext";
 import GoalState from "./context/goals/GoalContext";
 import SeasonalGoalState from "./context/seasonalGoals/SeasonalGoalContext";
+import UsersState from "./context/users/UsersContext";
 
 ReactDOM.render(
   <React.StrictMode>
@@ -15,7 +16,9 @@ ReactDOM.render(
       <AuthState>
         <GoalState>
           <SeasonalGoalState>
-            <App />
+            <UsersState>
+              <App />
+            </UsersState>
           </SeasonalGoalState>
         </GoalState>
       </AuthState>
