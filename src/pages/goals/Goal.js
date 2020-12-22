@@ -42,7 +42,7 @@ const Goal = ({ match }) => {
   return (
     <Container fluid>
       <Row className="p-0">
-        <div className="col-12 col-md-6 mx-auto mb-3">
+        <div className="col-12 col-md-8 mx-auto mb-3">
           <Card.Body
             className="bg-light"
             style={{
