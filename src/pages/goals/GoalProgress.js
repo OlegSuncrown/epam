@@ -12,18 +12,12 @@ import {
   Form,
 } from "react-bootstrap";
 import { GoalContext } from "../../context/goals/GoalContext";
-import swal from "sweetalert2";
 import configureData from "../../utils/configureData";
-const URL = "https://hwtaweb20201216131958.azurewebsites.net";
 
 const GoalProgress = ({ goal }) => {
-  const {
-    deleteGoals,
-    submitProgress,
-    completeGoal,
-    completeGoalWithAlert,
-  } = useContext(GoalContext);
+  const { submitProgress, completeGoalWithAlert } = useContext(GoalContext);
 
+  //current date
   let today = new Date();
   let todayDate = {
     year: today.getFullYear(),
@@ -31,8 +25,7 @@ const GoalProgress = ({ goal }) => {
     day: today.getDate(),
   };
 
-  const preselectedDays = configureData(goal);
-
+  // disabled dates range
   const [minimumDate, setMinimumDate] = useState({
     year: new Date(goal.startDate).getFullYear(),
     month: new Date(goal.startDate).getMonth() + 1,
@@ -45,13 +38,16 @@ const GoalProgress = ({ goal }) => {
     day: new Date(goal.plannedEndDate).getDate(),
   });
 
-  const [selectedDayRange, setSelectedDayRange] = useState(preselectedDays);
+  let defaultValue = configureData(goal);
+
+  const [selectedDayRange, setSelectedDayRange] = useState(defaultValue);
   const [buttonDisabled, setButtonDisabled] = useState(false);
   const [discardButtonDisabled, setDiscardButtonDisabled] = useState(false);
   const [inProgress, setInProgress] = useState(false);
   const [isCompleted, setIsCompleted] = useState(false);
   const [show, setShow] = useState(false);
 
+  //modal windows
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
@@ -65,43 +61,23 @@ const GoalProgress = ({ goal }) => {
     if (goal.isCompleted) {
       setIsCompleted(true);
     }
+
+    if (JSON.stringify(defaultValue["to"]) === JSON.stringify(todayDate)) {
+      setButtonDisabled(true);
+    }
   });
 
-  if (preselectedDays.includes(todayDate)) {
-    setButtonDisabled(true);
-  }
-
   const handleReportSubmit = async () => {
-    setSelectedDayRange((selectedDayRange) => [...selectedDayRange, todayDate]);
+    setSelectedDayRange((selectedDayRange) => {
+      selectedDayRange["to"] = todayDate;
+      return selectedDayRange;
+    });
     setButtonDisabled(true);
-    swal.fire(
-      "Success",
-      "Your goal was achived today! Keep rocking!",
-      "success"
-    );
     submitProgress(goal.goalId);
   };
 
   const handleReportDiscard = () => {
     completeGoalWithAlert(goal.goalId);
-    // swal
-    //   .fire({
-    //     title: "Are you sure?",
-    //     text: "What is done - cannot be undone :(",
-    //     icon: "warning",
-    //     showCancelButton: true,
-    //     confirmButtonColor: "#3085d6",
-    //     cancelButtonColor: "#d33",
-    //     confirmButtonText: "Yes, let me out!",
-    //   })
-    //   .then((result) => {
-    //     if (result.isConfirmed) {
-    //       setButtonDisabled(true);
-    //       setDiscardButtonDisabled(true);
-    //       completeGoal(goal.goalId);
-    //       swal.fire("Goal was completed!", "Completed", "success");
-    //     }
-    //   });
   };
 
   if (!goal) {
@@ -128,6 +104,7 @@ const GoalProgress = ({ goal }) => {
             maximumDate={maximumDate}
             shouldHighlightWeekends
             colorPrimary="#0fbcf9"
+            colorPrimaryLight="rgba(75, 207, 250, 0.4)"
             onChange={handleShow}
           />
           <div className="d-flex">

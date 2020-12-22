@@ -158,8 +158,14 @@ const GoalState = (props) => {
       await axios.post(`${URL}/submitedUserGoal`, data);
       loadGoals();
       setIsLoaded(true);
+      swal.fire(
+        "Success",
+        "Your goal was achived today! Keep rocking!",
+        "success"
+      );
     } catch (err) {
       setIsLoaded(true);
+      swal.fire("Success", "Goal was deleted!", "success");
     }
   };
 
