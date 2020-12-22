@@ -6,20 +6,19 @@ import SuperAward from "../../assets/10streakreward.jpg";
 
 const Bage = ({ title, type }) => {
   const [show, setShow] = useState(false);
-  const isStreak = type !== "completed goal";
+  const isStreak = type === "streak" || type === "superStreak";
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  const getIcon = (type) => {
-    switch (type) {
-      case "superStreak":
-        return SuperAward;
-      case "streak":
-        return GoldenAward;
-      default:
-        return Award;
-    }
-  };
+  let icon = Award;
+
+  if (type === "superStreak") {
+    icon = SuperAward;
+  }
+
+  if (type === "streak") {
+    icon = GoldenAward;
+  }
 
   return (
     <>
@@ -29,7 +28,7 @@ const Bage = ({ title, type }) => {
             width={171}
             height={180}
             alt="171x180"
-            src={getIcon()}
+            src={icon}
             roundedCircle
             className="border border-warning"
           />
@@ -45,12 +44,14 @@ const Bage = ({ title, type }) => {
               width={171}
               height={180}
               alt="171x180"
-              src={getIcon()}
+              src={icon}
               roundedCircle
             />
           </Figure>
           <div className="text-center">
-            {isStreak ? `Streak of ${title} Goals!` : title}
+            {isStreak
+              ? `Streak of ${title} Goals! ${type === "streak"}`
+              : title}
           </div>
         </Modal.Body>
         <Modal.Footer>
