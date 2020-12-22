@@ -8,10 +8,10 @@ const UserGoals = () => {
   const {
     isLoaded,
     goalsError,
-    deleteGoals,
-    completeGoal,
+    completeGoalWithAlert,
     filterGoals,
     sortedGoals,
+    deleteWithAlert,
   } = useContext(GoalContext);
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage] = useState(3);
@@ -84,9 +84,9 @@ const UserGoals = () => {
             allDays={item.allDays}
             currentDay={item.currentDay}
             progress={item.progress}
-            deleteGoals={deleteGoals}
+            deleteWithAlert={deleteWithAlert}
             isLoaded={isLoaded}
-            completeGoal={completeGoal}
+            completeGoalWithAlert={completeGoalWithAlert}
             goal={item}
           />
         );

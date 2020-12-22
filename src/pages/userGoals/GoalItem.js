@@ -1,7 +1,6 @@
 import React from "react";
 import { Col, ProgressBar, Row, Button, Spinner } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import swal from "sweetalert2";
 import "./goals.css";
 const GoalItem = ({
   goal,
@@ -11,27 +10,9 @@ const GoalItem = ({
   isLoaded,
   allDays,
   currentDay,
-  deleteGoals,
-  completeGoal,
+  deleteWithAlert,
+  completeGoalWithAlert,
 }) => {
-  const deleteWithAlert = (id) => {
-    swal
-      .fire({
-        title: "Are you sure?",
-        text: "Once deleted, you will not be able to recover this!",
-        icon: "warning",
-        buttons: true,
-        dangerMode: true,
-      })
-      .then((willDelete) => {
-        if (willDelete) {
-          deleteGoals(+id);
-        } else {
-          return;
-        }
-      });
-  };
-
   if (!isLoaded) {
     return (
       <div className="text-center">
@@ -102,7 +83,8 @@ const GoalItem = ({
             More info
           </Button>
           <Button
-            onClick={() => completeGoal(+id)}
+            disabled={progress === 100 || goal.isCompleted}
+            onClick={() => completeGoalWithAlert(+id)}
             variant="outline-danger"
             size="sm"
           >
