@@ -49,7 +49,7 @@ const SeasonalGoalState = (props) => {
       setAuthToken(localStorage.AuthToken);
     }
     try {
-      const { data } = await axios.get(`${URL}/getAllUserGoals`);
+      const { data } = await axios.get(`${URL}/getAllGlobalGoals`);
       const formatData = data.map((item) => {
         const allDays = date_diff_indays(item.startDate, item.plannedEndDate);
         let currentDay =
