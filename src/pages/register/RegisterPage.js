@@ -2,7 +2,10 @@ import React, { useContext, useState, useEffect } from "react";
 import { Form, Button, Col, Container } from "react-bootstrap";
 import { AuthContext } from "../../context/auth/AuthContext";
 import { ToastContainer, toast } from "react-toastify";
+import { useLocation } from "react-router-dom";
 const Register = ({ history }) => {
+  const query = new URLSearchParams(useLocation().search);
+  const search = useLocation().search;
   const { registerUser, isAuthenticated } = useContext(AuthContext);
 
   const [loading, setLoading] = useState(false);
@@ -13,13 +16,15 @@ const Register = ({ history }) => {
     password: "",
   });
 
-  //Redirect user if isAuthenticated
   useEffect(() => {
     if (isAuthenticated) {
-      history.push("/dashboard");
+      if (query.get("title")) {
+        history.push(`/dashboard/add-goal${search}`);
+      } else {
+        history.push("/dashboard");
+      }
     }
   }, [isAuthenticated]);
-
   // Get value from the form
   const onChange = (e) =>
     setUserRegister({ ...userRegister, [e.target.name]: e.target.value });
