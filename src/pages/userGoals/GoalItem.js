@@ -73,18 +73,13 @@ const GoalItem = ({
           </div>
         </Col>
         <Col className="col-12 text-center mt-2 mt-sm-0">
-          <Button
-            to={`goals/${id}`}
-            variant="outline-warning mr-4"
-            size="sm"
-            as={Link}
-          >
+          <Button to={`goals/${id}`} variant="warning mr-4" size="sm" as={Link}>
             More info
           </Button>
           <Button
             disabled={progress === 100 || goal.isCompleted}
             onClick={() => completeGoalWithAlert(+id)}
-            variant="outline-danger"
+            variant="danger"
             size="sm"
           >
             Complete
