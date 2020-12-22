@@ -17,7 +17,7 @@ const ProfilePage = () => {
   const currentUsers = usersList.slice(indexOfFirstPost, indexOfLastPost);
   const currentFriends = friendsList.slice(indexOfFirstPost, indexOfLastPost);
   const howManyPages = Math.ceil(usersList.length / postsPerPage);
-  console.log(currentFriends);
+
   if (!isLoaded) {
     return (
       <>

@@ -9,7 +9,7 @@ const Main = () => {
   return (
     <Container fluid className="p-0">
       <AdsCard
-        title="Exercise"
+        title="Exercise regularly"
         img={workoutImage}
         text="Pick the number of days you’ll
       exercise each week and stay on track 

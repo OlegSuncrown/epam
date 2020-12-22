@@ -18,7 +18,7 @@ export const DefaultGolasContext = createContext({
     },
     {
       id: 3,
-      title: "Exercise",
+      title: "Exercise regularly",
       description:
         "Pick the number of days you’ll exercise each week and stay on track with weekly Reports. Over 1M workouts reported by our users.",
       item: "days",

@@ -107,39 +107,46 @@ const GoalProgress = ({ goal }) => {
   }
 
   return (
-    <Container>
+    <Container className="p-0">
       {isCompleted ? (
-        <div>Completed</div>
+        <h4 className="text-center">Completed</h4>
       ) : (
         <>
-          <Calendar
-            value={selectedDayRange}
-            minimumDate={minimumDate}
-            maximumDate={maximumDate}
-            className="w-100"
-            shouldHighlightWeekends
-            colorPrimary="#0fbcf9"
-            colorPrimaryLight="rgba(75, 207, 250, 0.4)"
-            onChange={handleShow}
-          />
+          <div className="row p-0">
+            <div className="col p-0 d-flex justify-content-center">
+              <Calendar
+                value={selectedDayRange}
+                minimumDate={minimumDate}
+                maximumDate={maximumDate}
+                className="mx-auto w-100"
+                shouldHighlightWeekends
+                colorPrimary="#0fbcf9"
+                colorPrimaryLight="rgba(75, 207, 250, 0.4)"
+                onChange={handleShow}
+              />
+            </div>
+          </div>
+
           {/* <div className="d-flex"> */}
           <Row className="mt-3">
-            <Col sm={12} lg={6} className="mt-3 d-flex justify-content-center">
+            <Col
+              sm={12}
+              lg={6}
+              className="mt-3 mx-auto d-flex justify-content-center"
+            >
               <Button
-                className="px-5"
+                className="px-5 mr-2"
                 variant="success"
-                size="lg"
+                size="md"
                 onClick={handleReportSubmit}
                 disabled={buttonDisabled}
               >
                 Submit
               </Button>
-            </Col>
-            <Col sm={12} lg={6} className="mt-3 d-flex justify-content-center">
               <Button
                 className="px-5"
                 variant="danger"
-                size="lg"
+                size="md"
                 onClick={handleReportDiscard}
                 disabled={discardButtonDisabled}
               >
