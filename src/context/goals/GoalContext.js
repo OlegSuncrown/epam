@@ -235,6 +235,7 @@ const GoalState = (props) => {
         sortedGoals,
         deleteWithAlert,
         completeGoalWithAlert,
+        completeGoal,
       }}
     >
       {props.children}
