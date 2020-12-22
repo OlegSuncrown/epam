@@ -39,7 +39,10 @@ const UserGoals = () => {
     );
   }
 
-  //console.log(sortedGoals)
+  if (!sortedGoals.length) {
+    return <h2 className="text-center">Your list is empty</h2>;
+  }
+
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
   const currentGoals = sortedGoals.slice(indexOfFirstPost, indexOfLastPost);

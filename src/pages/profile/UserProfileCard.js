@@ -9,7 +9,6 @@ import {
   NavLink,
   Row,
   Container,
-  Spinner,
 } from "react-bootstrap";
 import profilePictureDefault from "../../assets/profilePicture.jpg";
 import { UsersContext } from "../../context/users/UsersContext";
@@ -35,11 +34,7 @@ const UserProfileCard = ({
 
     setIsLoaded(false);
     try {
-      const { data } = await axios.post(
-        `${URL}/AddFriend`,
-        { friendId: userId },
-        config
-      );
+      await axios.post(`${URL}/AddFriend`, { friendId: userId }, config);
 
       handleClose();
       loadFriends();
@@ -104,7 +99,11 @@ const UserProfileCard = ({
                   as={NavLink}
                   className="d-flex justify-content-center align-items-center"
                 >
-                  <i className="fas fa-plus-circle mr-3"></i>
+                  <i
+                    className={
+                      isFriend ? "fas fa-user-slash" : "fas fa-plus-circle mr-3"
+                    }
+                  ></i>
                   {isFriend ? "DeleteFriend" : "Add Friend"}
                 </Button>
               </Col>

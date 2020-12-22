@@ -1,14 +1,17 @@
+
 import React, { useState, useContext, useEffect } from "react";
 import { Container, Row } from "react-bootstrap";
 import Bage from "./Bage";
 import { Pagination } from "../../components/";
-import { GoalContext } from "../../context/goals/GoalContext";
 
 const BagesPage = () => {
   const { goalsList } = useContext(GoalContext);
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage] = useState(6);
   const [bagesList, setBagesList] = useState([]);
+
+  const { goalsList } = useContext(GoalContext);
+
 
   const calculateBages = (goalsList) => {
     const outputArr = [];

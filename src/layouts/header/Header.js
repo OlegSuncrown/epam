@@ -4,6 +4,7 @@ import { useLocation } from "react-router-dom";
 import { NavLink } from "react-router-dom";
 import { AuthContext } from "../../context/auth/AuthContext";
 import DropdownMenu from "./DropdownMenu";
+import Logo from "../../assets/logoHeader.svg";
 
 const Header = () => {
   const { isAuthenticated, logOut } = useContext(AuthContext);
@@ -14,8 +15,7 @@ const Header = () => {
       <Navbar bg="dark" variant="dark py-3 nav-bar">
         <Container>
           <Navbar.Brand as={NavLink} to="/">
-            {/* <img className="logo" src={Logo}></img> */}
-            Logo
+            <img className="logo" src={Logo}></img>
           </Navbar.Brand>
 
           {!isAuthenticated ? (

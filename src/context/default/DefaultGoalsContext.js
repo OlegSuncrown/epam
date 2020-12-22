@@ -1,6 +1,4 @@
-import React, { useState, createContext, useEffect } from "react";
-import setAuthToken from "../../utils/setAuthToken";
-import axios from "axios";
+import { createContext } from "react";
 
 export const DefaultGolasContext = createContext({
   dataList: [
