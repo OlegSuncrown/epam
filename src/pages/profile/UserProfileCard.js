@@ -1,5 +1,5 @@
 import axios from "axios";
-import { React, useState } from "react";
+import { React, useState, useContext } from "react";
 import {
   Card,
   Col,
@@ -9,22 +9,63 @@ import {
   NavLink,
   Row,
   Container,
+  Spinner,
 } from "react-bootstrap";
 import profilePictureDefault from "../../assets/profilePicture.jpg";
+import { UsersContext } from "../../context/users/UsersContext";
 
-const UserProfileCard = ({ firstName, secondName, picture, userId }) => {
+const UserProfileCard = ({
+  firstName,
+  secondName,
+  picture,
+  userId,
+  isFriend,
+  setIsLoaded,
+}) => {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const showProfile = () => setShow(true);
   const URL = "https://hwtaweb20201216131958.azurewebsites.net";
+  const { loadFriends } = useContext(UsersContext);
 
   const addFriend = async () => {
+    const config = {
+      headers: { "Content-Type": "application/json" },
+    };
+
+    setIsLoaded(false);
     try {
-      const { data } = await axios.post(`${URL}/AddFriend`, {
-        friendId: userId,
-      });
+      const { data } = await axios.post(
+        `${URL}/AddFriend`,
+        { friendId: userId },
+        config
+      );
+
+      handleClose();
+      loadFriends();
+      setIsLoaded(true);
     } catch (e) {
       console.log(e);
+    }
+  };
+
+  const deleteFriend = async () => {
+    const config = {
+      headers: { "Content-Type": "application/json" },
+    };
+    setIsLoaded(false);
+    try {
+      await axios.delete(
+        `${URL}/deleteFriend`,
+        { data: { friendId: userId } },
+        config
+      );
+
+      handleClose();
+      loadFriends();
+      setIsLoaded(true);
+    } catch (err) {
+      console.log(err);
     }
   };
 
@@ -56,7 +97,7 @@ const UserProfileCard = ({ firstName, secondName, picture, userId }) => {
             <Row className="d-flex justify-content-between">
               <Col className="col-12 col-md-6">
                 <Button
-                  onClick={addFriend}
+                  onClick={isFriend ? deleteFriend : addFriend}
                   variant="flat m-0"
                   size="l"
                   to="/dashboard/add-goal"
@@ -64,7 +105,7 @@ const UserProfileCard = ({ firstName, secondName, picture, userId }) => {
                   className="d-flex justify-content-center align-items-center"
                 >
                   <i className="fas fa-plus-circle mr-3"></i>
-                  Add Friend
+                  {isFriend ? "DeleteFriend" : "Add Friend"}
                 </Button>
               </Col>
               <Col className="col-12 col-md-6">

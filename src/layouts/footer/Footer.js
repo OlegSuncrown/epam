@@ -12,9 +12,15 @@ const Footer = () => {
         <img className="footer-logo" src={Logo}></img>
       </Col>
       <Col className="d-flex flex-column justify-content-center align-items-center">
-        <Link className="text-light">How it works</Link>
-        <Link className="text-light">About us</Link>
-        <Link className="text-light">Terms of use</Link>
+        <Link to="/" className="text-light">
+          How it works
+        </Link>
+        <Link to="/" className="text-light">
+          About us
+        </Link>
+        <Link to="/" className="text-light">
+          Terms of use
+        </Link>
       </Col>
 
       <Col className="d-flex justify-content-center align-items-center">

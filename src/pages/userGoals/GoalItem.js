@@ -1,15 +1,17 @@
-import React, { useState } from "react";
+import React from "react";
 import { Col, ProgressBar, Row, Button, Spinner } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import "./goals.css";
 const GoalItem = ({
+  goal,
   title,
   id,
   progress,
   isLoaded,
   allDays,
   currentDay,
-  deleteGoals,
+  deleteWithAlert,
+  completeGoalWithAlert,
 }) => {
   if (!isLoaded) {
     return (
@@ -20,23 +22,35 @@ const GoalItem = ({
       </div>
     );
   }
+
   return (
     <>
-      {/* <Link to={`goals/${id}`} className="text-decoration-none"> */}
-      <Row className="item-goal mb-3  py-1">
-        <Col className="col-12 text-center">
+      <Row className="item-goal mb-3 pb-3">
+        <Col
+          className={
+            goal.fullyCompleted
+              ? "col-12 text-center fullycompleted-goal pt-2"
+              : !goal.fullyCompleted && goal.isCompleted
+              ? "col-12 text-center completed-goal pt-2"
+              : "col-12 text-center active-goal pt-2"
+          }
+        >
           <h4 className="m-0 p-0">
             <i
-              onClick={() => deleteGoals(+id)}
-              class="fas fa-trash float-right p-2 delete-goal"
+              onClick={() => deleteWithAlert(id)}
+              className="fas fa-trash float-right p-2 delete-goal"
             ></i>
             <strong>{title}</strong>
           </h4>
           <hr className="m-0 mt-2" />
         </Col>
-        <Col className="col-12 col-sm-10 mx-auto d-flex align-items-center">
+
+        <Col className="d-none d-md-block col-sm-2 "></Col>
+
+        {/* Progress Bar */}
+        <Col className="col-12 mt-3 mt-sm-0 col-sm-8 mx-auto d-flex align-items-center justify-content-center">
           <ProgressBar
-            className="w-100 shadow"
+            className="w-100 shadow "
             now={progress}
             label={`${progress}%`}
             variant={
@@ -68,16 +82,15 @@ const GoalItem = ({
             More info
           </Button>
           <Button
-            to={`goals/${id}`}
+            disabled={progress === 100 || goal.isCompleted}
+            onClick={() => completeGoalWithAlert(+id)}
             variant="outline-danger"
-            as={Link}
             size="sm"
           >
             Complete
           </Button>
         </Col>
       </Row>
-      {/* </Link> */}
     </>
   );
 };
