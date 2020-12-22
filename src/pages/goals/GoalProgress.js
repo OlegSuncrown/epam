@@ -17,7 +17,12 @@ import configureData from "../../utils/configureData";
 const URL = "https://hwtaweb20201216131958.azurewebsites.net";
 
 const GoalProgress = ({ goal }) => {
-  const { deleteGoals, submitProgress, completeGoal } = useContext(GoalContext);
+  const {
+    deleteGoals,
+    submitProgress,
+    completeGoal,
+    completeGoalWithAlert,
+  } = useContext(GoalContext);
 
   let today = new Date();
   let todayDate = {
@@ -78,24 +83,25 @@ const GoalProgress = ({ goal }) => {
   };
 
   const handleReportDiscard = () => {
-    swal
-      .fire({
-        title: "Are you sure?",
-        text: "What is done - cannot be undone :(",
-        icon: "warning",
-        showCancelButton: true,
-        confirmButtonColor: "#3085d6",
-        cancelButtonColor: "#d33",
-        confirmButtonText: "Yes, let me out!",
-      })
-      .then((result) => {
-        if (result.isConfirmed) {
-          setButtonDisabled(true);
-          setDiscardButtonDisabled(true);
-          completeGoal(goal.goalId);
-          swal.fire("Oh, no!", "Oh, no no no", "success");
-        }
-      });
+    completeGoalWithAlert(goal.goalId);
+    // swal
+    //   .fire({
+    //     title: "Are you sure?",
+    //     text: "What is done - cannot be undone :(",
+    //     icon: "warning",
+    //     showCancelButton: true,
+    //     confirmButtonColor: "#3085d6",
+    //     cancelButtonColor: "#d33",
+    //     confirmButtonText: "Yes, let me out!",
+    //   })
+    //   .then((result) => {
+    //     if (result.isConfirmed) {
+    //       setButtonDisabled(true);
+    //       setDiscardButtonDisabled(true);
+    //       completeGoal(goal.goalId);
+    //       swal.fire("Goal was completed!", "Completed", "success");
+    //     }
+    //   });
   };
 
   if (!goal) {
