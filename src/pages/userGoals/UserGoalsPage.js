@@ -39,7 +39,6 @@ const UserGoals = () => {
     );
   }
 
-
   if (!sortedGoals.length) {
     return <h2 className="text-center">Your list is empty</h2>;
   }
