@@ -13,10 +13,14 @@ import {
 } from "react-bootstrap";
 import { GoalContext } from "../../context/goals/GoalContext";
 import configureData from "../../utils/configureData";
+import swal from "sweetalert2";
+import { useHistory } from "react-router-dom";
 
 const GoalProgress = ({ goal }) => {
-  const { submitProgress, completeGoalWithAlert } = useContext(GoalContext);
-
+  const { submitProgress, completeGoalWithAlert, completeGoal } = useContext(
+    GoalContext
+  );
+  const history = useHistory();
   //current date
   let today = new Date();
   let todayDate = {
@@ -65,6 +69,11 @@ const GoalProgress = ({ goal }) => {
     if (JSON.stringify(defaultValue["to"]) === JSON.stringify(todayDate)) {
       setButtonDisabled(true);
     }
+
+    if (new Date(goal.startDate) >= today) {
+      setButtonDisabled(true);
+      setDiscardButtonDisabled(true);
+    }
   });
 
   const handleReportSubmit = async () => {
@@ -72,8 +81,13 @@ const GoalProgress = ({ goal }) => {
       selectedDayRange["to"] = todayDate;
       return selectedDayRange;
     });
+
+    if (JSON.stringify(selectedDayRange["to"]) === JSON.stringify(todayDate)) {
+      completeGoal(goal.goalId);
+      swal.fire("Success", "Goal is completed!", "success");
+      setIsCompleted(true);
+    }
     setButtonDisabled(true);
-    submitProgress(goal.goalId);
   };
 
   const handleReportDiscard = () => {
@@ -102,45 +116,38 @@ const GoalProgress = ({ goal }) => {
             value={selectedDayRange}
             minimumDate={minimumDate}
             maximumDate={maximumDate}
+            className="w-100"
             shouldHighlightWeekends
             colorPrimary="#0fbcf9"
             colorPrimaryLight="rgba(75, 207, 250, 0.4)"
             onChange={handleShow}
           />
-          <div className="d-flex">
-            <Row className="mt-3">
-              <Col
-                sm={12}
-                lg={6}
-                className="mt-3 d-flex justify-content-center"
+          {/* <div className="d-flex"> */}
+          <Row className="mt-3">
+            <Col sm={12} lg={6} className="mt-3 d-flex justify-content-center">
+              <Button
+                className="px-5"
+                variant="success"
+                size="lg"
+                onClick={handleReportSubmit}
+                disabled={buttonDisabled}
               >
-                <Button
-                  className="px-5"
-                  variant="success"
-                  size="lg"
-                  onClick={handleReportSubmit}
-                  disabled={buttonDisabled}
-                >
-                  Submit
-                </Button>
-              </Col>
-              <Col
-                sm={12}
-                lg={6}
-                className="mt-3 d-flex justify-content-center"
+                Submit
+              </Button>
+            </Col>
+            <Col sm={12} lg={6} className="mt-3 d-flex justify-content-center">
+              <Button
+                className="px-5"
+                variant="danger"
+                size="lg"
+                onClick={handleReportDiscard}
+                disabled={discardButtonDisabled}
               >
-                <Button
-                  className="px-5"
-                  variant="danger"
-                  size="lg"
-                  onClick={handleReportDiscard}
-                  disabled={discardButtonDisabled}
-                >
-                  Discard
-                </Button>
-              </Col>
-            </Row>
-          </div>
+                Discard
+              </Button>
+            </Col>
+          </Row>
+          {/* </div> */}
         </>
       )}
       <Modal show={show} onHide={handleClose} animation={false}>
