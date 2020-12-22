@@ -1,6 +1,7 @@
 import React from "react";
 import { Col, ProgressBar, Row, Button, Spinner } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import swal from "sweetalert2";
 import "./goals.css";
 const GoalItem = ({
   goal,
@@ -13,6 +14,24 @@ const GoalItem = ({
   deleteGoals,
   completeGoal,
 }) => {
+  const deleteWithAlert = (id) => {
+    swal
+      .fire({
+        title: "Are you sure?",
+        text: "Once deleted, you will not be able to recover this!",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+      })
+      .then((willDelete) => {
+        if (willDelete) {
+          deleteGoals(+id);
+        } else {
+          return;
+        }
+      });
+  };
+
   if (!isLoaded) {
     return (
       <div className="text-center">
@@ -22,13 +41,14 @@ const GoalItem = ({
       </div>
     );
   }
+
   return (
     <>
       <Row className="item-goal mb-3 py-1">
         <Col className="col-12 text-center">
           <h4 className="m-0 p-0">
             <i
-              onClick={() => deleteGoals(+id)}
+              onClick={() => deleteWithAlert(id)}
               className="fas fa-trash float-right p-2 delete-goal"
             ></i>
             <strong>{title}</strong>

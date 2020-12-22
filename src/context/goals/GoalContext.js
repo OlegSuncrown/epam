@@ -111,6 +111,7 @@ const GoalState = (props) => {
 
       loadGoals();
       setIsLoaded(true);
+      swal.fire("Success", "Goal was deleted!", "success");
     } catch (err) {
       setIsLoaded(true);
     }
