@@ -14,6 +14,10 @@ body {
   background: #ecece7;
 }
 
+.logo {
+  height: 50px;
+}
+
 .footer {
   width: 100%;
   background-color: #52796f;

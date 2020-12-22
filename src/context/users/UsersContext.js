@@ -3,12 +3,10 @@ import setAuthToken from "../../utils/setAuthToken";
 import axios from "axios";
 import { useLocation } from "react-router-dom";
 import { AuthContext } from "../auth/AuthContext";
-import swal from "sweetalert2";
 export const UsersContext = createContext();
 
 const UsersState = (props) => {
-  const location = useLocation();
-  const { logOut, isAuthenticated } = useContext(AuthContext);
+  const { isAuthenticated } = useContext(AuthContext);
   const URL = "https://hwtaweb20201216131958.azurewebsites.net";
   const [usersList, setUsersList] = useState([]);
   const [friendsList, setFriendsList] = useState([]);

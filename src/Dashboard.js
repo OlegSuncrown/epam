@@ -1,4 +1,4 @@
-import { Switch, Route, useRouteMatch, Link } from "react-router-dom";
+import { Switch, Route, useRouteMatch } from "react-router-dom";
 import { Row, Col, Container } from "react-bootstrap";
 import {
   ProfilePage,
