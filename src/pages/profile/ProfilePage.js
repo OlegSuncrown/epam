@@ -53,12 +53,16 @@ const ProfilePage = () => {
                 );
               })}
             </Row>
-            <div className="pt-4">
-              <Pagination
-                pages={howManyPages}
-                setCurrentPage={setCurrentPage}
-              />
-            </div>
+            {currentFriends.length ? (
+              <div className="pt-4">
+                <Pagination
+                  pages={howManyPages}
+                  setCurrentPage={setCurrentPage}
+                />
+              </div>
+            ) : (
+              <h2 className="text-center">You have no friends yet.</h2>
+            )}
           </Container>
         </Tab>
 
@@ -78,12 +82,18 @@ const ProfilePage = () => {
                 );
               })}
             </Row>
-            <div className="pt-4">
-              <Pagination
-                pages={howManyPages}
-                setCurrentPage={setCurrentPage}
-              />
-            </div>
+            {currentUsers.length ? (
+              <div className="pt-4">
+                <Pagination
+                  pages={howManyPages}
+                  setCurrentPage={setCurrentPage}
+                />
+              </div>
+            ) : (
+              <h2 className="text-center">
+                You are so lonely in this cruel world!
+              </h2>
+            )}
           </Container>
         </Tab>
       </Tabs>
