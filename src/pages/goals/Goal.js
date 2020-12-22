@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import "react-modern-calendar-datepicker/lib/DatePicker.css";
-import { Container, Spinner, Card } from "react-bootstrap";
+import { Container, Spinner, Card, Row } from "react-bootstrap";
 import { GoalContext } from "../../context/goals/GoalContext";
 import GoalProgress from "./GoalProgress";
 
@@ -40,20 +40,24 @@ const Goal = ({ match }) => {
   }
 
   return (
-    <Container
-      fluid
-      className="d-flex flex-column justify-content-between align-items-center"
-    >
-      <h1 className="mb-3">{goal.nameGoal}</h1>
-      <Card
-        className="mt-3 mb-5"
-        style={{
-          fontSize: "1.2em",
-          borderRadius: "1em",
-        }}
-      >
-        <Card.Body>{goal.description}</Card.Body>
-      </Card>
+    <Container fluid>
+      <Row className="p-0">
+        <div className="col-12 col-md-6 mx-auto mb-3">
+          <Card.Body
+            className="bg-light"
+            style={{
+              fontSize: "1.2em",
+              borderRadius: "1em",
+            }}
+          >
+            {" "}
+            <h1 className="mb-3 text-center">{goal.nameGoal}</h1>
+            <hr />
+            <Card.Body className="p-1">{goal.description}</Card.Body>
+          </Card.Body>
+        </div>
+      </Row>
+
       <div className="d-flex flex-column justify-content-between align-items-center">
         <GoalProgress goal={goal} />
       </div>
