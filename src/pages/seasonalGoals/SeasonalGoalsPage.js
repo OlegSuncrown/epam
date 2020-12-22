@@ -1,6 +1,6 @@
 import React, { useState, useContext, useEffect } from "react";
 import { Container, Spinner, Dropdown } from "react-bootstrap";
-import GoalItem from "../userGoals/GoalItem";
+import SeasonalGoalItem from "./SeasonalGoalItem";
 import { SeasonalGoalContext } from "../../context/seasonalGoals/SeasonalGoalContext";
 import { Pagination } from "../../components";
 
@@ -76,13 +76,13 @@ const UserGoals = () => {
       </div>
       {currentGoals.map((item) => {
         return (
-          <GoalItem
+          <SeasonalGoalItem
             key={item.goalId}
             title={item.nameGoal}
             id={item.goalId}
-            allDays={item.allDays}
-            currentDay={item.currentDay}
-            progress={item.progress}
+            allDays={30}
+            currentDay={10}
+            progress={20}
             deleteGoals={deleteGoals}
             isLoaded={isLoaded}
             completeGoal={completeGoal}
