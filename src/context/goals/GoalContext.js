@@ -25,8 +25,8 @@ const GoalState = (props) => {
     );
   };
 
-  // Mark goal as completed
-  const completeGoal = async (id) => {
+  // Mark goal as completed during loading all goals
+  const completeGoalduringLoading = async (id) => {
     const data = {
       goalId: id,
       isCompleted: true,
@@ -34,8 +34,6 @@ const GoalState = (props) => {
 
     try {
       await axios.post(`${URL}/completeUserGoal`, data);
-      // swal.fire("Success", "Goal was completed!", "success");
-      // loadGoals();
       setIsLoaded(true);
     } catch (err) {
       setIsLoaded(true);
@@ -59,7 +57,7 @@ const GoalState = (props) => {
         let fullyCompleted = false;
         // Check if goal need to be completed
         if (!item.isCompleted && currentDay >= allDays) {
-          completeGoal(item.goalId);
+          completeGoalduringLoading(item.goalId);
         }
 
         if (currentDay > allDays) {
@@ -101,6 +99,24 @@ const GoalState = (props) => {
     }
   };
 
+  // Mark goal as completed
+  const completeGoal = async (id) => {
+    const data = {
+      goalId: id,
+      isCompleted: true,
+    };
+
+    try {
+      await axios.post(`${URL}/completeUserGoal`, data);
+      loadGoals();
+      setIsLoaded(true);
+      swal.fire("Success", "Goal was completed!", "success");
+    } catch (err) {
+      setIsLoaded(true);
+    }
+  };
+
+  // Delete Goals
   const deleteGoals = async (goalId) => {
     setIsLoaded(false);
     try {
@@ -110,6 +126,7 @@ const GoalState = (props) => {
 
       loadGoals();
       setIsLoaded(true);
+      swal.fire("Success", "Goal was deleted!", "success");
     } catch (err) {
       setIsLoaded(true);
     }
@@ -144,6 +161,45 @@ const GoalState = (props) => {
     setSortedGoals(goals);
   };
 
+  // Delete with Alert
+  const deleteWithAlert = (id) => {
+    swal
+      .fire({
+        title: "Are you sure?",
+        text: "Once deleted, you will not be able to recover this!",
+        showCancelButton: true,
+        confirmButtonText: `Confirm`,
+        denyButtonText: `Cancel`,
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+      })
+      .then((result) => {
+        if (result.isConfirmed) {
+          deleteGoals(+id);
+        }
+      });
+  };
+
+  const completeGoalWithAlert = (id) => {
+    swal
+      .fire({
+        title: "Goal is not fully completed?",
+        text: "Are you sure, you want to give up now?",
+        showCancelButton: true,
+        confirmButtonText: `Confirm`,
+        denyButtonText: `Cancel`,
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+      })
+      .then((result) => {
+        if (result.isConfirmed) {
+          completeGoal(+id);
+        }
+      });
+  };
+
   return (
     <GoalContext.Provider
       value={{
@@ -152,9 +208,10 @@ const GoalState = (props) => {
         goalsError,
         loadGoals,
         deleteGoals,
-        completeGoal,
         filterGoals,
         sortedGoals,
+        deleteWithAlert,
+        completeGoalWithAlert,
       }}
     >
       {props.children}

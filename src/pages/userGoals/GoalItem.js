@@ -10,8 +10,8 @@ const GoalItem = ({
   isLoaded,
   allDays,
   currentDay,
-  deleteGoals,
-  completeGoal,
+  deleteWithAlert,
+  completeGoalWithAlert,
 }) => {
   if (!isLoaded) {
     return (
@@ -22,13 +22,22 @@ const GoalItem = ({
       </div>
     );
   }
+
   return (
     <>
-      <Row className="item-goal mb-3 py-1">
-        <Col className="col-12 text-center">
+      <Row className="item-goal mb-3 pb-3">
+        <Col
+          className={
+            goal.fullyCompleted
+              ? "col-12 text-center fullycompleted-goal pt-2"
+              : !goal.fullyCompleted && goal.isCompleted
+              ? "col-12 text-center completed-goal pt-2"
+              : "col-12 text-center active-goal pt-2"
+          }
+        >
           <h4 className="m-0 p-0">
             <i
-              onClick={() => deleteGoals(+id)}
+              onClick={() => deleteWithAlert(id)}
               className="fas fa-trash float-right p-2 delete-goal"
             ></i>
             <strong>{title}</strong>
@@ -36,19 +45,10 @@ const GoalItem = ({
           <hr className="m-0 mt-2" />
         </Col>
 
-        {/* Icon */}
-        <Col className="col-6 col-sm-2 d-flex align-items-center justify-content-end">
-          {goal.fullyCompleted ? (
-            <i className="icon-goal-completed far fa-check-circle"></i>
-          ) : !goal.fullyCompleted && goal.isCompleted ? (
-            <i className="fas icon-goal-done fa-times"></i>
-          ) : (
-            <i className="fas icon-goal-active fa-exclamation-circle"></i>
-          )}
-        </Col>
+        <Col className="d-none d-md-block col-sm-2 "></Col>
 
         {/* Progress Bar */}
-        <Col className="col-12 col-sm-8 mx-auto d-flex align-items-center">
+        <Col className="col-12 mt-3 mt-sm-0 col-sm-8 mx-auto d-flex align-items-center justify-content-center">
           <ProgressBar
             className="w-100 shadow "
             now={progress}
@@ -62,7 +62,7 @@ const GoalItem = ({
             }
           />
         </Col>
-        <Col className="col-6 col-sm-2 ">
+        <Col className="col-12 col-sm-2">
           <div className="text-center">
             <span className="current-day">{currentDay}/</span>
             <span className="end-day">{allDays}</span>
@@ -82,7 +82,8 @@ const GoalItem = ({
             More info
           </Button>
           <Button
-            onClick={() => completeGoal(+id)}
+            disabled={progress === 100 || goal.isCompleted}
+            onClick={() => completeGoalWithAlert(+id)}
             variant="outline-danger"
             size="sm"
           >

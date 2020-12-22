@@ -35,29 +35,14 @@
   cursor: pointer;
 }
 
-/* .completed-goal {
-  background-color: rgb(207, 74, 34);
-}
-
 .fullycompleted-goal {
-  background-color: rgba(0, 128, 0, 0.452);
-} */
-/* .icon-goal {
-  font-size: 25px;
-  color: grey;
-} */
-
-.icon-goal-completed {
-  color: rgb(61, 165, 35);
-  font-size: 25px;
+  background-color: rgba(93, 182, 75, 0.301);
 }
 
-.icon-goal-done {
-  color: rgba(179, 34, 34, 0.863);
-  font-size: 25px;
+.completed-goal {
+  background-color: rgba(207, 42, 20, 0.171);
 }
 
-.icon-goal-active {
-  color: rgb(44, 208, 230);
-  font-size: 25px;
+.active-goal {
+  background-color: rgba(111, 198, 219, 0.377);
 }

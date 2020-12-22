@@ -8,10 +8,10 @@ const UserGoals = () => {
   const {
     isLoaded,
     goalsError,
-    deleteGoals,
-    completeGoal,
+    completeGoalWithAlert,
     filterGoals,
     sortedGoals,
+    deleteWithAlert,
   } = useContext(GoalContext);
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage] = useState(3);
@@ -42,6 +42,7 @@ const UserGoals = () => {
   if (!sortedGoals.length) {
     return <h2 className="text-center">Your list is empty</h2>;
   }
+
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
   const currentGoals = sortedGoals.slice(indexOfFirstPost, indexOfLastPost);
@@ -73,6 +74,11 @@ const UserGoals = () => {
           </Dropdown.Menu>
         </Dropdown>
       </div>
+      {!sortedGoals.length ? (
+        <h2 className="text-center">Your list is empty</h2>
+      ) : (
+        ""
+      )}
       {currentGoals.map((item) => {
         return (
           <GoalItem
@@ -82,18 +88,20 @@ const UserGoals = () => {
             allDays={item.allDays}
             currentDay={item.currentDay}
             progress={item.progress}
-            deleteGoals={deleteGoals}
+            deleteWithAlert={deleteWithAlert}
             isLoaded={isLoaded}
-            completeGoal={completeGoal}
+            completeGoalWithAlert={completeGoalWithAlert}
             goal={item}
           />
         );
       })}
 
-      {sortedGoals.length > 3 && (
+      {sortedGoals.length > 3 ? (
         <div className="pt-4">
           <Pagination pages={howManyPages} setCurrentPage={setCurrentPage} />
         </div>
+      ) : (
+        ""
       )}
     </Container>
   );
