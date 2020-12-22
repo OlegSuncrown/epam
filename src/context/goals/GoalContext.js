@@ -185,8 +185,8 @@ const GoalState = (props) => {
   const completeGoalWithAlert = (id) => {
     swal
       .fire({
-        title: "Are you sure?",
-        text: "Once deleted, you will not be able to recover this!",
+        title: "Goal is not fully completed?",
+        text: "Are you sure, you want to give up now?",
         showCancelButton: true,
         confirmButtonText: `Confirm`,
         denyButtonText: `Cancel`,

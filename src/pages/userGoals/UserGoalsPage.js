@@ -39,10 +39,6 @@ const UserGoals = () => {
     );
   }
 
-  if (!sortedGoals.length) {
-    return <h2 className="text-center">Your list is empty</h2>;
-  }
-
   //console.log(sortedGoals)
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
@@ -75,6 +71,11 @@ const UserGoals = () => {
           </Dropdown.Menu>
         </Dropdown>
       </div>
+      {!sortedGoals.length ? (
+        <h2 className="text-center">Your list is empty</h2>
+      ) : (
+        ""
+      )}
       {currentGoals.map((item) => {
         return (
           <GoalItem
@@ -92,10 +93,12 @@ const UserGoals = () => {
         );
       })}
 
-      {sortedGoals.length > 3 && (
+      {sortedGoals.length > 3 ? (
         <div className="pt-4">
           <Pagination pages={howManyPages} setCurrentPage={setCurrentPage} />
         </div>
+      ) : (
+        ""
       )}
     </Container>
   );
