@@ -53,9 +53,13 @@ const BagesPage = () => {
             <Bage key={index} title={item.title} type={item.type} />
           ))}
         </Row>
-        <div className="pt-4">
-          <Pagination pages={howManyPages} setCurrentPage={setCurrentPage} />
-        </div>
+        {currentBages.length ? (
+          <div className="pt-4">
+            <Pagination pages={howManyPages} setCurrentPage={setCurrentPage} />
+          </div>
+        ) : (
+          <h2 className="text-center">No awards yet. Keep going there!</h2>
+        )}
       </Container>
     </>
   );
