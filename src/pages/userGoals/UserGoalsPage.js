@@ -42,8 +42,6 @@ const UserGoals = () => {
   if (!sortedGoals.length) {
     return <h2 className="text-center">Your list is empty</h2>;
   }
-
-  //console.log(sortedGoals)
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
   const currentGoals = sortedGoals.slice(indexOfFirstPost, indexOfLastPost);

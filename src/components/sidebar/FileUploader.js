@@ -24,11 +24,7 @@ const FileUploader = () => {
           "Content-Type": "multipart/form-data",
         },
       };
-      const res = await axios.post(
-        `${URL}/LoadProfilePicture`,
-        formData,
-        config
-      );
+      await axios.post(`${URL}/LoadProfilePicture`, formData, config);
 
       loadImage();
       setIsLoading(false);

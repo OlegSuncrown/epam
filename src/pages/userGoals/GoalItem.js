@@ -1,4 +1,4 @@
-import React from "react";
+import { React } from "react";
 import { Col, ProgressBar, Row, Button, Spinner } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import "./goals.css";
