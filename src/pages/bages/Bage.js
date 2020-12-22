@@ -2,13 +2,24 @@ import React, { useState } from "react";
 import { Modal, Figure, Button, Col } from "react-bootstrap";
 import Award from "../../assets/award.png";
 import GoldenAward from "../../assets/golden-award.png";
+import SuperAward from "../../assets/10streakreward.jpg";
 
 const Bage = ({ title, type }) => {
   const [show, setShow] = useState(false);
-
+  const isStreak = type !== "completed goal";
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-  const isStreak = type === "streak";
+
+  const getIcon = (type) => {
+    switch (type) {
+      case "superStreak":
+        return SuperAward;
+      case "streak":
+        return GoldenAward;
+      default:
+        return Award;
+    }
+  };
 
   return (
     <>
@@ -18,7 +29,7 @@ const Bage = ({ title, type }) => {
             width={171}
             height={180}
             alt="171x180"
-            src={isStreak ? GoldenAward : Award}
+            src={getIcon()}
             roundedCircle
             className="border border-warning"
           />
@@ -34,7 +45,7 @@ const Bage = ({ title, type }) => {
               width={171}
               height={180}
               alt="171x180"
-              src={isStreak ? GoldenAward : Award}
+              src={getIcon()}
               roundedCircle
             />
           </Figure>

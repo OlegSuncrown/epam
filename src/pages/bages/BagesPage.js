@@ -18,7 +18,10 @@ const BagesPage = () => {
 
     const addStreaks = (streakSize, streaksCount) => {
       for (let i = 0; i < streaksCount; i++) {
-        outputArr.push({ type: "streak", title: streakSize });
+        outputArr.push({
+          type: streakSize >= 10 ? "superStreak" : "streak",
+          title: streakSize,
+        });
       }
     };
 
