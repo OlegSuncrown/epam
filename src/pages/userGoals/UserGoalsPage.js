@@ -62,7 +62,7 @@ const UserGoals = () => {
               By active
             </Dropdown.Item>
             <Dropdown.Item onClick={() => filterGoals("byCompleted")}>
-              By completed
+              By finished
             </Dropdown.Item>
             <Dropdown.Item onClick={() => filterGoals("byFullyCompleted")}>
               By fully completed
