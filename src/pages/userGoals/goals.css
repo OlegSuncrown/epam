@@ -34,3 +34,15 @@
   color: rgba(245, 43, 43, 0.808);
   cursor: pointer;
 }
+
+.fullycompleted-goal {
+  background-color: rgba(93, 182, 75, 0.301);
+}
+
+.completed-goal {
+  background-color: rgba(207, 42, 20, 0.171);
+}
+
+.active-goal {
+  background-color: rgba(111, 198, 219, 0.377);
+}
