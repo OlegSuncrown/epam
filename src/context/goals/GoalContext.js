@@ -3,6 +3,8 @@ import setAuthToken from "../../utils/setAuthToken";
 import axios from "axios";
 import { useLocation } from "react-router-dom";
 import { AuthContext } from "../auth/AuthContext";
+import swal from "sweetalert2";
+
 export const GoalContext = createContext();
 
 const GoalState = (props) => {
