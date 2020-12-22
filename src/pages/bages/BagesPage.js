@@ -1,24 +1,17 @@
-import React, { useState } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { Container, Row } from "react-bootstrap";
 import Bage from "./Bage";
 import { Pagination } from "../../components/";
-
+import { GoalContext } from "../../context/goals/GoalContext";
 const BagesPage = () => {
+  const { goalsList } = useContext(GoalContext);
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage] = useState(6);
   const [bagesList, setBagesList] = useState([]);
-  // const { goalsList } = useContext(GoalContext);
-  const goalsList = [
-    { nameGoal: "asdasd", isCompleted: true },
-    { nameGoal: "asdasd", isCompleted: true },
-    { nameGoal: "asdasd", isCompleted: true },
-    { nameGoal: "asdasd", isCompleted: true },
-    { nameGoal: "asdasd", isCompleted: true },
-  ];
 
   const calculateBages = (goalsList) => {
     const outputArr = [];
-    const completedGoals = goalsList.filter((goal) => goal.isCompleted);
+    const completedGoals = goalsList.filter((goal) => goal.fullyCompleted);
     const streaksOfFiveGoals = Math.floor(completedGoals.length / 5);
     const streaksOfTenGoals = Math.floor(completedGoals.length / 10);
     const streaksOfFiftyGoals = Math.floor(completedGoals.length / 50);
@@ -43,13 +36,9 @@ const BagesPage = () => {
     return outputArr;
   };
 
-  // useEffect(() => {
-  //   setBagesList(calculateBages(goalsList));
-  // }, [goalsList]);
-
-  if (!bagesList.length) {
+  useEffect(() => {
     setBagesList(calculateBages(goalsList));
-  }
+  }, [goalsList]);
 
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;

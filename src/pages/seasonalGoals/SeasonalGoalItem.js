@@ -1,8 +1,8 @@
 import { React } from "react";
 import { Col, ProgressBar, Row, Button, Spinner } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import "./goals.css";
-const GoalItem = ({
+import "./seasonalGoals.css";
+const SeasonalGoalItem = ({
   goal,
   title,
   id,
@@ -37,7 +37,7 @@ const GoalItem = ({
         >
           <h4 className="m-0 p-0">
             <i
-              onClick={() => deleteWithAlert(id)}
+              //   onClick={() => deleteWithAlert(id)}
               className="fas fa-trash float-right p-2 delete-goal"
             ></i>
             <strong>{title}</strong>
@@ -73,12 +73,12 @@ const GoalItem = ({
           </div>
         </Col>
         <Col className="col-12 text-center mt-2 mt-sm-0">
-          <Button to={`goals/${id}`} variant="warning mr-4" size="sm" as={Link}>
+          <Button variant="warning mr-4" size="sm">
             More info
           </Button>
           <Button
-            disabled={progress === 100 || goal.isCompleted}
-            onClick={() => completeGoalWithAlert(+id)}
+            disabled={true}
+            // onClick={() => completeGoalWithAlert(+id)}
             variant="danger"
             size="sm"
           >
@@ -90,4 +90,4 @@ const GoalItem = ({
   );
 };
 
-export default GoalItem;
+export default SeasonalGoalItem;

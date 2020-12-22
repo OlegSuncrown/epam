@@ -39,10 +39,6 @@ const UserGoals = () => {
     );
   }
 
-  if (!sortedGoals.length) {
-    return <h2 className="text-center">Your list is empty</h2>;
-  }
-
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
   const currentGoals = sortedGoals.slice(indexOfFirstPost, indexOfLastPost);
@@ -66,7 +62,7 @@ const UserGoals = () => {
               By active
             </Dropdown.Item>
             <Dropdown.Item onClick={() => filterGoals("byCompleted")}>
-              By completed
+              By finished
             </Dropdown.Item>
             <Dropdown.Item onClick={() => filterGoals("byFullyCompleted")}>
               By fully completed
