@@ -3,7 +3,7 @@ import setAuthToken from "../../utils/setAuthToken";
 import axios from "axios";
 import { useLocation } from "react-router-dom";
 import { AuthContext } from "../auth/AuthContext";
-
+import swal from "sweetalert2";
 export const SeasonalGoalContext = createContext();
 
 const SeasonalGoalState = (props) => {
@@ -14,7 +14,8 @@ const SeasonalGoalState = (props) => {
   const [goalsList, setGoalsList] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
   const [goalsError, setGoalsError] = useState("");
-
+  const [sortedGoals, setSortedGoals] = useState([]);
+  // Count difference between 2 dates
   const date_diff_indays = (date1, date2) => {
     let dt1 = new Date(date1);
     let dt2 = new Date(date2);
@@ -25,40 +26,92 @@ const SeasonalGoalState = (props) => {
     );
   };
 
+  // Mark goal as completed
+  const completeGoal = async (id) => {
+    const data = {
+      goalId: id,
+      isCompleted: true,
+    };
+
+    try {
+      await axios.post(`${URL}/completeUserGoal`, data);
+      // swal.fire("Success", "Goal was completed!", "success");
+      // loadGoals();
+      setIsLoaded(true);
+    } catch (err) {
+      setIsLoaded(true);
+    }
+  };
+
   ///getAllUserGoals
   const loadGoals = async () => {
     if (localStorage.AuthToken) {
       setAuthToken(localStorage.AuthToken);
     }
     try {
-      //change req URL
       const { data } = await axios.get(`${URL}/getAllUserGoals`);
-      const formatDate = data.map((item) => {
+      const formatData = data.map((item) => {
         const allDays = date_diff_indays(item.startDate, item.plannedEndDate);
-        const currentDay =
+        let currentDay =
           date_diff_indays(Date.now(), item.plannedEndDate) > allDays
             ? 0
             : allDays - date_diff_indays(Date.now(), item.plannedEndDate);
-        const progress = Math.round((currentDay * 100) / allDays);
+        let progress = Math.round((currentDay * 100) / allDays);
+        let fullyCompleted = false;
+        // Check if goal need to be completed
+        if (!item.isCompleted && currentDay >= allDays) {
+          completeGoal(item.goalId);
+        }
+
+        if (currentDay > allDays) {
+          currentDay = allDays;
+        }
+
+        if (progress > 100) {
+          progress = 100;
+        }
+
+        if (
+          item.finishedDate &&
+          date_diff_indays(item.finishedDate, item.plannedEndDate) <= 0
+        ) {
+          fullyCompleted = true;
+        }
+
         return {
           ...item,
           allDays,
           currentDay: currentDay > 0 ? currentDay : 0,
-          progress: progress,
+          progress,
+          fullyCompleted,
         };
       });
 
       setGoalsError("");
       setIsLoaded(true);
-      setGoalsList(formatDate);
+      setSortedGoals(formatData);
+      setGoalsList(formatData);
     } catch (err) {
-      if (err.response?.status === 401) {
+      if (err.response.status === 401) {
         location.search = "";
         setGoalsError("");
         logOut();
       }
-      setGoalsList([]);
-      setGoalsError("Error, can not fetch list of goals");
+      setGoalsError("Error, could not fetch list of goals");
+      setIsLoaded(true);
+    }
+  };
+
+  const deleteGoals = async (goalId) => {
+    setIsLoaded(false);
+    try {
+      await axios.delete(`${URL}/DeleteUserGoal`, {
+        data: { goalId: goalId },
+      });
+
+      loadGoals();
+      setIsLoaded(true);
+    } catch (err) {
       setIsLoaded(true);
     }
   };
@@ -69,6 +122,29 @@ const SeasonalGoalState = (props) => {
     }
   }, [isAuthenticated]);
 
+  // Filter user goals
+  const filterGoals = (filter = "all") => {
+    let goals = [...goalsList];
+
+    if (filter === "all") {
+      goals = goals;
+    }
+
+    if (filter === "byCompleted") {
+      goals = goals.filter((item) => item.isCompleted);
+    }
+
+    if (filter === "byFullyCompleted") {
+      goals = goals.filter((item) => item.fullyCompleted);
+    }
+
+    if (filter === "byActive") {
+      goals = goals.filter((item) => !item.isCompleted);
+    }
+
+    setSortedGoals(goals);
+  };
+
   return (
     <SeasonalGoalContext.Provider
       value={{
@@ -76,6 +152,10 @@ const SeasonalGoalState = (props) => {
         isLoaded,
         goalsError,
         loadGoals,
+        deleteGoals,
+        completeGoal,
+        filterGoals,
+        sortedGoals,
       }}
     >
       {props.children}

@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import "react-modern-calendar-datepicker/lib/DatePicker.css";
 import { Calendar } from "react-modern-calendar-datepicker";
-import { Container, Button, Row, Col, Spinner, Card } from "react-bootstrap";
+import { Container, Button, Row, Col, Spinner } from "react-bootstrap";
 import { GoalContext } from "../../context/goals/GoalContext";
 import swal from "sweetalert2";
 import configureData from "../../utils/configureData";
@@ -48,7 +48,6 @@ const GoalProgress = ({ goal }) => {
   });
 
   if (preselectedDays.includes(todayDate)) {
-    console.log("I am here");
     setButtonDisabled(true);
   }
 
