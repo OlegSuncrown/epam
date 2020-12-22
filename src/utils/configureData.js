@@ -9,7 +9,12 @@ function configureData(goal) {
       .fill()
       .map((_, idx) => new Date(startDate.getTime() + idx * 86400000));
 
-    data.pop();
+    if (
+      new Date(goal.lastUpdateDate).setHours(0, 0, 0, 0) !==
+      today.setHours(0, 0, 0, 0)
+    ) {
+      data.pop();
+    }
     let preselected = [];
     data.map((date) =>
       preselected.push({

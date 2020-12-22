@@ -3,6 +3,7 @@ import setAuthToken from "../../utils/setAuthToken";
 import axios from "axios";
 import { useLocation } from "react-router-dom";
 import { AuthContext } from "../auth/AuthContext";
+import swal from "sweetalert2";
 
 export const GoalContext = createContext();
 
@@ -65,10 +66,40 @@ const GoalState = (props) => {
   const deleteGoals = async (goalId) => {
     setIsLoaded(false);
     try {
-      await axios.delete(`${URL}/api/UserGoal/DeleteUserGoal`, {
+      await axios.delete(`${URL}/DeleteUserGoal`, {
         data: { goalId: goalId },
       });
 
+      loadGoals();
+      setIsLoaded(true);
+    } catch (err) {
+      setIsLoaded(true);
+    }
+  };
+
+  const submitProgress = async (goalId) => {
+    const data = {
+      goalId: goalId,
+    };
+
+    try {
+      await axios.post(`${URL}/submitedUserGoal`, data);
+      loadGoals();
+      setIsLoaded(true);
+    } catch (err) {
+      setIsLoaded(true);
+    }
+  };
+
+  const completeGoal = async (id) => {
+    const data = {
+      goalId: id,
+      isCompleted: true,
+    };
+
+    try {
+      await axios.post(`${URL}/completeUserGoal`, data);
+      swal.fire("Success", "Goal was completed!", "success");
       loadGoals();
       setIsLoaded(true);
     } catch (err) {
@@ -88,8 +119,10 @@ const GoalState = (props) => {
         goalsList,
         isLoaded,
         goalsError,
+        submitProgress,
         loadGoals,
         deleteGoals,
+        completeGoal,
       }}
     >
       {props.children}
