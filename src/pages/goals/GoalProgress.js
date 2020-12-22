@@ -82,7 +82,7 @@ const GoalProgress = ({ goal }) => {
       return selectedDayRange;
     });
 
-    if (JSON.stringify(selectedDayRange["to"]) === JSON.stringify(todayDate)) {
+    if (JSON.stringify(maximumDate) === JSON.stringify(todayDate)) {
       completeGoal(goal.goalId);
       swal.fire("Success", "Goal is completed!", "success");
       setIsCompleted(true);
